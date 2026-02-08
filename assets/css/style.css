@@ -198,4 +198,12 @@ a {
     flex-direction: column;
   }
 }
+.upload-box.dragging {
+  border-color: #2563eb;
+  background: #f0f6ff;
+}
+
+.upload-box.has-file {
+  border-style: solid;
+}
 
