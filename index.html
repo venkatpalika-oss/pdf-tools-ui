@@ -80,7 +80,12 @@
 <div id="site-footer"></div>
 
 <!-- ================= INCLUDE LOADER ================= -->
-<script src="assets/js/includes.js"></script>
+<script>
+  const script = document.createElement("script");
+  script.src = "assets/js/includes.js";
+  document.body.appendChild(script);
+</script>
+
 
 </body>
 </html>
