@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,14 +28,17 @@
       Reduce PDF file size without losing quality.
     </p>
 
-    <!-- UPLOAD BOX -->
+    <!-- UPLOAD BOX (LOCKED STRUCTURE) -->
     <div class="upload-box">
-  <input type="file" class="file-input" hidden />
+      <input type="file"
+             class="file-input"
+             accept="application/pdf"
+             hidden />
 
-  <div class="upload-icon">⬆️</div>
-  <p class="upload-title">Choose a file or drag & drop here</p>
-  <p class="upload-hint">Supported: PDF, Word, JPG</p>
-</div>
+      <div class="upload-icon">⬆️</div>
+      <p class="upload-title">Choose a PDF file or drag & drop here</p>
+      <p class="upload-hint">Supported format: PDF</p>
+    </div>
 
   </div>
 </section>
@@ -54,7 +56,7 @@
 <!-- ================= GLOBAL FOOTER ================= -->
 <div id="site-footer"></div>
 
-<!-- ================= INCLUDE LOADER ================= -->
+<!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
 <script src="../assets/js/app.js"></script>
 
