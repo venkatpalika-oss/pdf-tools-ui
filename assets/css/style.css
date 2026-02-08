@@ -1,1 +1,201 @@
+/* =========================================================
+   GLOBAL BASE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fa;
+  color: #1a1a1a;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* =========================================================
+   HEADER (GLOBAL – LOCKED)
+   ========================================================= */
+
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #2563eb;
+}
+
+.header-nav a {
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
+.hero {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+/* =========================================================
+   UPLOAD BOX (REUSABLE – LOCKED)
+   ========================================================= */
+
+.upload-box {
+  background: #ffffff;
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 36px 16px;
+  max-width: 520px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload-box:hover {
+  border-color: #2563eb;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.upload-icon {
+  font-size: 28px;
+}
+
+.upload-title {
+  font-weight: bold;
+  margin: 10px 0 4px;
+}
+
+.upload-hint {
+  font-size: 14px;
+  color: #666;
+}
+
+/* =========================================================
+   TOOLS GRID (HOMEPAGE)
+   ========================================================= */
+
+.tools {
+  padding: 24px 0 48px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.tool-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+.tool-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tool-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.muted-card {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* =========================================================
+   FOOTER (GLOBAL – LOCKED)
+   ========================================================= */
+
+.site-footer {
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  margin-right: 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+.footer-copy {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* =========================================================
+   RESPONSIVE (MOBILE FRIENDLY)
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+}
 
