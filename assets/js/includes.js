@@ -7,6 +7,6 @@ function loadInclude(id, url) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadInclude("site-header", "/includes/header.html");
-  loadInclude("site-footer", "/includes/footer.html");
+  loadInclude("site-header", "includes/header.html");
+  loadInclude("site-footer", "includes/footer.html");
 });
