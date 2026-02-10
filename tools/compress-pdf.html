@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
-<body>
+<body data-tool="compress">
 
 <!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
@@ -30,10 +30,12 @@
 
     <!-- UPLOAD BOX (LOCKED STRUCTURE) -->
     <div class="upload-box">
-      <input type="file"
-             class="file-input"
-             accept="application/pdf"
-             hidden />
+      <input
+        type="file"
+        class="file-input"
+        accept="application/pdf"
+        hidden
+      />
 
       <div class="upload-icon">⬆️</div>
       <p class="upload-title">Choose a PDF file or drag & drop here</p>
@@ -56,9 +58,9 @@
 <!-- ================= GLOBAL FOOTER ================= -->
 <div id="site-footer"></div>
 
-<!-- ================= SCRIPTS ================= -->
+<!-- ================= SCRIPTS (ORDER MATTERS) ================= -->
 <script src="../assets/js/includes.js"></script>
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js" defer></script>
 
 </body>
 </html>
