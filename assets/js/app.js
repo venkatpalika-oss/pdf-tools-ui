@@ -2,8 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= CONFIG ================= */
 
-  // 🔴 IMPORTANT: Render backend (PRODUCTION)
   const API_BASE = "https://pdf-tools-api-ikhx.onrender.com";
+
+  console.log("🚀 Compress tool JS loaded");
+  console.log("🌐 API BASE:", API_BASE);
 
   /* ================= ELEMENTS ================= */
 
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function compressPDF(file, box) {
     try {
+      console.log("📤 Sending file to backend:", file.name);
+
       setStatus(box, "Compressing… ⏳", "loading");
 
       const formData = new FormData();
@@ -31,25 +35,29 @@ document.addEventListener("DOMContentLoaded", () => {
         body: formData
       });
 
+      console.log("📡 Backend response status:", res.status);
+
+      const text = await res.text();
+      console.log("📦 Raw backend response:", text);
+
       if (!res.ok) {
-        throw new Error(`Server error ${res.status}`);
+        throw new Error(text || `Server error ${res.status}`);
       }
 
-      const data = await res.json();
+      const data = JSON.parse(text);
 
       if (!data.outputUrl) {
-        throw new Error("No output file returned");
+        throw new Error("No outputUrl returned from backend");
       }
 
-      // Success
       setStatus(box, "Compression complete ✅", "success");
 
-      // Auto-download
       window.open(data.outputUrl, "_blank");
 
     } catch (err) {
-      console.error("Compress error:", err);
+      console.error("❌ Compress failed:", err);
       setStatus(box, "Compression failed ❌", "error");
+      alert("Compress failed:\n" + err.message);
     }
   }
 
@@ -58,12 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
   uploadBoxes.forEach(box => {
     const input = box.querySelector(".file-input");
 
-    // Click to upload
     box.addEventListener("click", () => {
       input.click();
     });
 
-    // File selected
     input.addEventListener("change", () => {
       if (!input.files.length) return;
 
@@ -78,18 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
       compressPDF(file, box);
     });
 
-    // Drag over
     box.addEventListener("dragover", e => {
       e.preventDefault();
       box.classList.add("dragging");
     });
 
-    // Drag leave
     box.addEventListener("dragleave", () => {
       box.classList.remove("dragging");
     });
 
-    // Drop file
     box.addEventListener("drop", e => {
       e.preventDefault();
       box.classList.remove("dragging");
