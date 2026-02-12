@@ -27,9 +27,10 @@
       Reduce PDF file size without losing quality.
     </p>
 
-    <!-- UPLOAD BOX -->
+    <!-- FORM -->
     <form id="compressForm">
 
+      <!-- UPLOAD BOX -->
       <div class="upload-box" id="dropZone">
         <input
           type="file"
@@ -97,64 +98,10 @@ const form = document.getElementById("compressForm");
 const resultBox = document.getElementById("resultBox");
 const levelSelect = document.getElementById("levelSelect");
 
-/* ================= SAFE CLICK TO OPEN FILE ================= */
-dropZone.addEventListener("click", (e) => {
-  if (e.target.tagName !== "INPUT") {
-    fileInput.click();
-  }
+/* ================= CLICK TO OPEN FILE ================= */
+dropZone.addEventListener("click", () => {
+  fileInput.click();
 });
-
-/* ================= FILE SELECT ================= */
-fileInput.addEventListener("change", () => {
-  if (fileInput.files.length) {
-    fileLabel.textContent = fileInput.files[0].name;
-  }
-});
-
-/* ================= FORM SUBMIT ================= */
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (!fileInput.files.length) {
-    alert("Please select a PDF file");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("file", fileInput.files[0]);
-  formData.append("level", levelSelect.value);
-
-  resultBox.innerHTML = "⏳ Compressing... Please wait";
-
-  try {
-    const response = await fetch(
-      "https://pdf-tools-api-c4f5.onrender.com/api/compress",
-      {
-        method: "POST",
-        body: formData
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || "Compression failed");
-    }
-
-    resultBox.innerHTML = `
-      ✅ Compression Successful<br><br>
-      <a href="${data.downloadUrl}" target="_blank" class="btn-primary">
-        Download Compressed PDF
-      </a>
-    `;
-  } catch (error) {
-    resultBox.innerHTML = `❌ Error: ${error.message}`;
-  }
-});
-</script>
-
-/* ================= CLICK TO UPLOAD ================= */
-dropZone.addEventListener("click", () => fileInput.click());
 
 /* ================= DRAG & DROP ================= */
 dropZone.addEventListener("dragover", (e) => {
@@ -183,7 +130,7 @@ fileInput.addEventListener("change", () => {
   }
 });
 
-/* ================= SUBMIT ================= */
+/* ================= FORM SUBMIT ================= */
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
