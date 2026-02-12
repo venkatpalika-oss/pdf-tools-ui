@@ -5,20 +5,16 @@
   <title>Compress PDF – Reduce PDF File Size Online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- META -->
   <meta name="description"
         content="Compress PDF files online to reduce file size while keeping quality intact." />
 
-  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body data-tool="compress">
 
-<!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
-<!-- ================= TOOL PAGE ================= -->
 <section class="hero">
   <div class="container hero-inner">
 
@@ -27,15 +23,12 @@
       Reduce PDF file size without losing quality.
     </p>
 
-    <!-- FORM -->
     <form id="compressForm">
 
-      <!-- UPLOAD BOX -->
       <div class="upload-box" id="dropZone">
         <input
           type="file"
           id="fileInput"
-          class="file-input"
           accept="application/pdf"
           hidden
           required
@@ -48,7 +41,6 @@
         <p class="upload-hint">Supported format: PDF</p>
       </div>
 
-      <!-- COMPRESSION LEVEL -->
       <div style="margin-top:20px;text-align:center;">
         <select id="levelSelect" style="padding:10px;border-radius:6px;">
           <option value="screen">Smallest Size (Low Quality)</option>
@@ -58,7 +50,6 @@
         </select>
       </div>
 
-      <!-- SUBMIT BUTTON -->
       <div style="margin-top:20px;text-align:center;">
         <button type="submit" class="btn-primary">
           Compress PDF
@@ -67,13 +58,11 @@
 
     </form>
 
-    <!-- RESULT AREA -->
     <div id="resultBox" style="margin-top:25px;text-align:center;"></div>
 
   </div>
 </section>
 
-<!-- ================= INFO SECTION ================= -->
 <section class="tools">
   <div class="container">
     <p class="hero-sub" style="max-width:720px;margin:auto;text-align:center;">
@@ -83,10 +72,8 @@
   </div>
 </section>
 
-<!-- ================= GLOBAL FOOTER ================= -->
 <div id="site-footer"></div>
 
-<!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
 <script src="../assets/js/app.js" defer></script>
 
@@ -98,12 +85,12 @@ const form = document.getElementById("compressForm");
 const resultBox = document.getElementById("resultBox");
 const levelSelect = document.getElementById("levelSelect");
 
-/* ================= CLICK TO OPEN FILE ================= */
+/* CLICK TO UPLOAD */
 dropZone.addEventListener("click", () => {
   fileInput.click();
 });
 
-/* ================= DRAG & DROP ================= */
+/* DRAG & DROP */
 dropZone.addEventListener("dragover", (e) => {
   e.preventDefault();
   dropZone.classList.add("drag-active");
@@ -123,14 +110,14 @@ dropZone.addEventListener("drop", (e) => {
   }
 });
 
-/* ================= FILE SELECT ================= */
+/* FILE SELECT */
 fileInput.addEventListener("change", () => {
   if (fileInput.files.length) {
     fileLabel.textContent = fileInput.files[0].name;
   }
 });
 
-/* ================= FORM SUBMIT ================= */
+/* SUBMIT */
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -170,7 +157,7 @@ form.addEventListener("submit", async (e) => {
     `;
 
   } catch (error) {
-    resultBox.innerHTML = `❌ Error: ${error.message}`;
+    resultBox.innerHTML = `❌ Compression failed: ${error.message}`;
   }
 });
 </script>
