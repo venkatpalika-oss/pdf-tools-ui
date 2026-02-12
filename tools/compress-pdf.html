@@ -78,87 +78,94 @@
 <script src="../assets/js/app.js" defer></script>
 
 <script>
-const dropZone = document.getElementById("dropZone");
-const fileInput = document.getElementById("fileInput");
-const fileLabel = document.getElementById("fileLabel");
-const form = document.getElementById("compressForm");
-const resultBox = document.getElementById("resultBox");
-const levelSelect = document.getElementById("levelSelect");
+document.addEventListener("DOMContentLoaded", function () {
 
-/* CLICK TO UPLOAD */
-dropZone.addEventListener("click", () => {
-  fileInput.click();
-});
+  const dropZone = document.getElementById("dropZone");
+  const fileInput = document.getElementById("fileInput");
+  const fileLabel = document.getElementById("fileLabel");
+  const form = document.getElementById("compressForm");
+  const resultBox = document.getElementById("resultBox");
+  const levelSelect = document.getElementById("levelSelect");
 
-/* DRAG & DROP */
-dropZone.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  dropZone.classList.add("drag-active");
-});
+  if (!dropZone || !fileInput || !form) return;
 
-dropZone.addEventListener("dragleave", () => {
-  dropZone.classList.remove("drag-active");
-});
+  /* CLICK TO UPLOAD */
+  dropZone.addEventListener("click", () => {
+    fileInput.click();
+  });
 
-dropZone.addEventListener("drop", (e) => {
-  e.preventDefault();
-  dropZone.classList.remove("drag-active");
+  /* DRAG & DROP */
+  dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZone.classList.add("drag-active");
+  });
 
-  if (e.dataTransfer.files.length) {
-    fileInput.files = e.dataTransfer.files;
-    fileLabel.textContent = e.dataTransfer.files[0].name;
-  }
-});
+  dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("drag-active");
+  });
 
-/* FILE SELECT */
-fileInput.addEventListener("change", () => {
-  if (fileInput.files.length) {
-    fileLabel.textContent = fileInput.files[0].name;
-  }
-});
+  dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropZone.classList.remove("drag-active");
 
-/* SUBMIT */
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    if (e.dataTransfer.files.length) {
+      fileInput.files = e.dataTransfer.files;
+      fileLabel.textContent = e.dataTransfer.files[0].name;
+    }
+  });
 
-  if (!fileInput.files.length) {
-    alert("Please select a PDF file");
-    return;
-  }
+  /* FILE SELECT */
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length) {
+      fileLabel.textContent = fileInput.files[0].name;
+    }
+  });
 
-  const formData = new FormData();
-  formData.append("file", fileInput.files[0]);
-  formData.append("level", levelSelect.value);
+  /* SUBMIT */
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  resultBox.innerHTML = "⏳ Compressing... Please wait";
-
-  try {
-    const response = await fetch(
-      "https://pdf-tools-api-c4f5.onrender.com/api/compress",
-      {
-        method: "POST",
-        body: formData
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || "Compression failed");
+    if (!fileInput.files.length) {
+      alert("Please select a PDF file");
+      return;
     }
 
-    resultBox.innerHTML = `
-      <div style="margin-top:15px;">
-        ✅ Compression Successful<br><br>
-        <a href="${data.downloadUrl}" target="_blank" class="btn-primary">
-          Download Compressed PDF
-        </a>
-      </div>
-    `;
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+    formData.append("level", levelSelect.value);
 
-  } catch (error) {
-    resultBox.innerHTML = `❌ Compression failed: ${error.message}`;
-  }
+    resultBox.innerHTML = "⏳ Compressing... Please wait";
+
+    try {
+      const response = await fetch(
+        "https://pdf-tools-api-c4f5.onrender.com/api/compress",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Compression failed");
+      }
+
+      resultBox.innerHTML = `
+        <div style="margin-top:15px;">
+          ✅ Compression Successful<br><br>
+          <a href="${data.downloadUrl}" target="_blank" class="btn-primary">
+            Download Compressed PDF
+          </a>
+        </div>
+      `;
+
+    } catch (error) {
+      resultBox.innerHTML = `❌ Compression failed: ${error.message}`;
+    }
+
+  });
+
 });
 </script>
 
