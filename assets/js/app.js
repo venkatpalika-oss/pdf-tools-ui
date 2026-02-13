@@ -95,6 +95,33 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(err.message);
     }
   }
+/* ================= SPLIT ================= */
+async function splitPDF(file, box) {
+  try {
+    setStatus(box, "Splitting… ⏳", "loading");
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch(`${API_BASE}/api/split`, {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.downloadUrl) {
+      throw new Error(data.error || "Split failed");
+    }
+
+    setStatus(box, "Split Complete ✅", "success");
+    openDownload(data.downloadUrl);
+
+  } catch (err) {
+    setStatus(box, "Split Failed ❌", "error");
+    alert(err.message);
+  }
+}
 
   /* ================= MAIN ================= */
 
@@ -127,6 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (toolType === "merge") {
         mergePDF(files, box);
+      }
+      if (toolType === "split") {
+        splitPDF(files[0], box);
       }
 
     });
