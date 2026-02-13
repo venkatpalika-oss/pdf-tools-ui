@@ -108,18 +108,31 @@ async function splitPDF(file, box) {
       body: formData
     });
 
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(errorText || `Server error ${res.status}`);
+    }
+
     const data = await res.json();
 
-    if (!res.ok || !data.downloadUrl) {
-      throw new Error(data.error || "Split failed");
+    if (!data.downloadUrl) {
+      throw new Error("Invalid server response");
     }
 
     setStatus(box, "Split Complete ✅", "success");
-    openDownload(data.downloadUrl);
+
+    // 🔥 FORCE DOWNLOAD
+    const link = document.createElement("a");
+    link.href = data.downloadUrl;
+    link.download = "";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
   } catch (err) {
-    setStatus(box, "Split Failed ❌", "error");
-    alert(err.message);
+    console.error("❌ Split failed:", err);
+    setStatus(box, "Split failed ❌", "error");
+    alert("Split failed:\n" + err.message);
   }
 }
 
