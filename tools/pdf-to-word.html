@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
-<body>
+<!-- ✅ IMPORTANT: data-tool connection -->
+<body data-tool="pdf-to-word">
 
 <!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
@@ -28,25 +29,30 @@
       Convert PDF documents into editable Word files.
     </p>
 
-    <!-- UPLOAD BOX (LOCKED STRUCTURE) -->
+    <!-- UPLOAD BOX -->
     <div class="upload-box">
-      <input type="file"
-             class="file-input"
-             accept="application/pdf"
-             hidden />
+      <input
+        type="file"
+        class="file-input"
+        accept="application/pdf"
+        hidden
+      />
 
       <div class="upload-icon">⬆️</div>
-      <p class="upload-title">Choose a PDF file or drag & drop here</p>
+      <p class="upload-title">
+        Choose a PDF file or drag & drop here
+      </p>
       <p class="upload-hint">Supported format: PDF</p>
     </div>
 
   </div>
 </section>
 
-<!-- ================= INFO SECTION (LIGHT SEO) ================= -->
+<!-- ================= INFO SECTION ================= -->
 <section class="tools">
   <div class="container">
-    <p class="hero-sub" style="max-width:720px;margin:auto;text-align:center;">
+    <p class="hero-sub"
+       style="max-width:720px;margin:auto;text-align:center;">
       Convert PDF files into fully editable Word documents for easy
       editing, formatting, and reuse.
     </p>
@@ -58,8 +64,7 @@
 
 <!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js" defer></script>
 
 </body>
 </html>
-
