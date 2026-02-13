@@ -10,10 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ================= ELEMENTS ================= */
 
   const uploadBoxes = document.querySelectorAll(".upload-box");
+  const tool = document.body.dataset.tool;
 
   if (!uploadBoxes.length) {
     console.log("ℹ️ No upload boxes found on this page.");
-    return; // Prevent errors on pages without upload-box
+    return;
   }
 
   /* ================= HELPERS ================= */
@@ -28,16 +29,26 @@ document.addEventListener("DOMContentLoaded", () => {
     if (state) box.classList.add(state);
   }
 
+  function validatePDFs(files, box) {
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].type !== "application/pdf") {
+        setStatus(box, "Only PDF files allowed ❌", "error");
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /* ================= COMPRESS ================= */
+
   async function compressPDF(file, box) {
     try {
-      console.log("📤 Sending file:", file.name);
-
+      console.log("📤 Compressing:", file.name);
       setStatus(box, "Compressing… ⏳", "loading");
 
       const formData = new FormData();
       formData.append("file", file);
 
-      // Optional compression level support
       const levelSelect = document.getElementById("levelSelect");
       if (levelSelect) {
         formData.append("level", levelSelect.value);
@@ -47,8 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "POST",
         body: formData
       });
-
-      console.log("📡 Response status:", res.status);
 
       if (!res.ok) {
         const errorText = await res.text();
@@ -62,8 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       setStatus(box, "Compression complete ✅", "success");
-
-      // Open download in new tab
       window.open(data.downloadUrl, "_blank");
 
     } catch (err) {
@@ -73,13 +80,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* ================= MERGE ================= */
+
+  async function mergePDF(files, box) {
+    try {
+      console.log("📤 Merging files:", files.length);
+      setStatus(box, "Merging… ⏳", "loading");
+
+      const formData = new FormData();
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
+
+      const res = await fetch(`${API_BASE}/api/merge`, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText || `Server error ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      if (!data.downloadUrl) {
+        throw new Error("Invalid merge response");
+      }
+
+      setStatus(box, "Merge complete ✅", "success");
+      window.open(data.downloadUrl, "_blank");
+
+    } catch (err) {
+      console.error("❌ Merge failed:", err);
+      setStatus(box, "Merge failed ❌", "error");
+      alert("Merge failed:\n" + err.message);
+    }
+  }
+
   /* ================= MAIN ================= */
 
   uploadBoxes.forEach(box => {
 
     const input = box.querySelector(".file-input");
-
-    if (!input) return; // Safety check
+    if (!input) return;
 
     /* CLICK */
     box.addEventListener("click", () => {
@@ -91,15 +136,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!input.files || !input.files.length) return;
 
-      const file = input.files[0];
+      if (!validatePDFs(input.files, box)) return;
 
-      if (file.type !== "application/pdf") {
-        setStatus(box, "Only PDF files allowed ❌", "error");
-        return;
+      if (tool === "merge") {
+        setStatus(box, `${input.files.length} files selected`, "has-file");
+        mergePDF(input.files, box);
+      }
+      else if (tool === "compress") {
+        const file = input.files[0];
+        setStatus(box, file.name, "has-file");
+        compressPDF(file, box);
       }
 
-      setStatus(box, file.name, "has-file");
-      compressPDF(file, box);
     });
 
     /* DRAG OVER */
@@ -119,17 +167,20 @@ document.addEventListener("DOMContentLoaded", () => {
       box.classList.remove("dragging");
 
       if (!e.dataTransfer.files || !e.dataTransfer.files.length) return;
-
-      const file = e.dataTransfer.files[0];
-
-      if (file.type !== "application/pdf") {
-        setStatus(box, "Only PDF files allowed ❌", "error");
-        return;
-      }
+      if (!validatePDFs(e.dataTransfer.files, box)) return;
 
       input.files = e.dataTransfer.files;
-      setStatus(box, file.name, "has-file");
-      compressPDF(file, box);
+
+      if (tool === "merge") {
+        setStatus(box, `${input.files.length} files selected`, "has-file");
+        mergePDF(input.files, box);
+      }
+      else if (tool === "compress") {
+        const file = input.files[0];
+        setStatus(box, file.name, "has-file");
+        compressPDF(file, box);
+      }
+
     });
 
   });
