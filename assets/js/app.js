@@ -19,49 +19,49 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!title) return;
 
     title.textContent = text;
-    box.classList.remove("has-file", "error", "success", "loading");
 
+    box.classList.remove("has-file", "error", "success", "loading");
     if (state) box.classList.add(state);
   }
 
-  function forceDownload(url) {
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.src = url;
-    document.body.appendChild(iframe);
-
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-    }, 5000);
+  function safeDownload(url) {
+    // Use anchor download (cleaner than iframe)
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   async function sendRequest(endpoint, formData, box, loadingText) {
     try {
       setStatus(box, loadingText, "loading");
 
-      const res = await fetch(`${API_BASE}${endpoint}`, {
+      const response = await fetch(`${API_BASE}${endpoint}`, {
         method: "POST",
         body: formData
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(errorText || `Server error ${res.status}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `Server error ${response.status}`);
       }
 
-      const data = await res.json();
+      const data = await response.json();
 
       if (!data.downloadUrl) {
         throw new Error("Invalid server response");
       }
 
       setStatus(box, "Completed ✅", "success");
-      forceDownload(data.downloadUrl);
+      safeDownload(data.downloadUrl);
 
-    } catch (err) {
-      console.error("❌ Request failed:", err);
+    } catch (error) {
+      console.error("❌ API Error:", error);
       setStatus(box, "Failed ❌", "error");
-      alert(err.message);
+      alert(error.message);
     }
   }
 
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("file", file);
 
     const watermarkInput = document.getElementById("watermarkText");
-    const text = watermarkInput?.value || "CONFIDENTIAL";
+    const text = watermarkInput?.value?.trim() || "CONFIDENTIAL";
 
     formData.append("text", text);
 
@@ -146,11 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setStatus(
         box,
-        files.length === 1 ? files[0].name : `${files.length} files selected`,
+        files.length === 1
+          ? files[0].name
+          : `${files.length} files selected`,
         "has-file"
       );
-
-      /* TOOL SWITCH */
 
       switch (toolType) {
 
