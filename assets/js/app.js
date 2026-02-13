@@ -121,13 +121,16 @@ async function splitPDF(file, box) {
 
     setStatus(box, "Split Complete ✅", "success");
 
-    // 🔥 FORCE DOWNLOAD
-    const link = document.createElement("a");
-    link.href = data.downloadUrl;
-    link.download = "";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+   // Force download via hidden iframe (best cross-domain method)
+   const iframe = document.createElement("iframe");
+   iframe.style.display = "none";
+   iframe.src = data.downloadUrl;
+   document.body.appendChild(iframe);
+
+setTimeout(() => {
+  document.body.removeChild(iframe);
+}, 5000);
+
 
   } catch (err) {
     console.error("❌ Split failed:", err);
