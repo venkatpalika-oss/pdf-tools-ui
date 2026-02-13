@@ -206,4 +206,21 @@ a {
 .upload-box.has-file {
   border-style: solid;
 }
+.seo-content {
+  padding: 60px 0;
+  background: #f8f9fc;
+}
+
+.seo-content h2 {
+  margin-bottom: 15px;
+}
+
+.seo-content h3 {
+  margin-top: 25px;
+}
+
+.seo-content ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
 
