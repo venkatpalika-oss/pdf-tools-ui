@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Watermark to PDF Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description"
+        content="Add text watermark to your PDF document online securely." />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="watermark">
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container hero-inner">
+
+    <h1>Add Watermark</h1>
+    <p class="hero-sub">
+      Add custom text watermark to your PDF document.
+    </p>
+
+    <!-- Watermark Text Input -->
+    <div style="margin-bottom:20px;text-align:center;">
+      <input type="text"
+             id="watermarkText"
+             placeholder="Enter watermark text"
+             style="padding:10px;width:280px;border-radius:6px;border:1px solid #ccc;">
+    </div>
+
+    <!-- Upload Box -->
+    <div class="upload-box">
+      <input type="file"
+             class="file-input"
+             accept="application/pdf"
+             hidden />
+
+      <div class="upload-icon">💧</div>
+      <p class="upload-title">Choose a PDF file or drag & drop here</p>
+      <p class="upload-hint">Watermark will be added to all pages</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="tools">
+  <div class="container">
+    <p class="hero-sub" style="max-width:720px;margin:auto;text-align:center;">
+      Protect your document by adding a watermark like
+      "CONFIDENTIAL", "DRAFT", or your company name.
+    </p>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/includes.js"></script>
+<script src="../assets/js/app.js" defer></script>
+
+</body>
+</html>
