@@ -7,15 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("🚀 PDF Tools JS Loaded");
   console.log("🌐 API BASE:", API_BASE);
 
-  /* ================= ELEMENTS ================= */
-
   const uploadBoxes = document.querySelectorAll(".upload-box");
-  const tool = document.body.dataset.tool;
+  const toolType = document.body.dataset.tool;
 
-  if (!uploadBoxes.length) {
-    console.log("ℹ️ No upload boxes found on this page.");
-    return;
-  }
+  if (!uploadBoxes.length) return;
 
   /* ================= HELPERS ================= */
 
@@ -29,21 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (state) box.classList.add(state);
   }
 
-  function validatePDFs(files, box) {
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].type !== "application/pdf") {
-        setStatus(box, "Only PDF files allowed ❌", "error");
-        return false;
-      }
-    }
-    return true;
+  function openDownload(url) {
+    window.open(url, "_blank");
   }
 
   /* ================= COMPRESS ================= */
 
   async function compressPDF(file, box) {
     try {
-      console.log("📤 Compressing:", file.name);
       setStatus(box, "Compressing… ⏳", "loading");
 
       const formData = new FormData();
@@ -59,24 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
         body: formData
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(errorText || `Server error ${res.status}`);
-      }
-
       const data = await res.json();
 
-      if (!data.downloadUrl) {
-        throw new Error("Invalid server response");
+      if (!res.ok || !data.downloadUrl) {
+        throw new Error(data.error || "Compression failed");
       }
 
-      setStatus(box, "Compression complete ✅", "success");
-      window.open(data.downloadUrl, "_blank");
+      setStatus(box, "Compression Complete ✅", "success");
+      openDownload(data.downloadUrl);
 
     } catch (err) {
-      console.error("❌ Compression failed:", err);
-      setStatus(box, "Compression failed ❌", "error");
-      alert("Compression failed:\n" + err.message);
+      setStatus(box, "Compression Failed ❌", "error");
+      alert(err.message);
     }
   }
 
@@ -84,38 +66,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function mergePDF(files, box) {
     try {
-      console.log("📤 Merging files:", files.length);
+      if (files.length < 2) {
+        alert("Please select at least 2 PDF files.");
+        return;
+      }
+
       setStatus(box, "Merging… ⏳", "loading");
 
       const formData = new FormData();
-
-      for (let i = 0; i < files.length; i++) {
-        formData.append("files", files[i]);
-      }
+      files.forEach(file => formData.append("files", file));
 
       const res = await fetch(`${API_BASE}/api/merge`, {
         method: "POST",
         body: formData
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(errorText || `Server error ${res.status}`);
-      }
-
       const data = await res.json();
 
-      if (!data.downloadUrl) {
-        throw new Error("Invalid merge response");
+      if (!res.ok || !data.downloadUrl) {
+        throw new Error(data.error || "Merge failed");
       }
 
-      setStatus(box, "Merge complete ✅", "success");
-      window.open(data.downloadUrl, "_blank");
+      setStatus(box, "Merge Complete ✅", "success");
+      openDownload(data.downloadUrl);
 
     } catch (err) {
-      console.error("❌ Merge failed:", err);
-      setStatus(box, "Merge failed ❌", "error");
-      alert("Merge failed:\n" + err.message);
+      setStatus(box, "Merge Failed ❌", "error");
+      alert(err.message);
     }
   }
 
@@ -126,61 +103,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = box.querySelector(".file-input");
     if (!input) return;
 
-    /* CLICK */
-    box.addEventListener("click", () => {
-      input.click();
-    });
+    box.addEventListener("click", () => input.click());
 
-    /* FILE SELECT */
     input.addEventListener("change", () => {
 
-      if (!input.files || !input.files.length) return;
+      if (!input.files.length) return;
 
-      if (!validatePDFs(input.files, box)) return;
+      const files = Array.from(input.files);
 
-      if (tool === "merge") {
-        setStatus(box, `${input.files.length} files selected`, "has-file");
-        mergePDF(input.files, box);
+      if (files.some(file => file.type !== "application/pdf")) {
+        setStatus(box, "Only PDF files allowed ❌", "error");
+        return;
       }
-      else if (tool === "compress") {
-        const file = input.files[0];
-        setStatus(box, file.name, "has-file");
-        compressPDF(file, box);
+
+      setStatus(box,
+        files.length === 1 ? files[0].name : `${files.length} files selected`,
+        "has-file"
+      );
+
+      if (toolType === "compress") {
+        compressPDF(files[0], box);
+      }
+
+      if (toolType === "merge") {
+        mergePDF(files, box);
       }
 
     });
 
-    /* DRAG OVER */
+    /* DRAG & DROP */
+
     box.addEventListener("dragover", e => {
       e.preventDefault();
       box.classList.add("dragging");
     });
 
-    /* DRAG LEAVE */
     box.addEventListener("dragleave", () => {
       box.classList.remove("dragging");
     });
 
-    /* DROP */
     box.addEventListener("drop", e => {
       e.preventDefault();
       box.classList.remove("dragging");
 
-      if (!e.dataTransfer.files || !e.dataTransfer.files.length) return;
-      if (!validatePDFs(e.dataTransfer.files, box)) return;
+      if (!e.dataTransfer.files.length) return;
 
       input.files = e.dataTransfer.files;
-
-      if (tool === "merge") {
-        setStatus(box, `${input.files.length} files selected`, "has-file");
-        mergePDF(input.files, box);
-      }
-      else if (tool === "compress") {
-        const file = input.files[0];
-        setStatus(box, file.name, "has-file");
-        compressPDF(file, box);
-      }
-
+      input.dispatchEvent(new Event("change"));
     });
 
   });
