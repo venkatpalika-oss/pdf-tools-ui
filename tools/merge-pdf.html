@@ -7,13 +7,14 @@
 
   <!-- META -->
   <meta name="description"
-        content="Merge multiple PDF files into a single PDF document online." />
+        content="Merge multiple PDF files into a single PDF document online quickly and securely." />
 
   <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
-<body>
+<!-- 🔥 IMPORTANT: data-tool="merge" -->
+<body data-tool="merge">
 
 <!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
@@ -28,28 +29,40 @@
       Combine multiple PDF files into one document.
     </p>
 
-    <!-- UPLOAD BOX (LOCKED STRUCTURE) -->
+    <!-- UPLOAD BOX -->
     <div class="upload-box">
-      <input type="file"
-             class="file-input"
-             accept="application/pdf"
-             multiple
-             hidden />
+
+      <!-- IMPORTANT: multiple attribute required -->
+      <input
+        type="file"
+        class="file-input"
+        accept="application/pdf"
+        multiple
+        hidden
+      />
 
       <div class="upload-icon">⬆️</div>
-      <p class="upload-title">Choose PDF files or drag & drop here</p>
-      <p class="upload-hint">Supported format: PDF</p>
+
+      <p class="upload-title">
+        Choose PDF files or drag & drop here
+      </p>
+
+      <p class="upload-hint">
+        Select 2 or more PDF files
+      </p>
+
     </div>
 
   </div>
 </section>
 
-<!-- ================= INFO SECTION (LIGHT SEO) ================= -->
+<!-- ================= INFO SECTION ================= -->
 <section class="tools">
   <div class="container">
     <p class="hero-sub" style="max-width:720px;margin:auto;text-align:center;">
       Merge multiple PDF documents into a single file for easy sharing,
-      printing, or archiving.
+      printing, or archiving. Files are processed securely and automatically
+      cleaned from the server.
     </p>
   </div>
 </section>
@@ -59,8 +72,7 @@
 
 <!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js" defer></script>
 
 </body>
 </html>
-
