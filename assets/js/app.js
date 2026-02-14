@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function safeDownload(url) {
-    // Use anchor download (cleaner than iframe)
     const a = document.createElement("a");
     a.href = url;
     a.target = "_blank";
@@ -35,14 +34,36 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.removeChild(a);
   }
 
+  /* ================= PROGRESS + REQUEST ================= */
+
   async function sendRequest(endpoint, formData, box, loadingText) {
     try {
+
+      const progressContainer = box.querySelector(".progress-container");
+      const progressBar = box.querySelector(".progress-bar");
+
       setStatus(box, loadingText, "loading");
+
+      // Show progress bar
+      if (progressContainer) {
+        progressContainer.style.display = "block";
+        progressBar.style.width = "10%";
+      }
+
+      // Fake smooth animated progress
+      let progress = 10;
+      const interval = setInterval(() => {
+        progress += Math.random() * 12;
+        if (progress > 85) progress = 85;
+        if (progressBar) progressBar.style.width = progress + "%";
+      }, 250);
 
       const response = await fetch(`${API_BASE}${endpoint}`, {
         method: "POST",
         body: formData
       });
+
+      clearInterval(interval);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -55,12 +76,25 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error("Invalid server response");
       }
 
-      setStatus(box, "Completed ✅", "success");
-      safeDownload(data.downloadUrl);
+      if (progressBar) progressBar.style.width = "100%";
+
+      setTimeout(() => {
+        setStatus(box, "Completed ✅", "success");
+        safeDownload(data.downloadUrl);
+
+        if (progressContainer) {
+          progressContainer.style.display = "none";
+          progressBar.style.width = "0%";
+        }
+      }, 600);
 
     } catch (error) {
       console.error("❌ API Error:", error);
       setStatus(box, "Failed ❌", "error");
+
+      const progressContainer = box.querySelector(".progress-container");
+      if (progressContainer) progressContainer.style.display = "none";
+
       alert(error.message);
     }
   }
@@ -144,13 +178,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      setStatus(
-        box,
-        files.length === 1
-          ? files[0].name
-          : `${files.length} files selected`,
-        "has-file"
-      );
+      // File preview animation
+      box.classList.add("has-file");
+
+      const fileName = files.length === 1
+        ? files[0].name
+        : `${files.length} files selected`;
+
+      const title = box.querySelector(".upload-title");
+      title.innerHTML = `📄 <strong>${fileName}</strong>`;
+      title.style.animation = "popFile 0.4s ease";
 
       switch (toolType) {
 
