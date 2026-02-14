@@ -13,8 +13,10 @@
 
 <body data-tool="pdf-to-image">
 
+<!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="container hero-inner">
 
@@ -23,33 +25,81 @@
       Convert each page of your PDF into PNG images.
     </p>
 
+    <!-- UPLOAD BOX (CONTROLLED BY app.js) -->
     <div class="upload-box">
-      <input type="file"
-             class="file-input"
-             accept="application/pdf"
-             hidden />
 
-      <div class="upload-icon">🖼️</div>
-      <p class="upload-title">Choose a PDF file or drag & drop here</p>
-      <p class="upload-hint">Each page will become a PNG image</p>
+      <input
+        type="file"
+        class="file-input"
+        accept="application/pdf"
+        hidden
+      />
+
+      <div class="upload-icon">⚡</div>
+
+      <p class="upload-title">
+        Choose a PDF file or drag & drop here
+      </p>
+
+      <p class="upload-hint">
+        Each page will be converted into a PNG image
+      </p>
+
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+
     </div>
 
   </div>
 </section>
 
+<!-- ================= INFO SECTION ================= -->
 <section class="tools">
   <div class="container">
-    <p class="hero-sub" style="max-width:720px;margin:auto;text-align:center;">
+    <p class="hero-sub"
+       style="max-width:720px;margin:auto;text-align:center;">
       Extract high-quality images from your PDF.
       Ideal for presentations, reports, and design use.
     </p>
   </div>
 </section>
 
+<!-- ================= SEO CONTENT ================= -->
+<section class="seo-content">
+  <div class="container">
+    <h2>Convert PDF to PNG Online</h2>
+    <p>
+      Easily convert each page of your PDF document into high-resolution PNG images.
+      Perfect for sharing slides, extracting graphics, or repurposing content.
+    </p>
+
+    <h3>Why Convert PDF to Images?</h3>
+    <ul>
+      <li>Extract visual content easily</li>
+      <li>Use images in presentations</li>
+      <li>Share specific pages quickly</li>
+      <li>No software installation required</li>
+    </ul>
+
+    <h3>How It Works</h3>
+    <p>
+      Upload your PDF file and download the converted PNG images instantly.
+      Fast, secure, and automatic processing.
+    </p>
+  </div>
+</section>
+
+<!-- ================= GLOBAL FOOTER ================= -->
 <div id="site-footer"></div>
 
+<!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
 <script src="../assets/js/app.js" defer></script>
+
+<!-- Background Particles -->
+<div class="particles"></div>
 
 </body>
 </html>
