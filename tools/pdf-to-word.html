@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
-<!-- ✅ IMPORTANT: data-tool connection -->
+<!-- ✅ MUST MATCH app.js switch case -->
 <body data-tool="pdf-to-word">
 
 <!-- ================= GLOBAL HEADER ================= -->
@@ -31,6 +31,8 @@
 
     <!-- UPLOAD BOX -->
     <div class="upload-box">
+
+      <!-- IMPORTANT: class must be file-input -->
       <input
         type="file"
         class="file-input"
@@ -42,7 +44,9 @@
       <p class="upload-title">
         Choose a PDF file or drag & drop here
       </p>
-      <p class="upload-hint">Supported format: PDF</p>
+      <p class="upload-hint">
+        Supported format: PDF
+      </p>
     </div>
 
   </div>
