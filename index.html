@@ -5,17 +5,15 @@
   <title>PDF Tools – Simple & Fast PDF Utilities</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- META -->
   <meta name="description"
         content="Simple and fast PDF tools to compress, merge, split, and convert PDFs online." />
 
-  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
 
-<!-- ================= GLOBAL HEADER (INCLUDED) ================= -->
+<!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
 <!-- ================= HERO ================= -->
@@ -27,10 +25,10 @@
       Compress, merge, split, and convert PDFs — fast and easy.
     </p>
 
-    <!-- UPLOAD BOX -->
-    <div class="upload-box">
+    <!-- SMART UPLOAD BOX -->
+    <div class="upload-box" id="homeUpload">
 
-      <input type="file" class="file-input" hidden />
+      <input type="file" id="homeFileInput" hidden />
 
       <div class="upload-icon">⚡</div>
 
@@ -39,10 +37,9 @@
       </p>
 
       <p class="upload-hint">
-        Supported: PDF, Word, JPG
+        Supported: PDF, JPG
       </p>
 
-      <!-- Progress Bar -->
       <div class="progress-container">
         <div class="progress-bar"></div>
       </div>
@@ -93,12 +90,45 @@
   </div>
 </section>
 
-<!-- ================= GLOBAL FOOTER (INCLUDED) ================= -->
+<!-- ================= GLOBAL FOOTER ================= -->
 <div id="site-footer"></div>
 
-<!-- ================= INCLUDE LOADER ================= -->
 <script src="assets/js/includes.js"></script>
 <script src="assets/js/app.js"></script>
+
+<!-- ================= HOMEPAGE SMART REDIRECT LOGIC ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const uploadBox = document.getElementById("homeUpload");
+  const input = document.getElementById("homeFileInput");
+
+  if (!uploadBox || !input) return;
+
+  uploadBox.addEventListener("click", () => input.click());
+
+  input.addEventListener("change", () => {
+
+    if (!input.files.length) return;
+
+    const file = input.files[0];
+
+    const fileType = file.type;
+
+    if (fileType === "application/pdf") {
+      window.location.href = "tools/compress-pdf.html";
+    } 
+    else if (fileType === "image/jpeg" || fileType === "image/jpg") {
+      window.location.href = "tools/jpg-to-pdf.html";
+    } 
+    else {
+      alert("Unsupported file type. Please upload PDF or JPG.");
+    }
+
+  });
+
+});
+</script>
 
 <!-- ================= BACKGROUND PARTICLES ================= -->
 <div class="particles"></div>
