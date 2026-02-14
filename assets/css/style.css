@@ -327,3 +327,34 @@ body::before {
   from { background-position: 0 0, 0 0; }
   to { background-position: 0 40px, 40px 0; }
 }
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particles::before,
+.particles::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,255,255,0.08) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: particlesMove 60s linear infinite;
+}
+
+.particles::after {
+  animation-duration: 90s;
+  opacity: 0.5;
+}
+
+@keyframes particlesMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-50px,-50px); }
+}
