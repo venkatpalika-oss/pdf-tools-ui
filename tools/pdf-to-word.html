@@ -7,32 +7,29 @@
 
   <!-- META -->
   <meta name="description"
-        content="Convert PDF documents into editable Word (DOCX) files online." />
+        content="Convert PDF documents into editable Word (DOCX) files online quickly and securely." />
 
   <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
-<!-- MUST MATCH app.js switch case -->
 <body data-tool="pdf-to-word">
 
 <!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
-<!-- ================= TOOL PAGE ================= -->
+<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="container hero-inner">
 
-    <!-- TOOL TITLE -->
     <h1>PDF to Word</h1>
     <p class="hero-sub">
-      Convert PDF documents into editable Word files.
+      Convert PDF documents into fully editable Word (DOCX) files.
     </p>
 
-    <!-- UPLOAD BOX -->
+    <!-- UPLOAD BOX (CONTROLLED BY app.js) -->
     <div class="upload-box">
 
-      <!-- IMPORTANT: class must remain file-input -->
       <input
         type="file"
         class="file-input"
@@ -50,7 +47,7 @@
         Supported format: PDF
       </p>
 
-      <!-- ✅ PROGRESS BAR (CORRECT LOCATION) -->
+      <!-- Progress Bar -->
       <div class="progress-container">
         <div class="progress-bar"></div>
       </div>
@@ -66,7 +63,33 @@
     <p class="hero-sub"
        style="max-width:720px;margin:auto;text-align:center;">
       Convert PDF files into fully editable Word documents for easy
-      editing, formatting, and reuse.
+      editing, formatting, and reuse. Fast, secure, and automatic processing.
+    </p>
+  </div>
+</section>
+
+<!-- ================= SEO CONTENT ================= -->
+<section class="seo-content">
+  <div class="container">
+    <h2>Convert PDF to Word Online</h2>
+    <p>
+      Easily convert PDF documents into fully editable DOCX files.
+      Maintain formatting, layout, and text accuracy while making your
+      documents ready for editing.
+    </p>
+
+    <h3>Why Convert PDF to Word?</h3>
+    <ul>
+      <li>Edit existing PDF documents easily</li>
+      <li>Reuse text and formatting</li>
+      <li>Update reports and contracts</li>
+      <li>No software installation required</li>
+    </ul>
+
+    <h3>How It Works</h3>
+    <p>
+      Upload your PDF file and download the converted Word document instantly.
+      Your files are processed securely and automatically cleaned from the server.
     </p>
   </div>
 </section>
@@ -77,6 +100,9 @@
 <!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
 <script src="../assets/js/app.js" defer></script>
+
+<!-- Background Particles -->
+<div class="particles"></div>
 
 </body>
 </html>
