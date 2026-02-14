@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
-<!-- ✅ MUST MATCH app.js switch case -->
+<!-- MUST MATCH app.js switch case -->
 <body data-tool="pdf-to-word">
 
 <!-- ================= GLOBAL HEADER ================= -->
@@ -32,7 +32,7 @@
     <!-- UPLOAD BOX -->
     <div class="upload-box">
 
-      <!-- IMPORTANT: class must be file-input -->
+      <!-- IMPORTANT: class must remain file-input -->
       <input
         type="file"
         class="file-input"
@@ -40,13 +40,21 @@
         hidden
       />
 
-      <div class="upload-icon">⬆️</div>
+      <div class="upload-icon">⚡</div>
+
       <p class="upload-title">
         Choose a PDF file or drag & drop here
       </p>
+
       <p class="upload-hint">
         Supported format: PDF
       </p>
+
+      <!-- ✅ PROGRESS BAR (CORRECT LOCATION) -->
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+
     </div>
 
   </div>
