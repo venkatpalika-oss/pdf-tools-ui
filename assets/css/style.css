@@ -364,3 +364,15 @@ body::before {
   from { transform: translate(0,0); }
   to { transform: translate(-50px,-50px); }
 }
+/* =========================================================
+   PAGE FADE TRANSITION
+========================================================= */
+
+body {
+  animation: fadeInPage 0.6s ease forwards;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
