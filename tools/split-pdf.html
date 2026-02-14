@@ -6,73 +6,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta name="description"
-        content="Split PDF into individual pages online." />
+        content="Split PDF into individual pages online and download them as a ZIP file instantly." />
 
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body data-tool="split">
 
+<!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="container hero-inner">
 
     <h1>Split PDF</h1>
     <p class="hero-sub">
-      Extract all pages from a PDF file.
+      Extract individual pages from your PDF file.
     </p>
 
+    <!-- UPLOAD BOX (CONTROLLED BY app.js) -->
     <div class="upload-box">
-      <input type="file"
-             class="file-input"
-             accept="application/pdf"
-             hidden />
 
-      <div class="upload-icon">⬆️</div>
-      <p class="upload-title">Choose a PDF file or drag & drop here</p>
-      <p class="upload-hint">ZIP file will be generated</p>
+      <input
+        type="file"
+        class="file-input"
+        accept="application/pdf"
+        hidden
+      />
+
+      <div class="upload-icon">⚡</div>
+
+      <p class="upload-title">
+        Choose a PDF file or drag & drop here
+      </p>
+
+      <p class="upload-hint">
+        All pages will be downloaded as a ZIP file
+      </p>
+
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+
     </div>
 
   </div>
 </section>
 
+<!-- ================= INFO SECTION ================= -->
 <section class="tools">
   <div class="container">
-    <p class="hero-sub" style="max-width:720px;margin:auto;text-align:center;">
-      Split your PDF into individual pages.
-      Download as a ZIP file.
+    <p class="hero-sub"
+       style="max-width:720px;margin:auto;text-align:center;">
+      Split your PDF into separate pages instantly.
+      Perfect for extracting specific sections or organizing documents.
     </p>
   </div>
 </section>
 
+<!-- ================= SEO CONTENT ================= -->
 <section class="seo-content">
   <div class="container">
     <h2>Split PDF Into Separate Pages</h2>
     <p>
-      Extract individual pages from your PDF document quickly.
-      Download separated pages as a ZIP file instantly.
+      Extract individual pages from your PDF document quickly and easily.
+      Download separated pages as a ZIP archive with fast and secure processing.
     </p>
 
     <h3>Why Split PDF?</h3>
     <ul>
       <li>Extract specific pages</li>
       <li>Remove unwanted sections</li>
-      <li>Organize documents easily</li>
-      <li>Fast processing</li>
+      <li>Organize documents efficiently</li>
+      <li>No installation required</li>
     </ul>
 
-    <h3>How to Split PDF?</h3>
+    <h3>How It Works</h3>
     <p>
-      Upload your PDF and download all pages separately in a ZIP archive.
+      Upload your PDF file and download all pages separately in a ZIP file.
+      Your files are processed securely and automatically removed after completion.
     </p>
   </div>
 </section>
-  
+
+<!-- ================= GLOBAL FOOTER ================= -->
 <div id="site-footer"></div>
 
+<!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js" defer></script>
+
+<!-- Background Particles -->
+<div class="particles"></div>
 
 </body>
 </html>
