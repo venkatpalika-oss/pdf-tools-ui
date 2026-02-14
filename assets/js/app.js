@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.removeChild(a);
   }
 
+  function isValidFileType(file) {
+    if (toolType === "jpg-to-pdf") {
+      return file.type === "image/jpeg" || file.type === "image/jpg";
+    }
+    return file.type === "application/pdf";
+  }
+
   /* ================= PROGRESS + REQUEST ================= */
 
   async function sendRequest(endpoint, formData, box, loadingText) {
@@ -44,13 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setStatus(box, loadingText, "loading");
 
-      // Show progress bar
       if (progressContainer) {
         progressContainer.style.display = "block";
         progressBar.style.width = "10%";
       }
 
-      // Fake smooth animated progress
       let progress = 10;
       const interval = setInterval(() => {
         progress += Math.random() * 12;
@@ -158,6 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
     sendRequest("/api/pdf-to-word", formData, box, "Converting to Word… ⏳");
   }
 
+  function jpgToPDF(files, box) {
+    const formData = new FormData();
+    files.forEach(file => formData.append("files", file));
+
+    sendRequest("/api/jpg-to-pdf", formData, box, "Converting to PDF… ⏳");
+  }
+
   /* ================= MAIN ================= */
 
   uploadBoxes.forEach(box => {
@@ -173,12 +185,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const files = Array.from(input.files);
 
-      if (files.some(file => file.type !== "application/pdf")) {
-        setStatus(box, "Only PDF files allowed ❌", "error");
+      if (files.some(file => !isValidFileType(file))) {
+        setStatus(box, "Invalid file type ❌", "error");
         return;
       }
 
-      // File preview animation
       box.classList.add("has-file");
 
       const fileName = files.length === 1
@@ -213,6 +224,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         case "pdf-to-word":
           pdfToWord(files[0], box);
+          break;
+
+        case "jpg-to-pdf":
+          jpgToPDF(files, box);
           break;
 
         default:
