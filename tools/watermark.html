@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta name="description"
-        content="Add text watermark to your PDF document online securely." />
+        content="Add custom text watermark to your PDF document online quickly and securely." />
 
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body data-tool="watermark">
 
+<!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="container hero-inner">
 
@@ -24,41 +26,92 @@
     </p>
 
     <!-- Watermark Text Input -->
-    <div style="margin-bottom:20px;text-align:center;">
-      <input type="text"
-             id="watermarkText"
-             placeholder="Enter watermark text"
-             style="padding:10px;width:280px;border-radius:6px;border:1px solid #ccc;">
+    <div style="margin-bottom:25px;text-align:center;">
+      <input
+        type="text"
+        id="watermarkText"
+        placeholder="Enter watermark text (e.g., CONFIDENTIAL)"
+        style="padding:12px 16px;width:280px;border-radius:10px;border:none;outline:none;"
+      />
     </div>
 
-    <!-- Upload Box -->
+    <!-- UPLOAD BOX (CONTROLLED BY app.js) -->
     <div class="upload-box">
-      <input type="file"
-             class="file-input"
-             accept="application/pdf"
-             hidden />
 
-      <div class="upload-icon">💧</div>
-      <p class="upload-title">Choose a PDF file or drag & drop here</p>
-      <p class="upload-hint">Watermark will be added to all pages</p>
+      <input
+        type="file"
+        class="file-input"
+        accept="application/pdf"
+        hidden
+      />
+
+      <div class="upload-icon">⚡</div>
+
+      <p class="upload-title">
+        Choose a PDF file or drag & drop here
+      </p>
+
+      <p class="upload-hint">
+        Watermark will be applied to all pages
+      </p>
+
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+
     </div>
 
   </div>
 </section>
 
+<!-- ================= INFO SECTION ================= -->
 <section class="tools">
   <div class="container">
-    <p class="hero-sub" style="max-width:720px;margin:auto;text-align:center;">
+    <p class="hero-sub"
+       style="max-width:720px;margin:auto;text-align:center;">
       Protect your document by adding a watermark like
       "CONFIDENTIAL", "DRAFT", or your company name.
+      Fast, secure, and automatic processing.
     </p>
   </div>
 </section>
 
+<!-- ================= SEO CONTENT ================= -->
+<section class="seo-content">
+  <div class="container">
+    <h2>Add Text Watermark to PDF Online</h2>
+    <p>
+      Easily add a custom text watermark to your PDF documents.
+      Perfect for branding, security, and document protection.
+    </p>
+
+    <h3>Why Add a Watermark?</h3>
+    <ul>
+      <li>Mark documents as confidential</li>
+      <li>Protect intellectual property</li>
+      <li>Add branding or company name</li>
+      <li>No software installation required</li>
+    </ul>
+
+    <h3>How It Works</h3>
+    <p>
+      Enter your watermark text, upload your PDF file,
+      and download the updated document instantly.
+      Files are processed securely and automatically removed after completion.
+    </p>
+  </div>
+</section>
+
+<!-- ================= GLOBAL FOOTER ================= -->
 <div id="site-footer"></div>
 
+<!-- ================= SCRIPTS ================= -->
 <script src="../assets/js/includes.js"></script>
 <script src="../assets/js/app.js" defer></script>
+
+<!-- Background Particles -->
+<div class="particles"></div>
 
 </body>
 </html>
