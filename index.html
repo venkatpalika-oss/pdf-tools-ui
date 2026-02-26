@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PDF Tools – Simple & Fast PDF Utilities</title>
+  <title>PDF Tools – Compress, Merge, Split & Convert PDFs Online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta name="description"
-        content="Simple and fast PDF tools to compress, merge, split, and convert PDFs online." />
+        content="Free online PDF tools to compress, merge, split, convert, unlock, protect, rotate and edit PDFs. Fast, secure and easy to use." />
+
+  <meta name="keywords"
+        content="PDF tools, compress PDF, merge PDF, split PDF, convert PDF, JPG to PDF, PDF to Word, unlock PDF, protect PDF, rotate PDF" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
@@ -22,7 +25,7 @@
 
     <h1>All-in-One PDF Tools</h1>
     <p class="hero-sub">
-      Compress, merge, split, and convert PDFs — fast and easy.
+      Compress, merge, split, convert, unlock and protect PDFs — fast and secure.
     </p>
 
     <!-- SMART UPLOAD BOX -->
@@ -37,7 +40,7 @@
       </p>
 
       <p class="upload-hint">
-        Supported: PDF, JPG
+        Supported: PDF, JPG, PNG, DOCX
       </p>
 
       <div class="progress-container">
@@ -49,9 +52,11 @@
   </div>
 </section>
 
-<!-- ================= TOOLS GRID ================= -->
+<!-- ================= MAIN TOOLS GRID ================= -->
 <section class="tools">
   <div class="container">
+
+    <h2 class="section-title">Most Popular Tools</h2>
 
     <div class="tools-grid">
 
@@ -80,11 +85,80 @@
         <span class="tool-name">JPG to PDF</span>
       </a>
 
-      <a class="tool-card muted-card" href="#">
-        <span class="tool-icon">➕</span>
-        <span class="tool-name">More tools</span>
+      <a class="tool-card" href="tools/pdf-to-jpg.html">
+        <span class="tool-icon">🖼️</span>
+        <span class="tool-name">PDF to JPG</span>
       </a>
 
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SECURITY TOOLS ================= -->
+<section class="tools alt-section">
+  <div class="container">
+
+    <h2 class="section-title">Security & Optimization</h2>
+
+    <div class="tools-grid">
+
+      <a class="tool-card" href="tools/unlock-pdf.html">
+        <span class="tool-icon">🔓</span>
+        <span class="tool-name">Unlock PDF</span>
+      </a>
+
+      <a class="tool-card" href="tools/protect-pdf.html">
+        <span class="tool-icon">🔐</span>
+        <span class="tool-name">Protect PDF</span>
+      </a>
+
+      <a class="tool-card" href="tools/rotate-pdf.html">
+        <span class="tool-icon">🔄</span>
+        <span class="tool-name">Rotate PDF</span>
+      </a>
+
+      <a class="tool-card" href="tools/organize-pdf.html">
+        <span class="tool-icon">📂</span>
+        <span class="tool-name">Organize PDF</span>
+      </a>
+
+      <a class="tool-card" href="tools/watermark-pdf.html">
+        <span class="tool-icon">💧</span>
+        <span class="tool-name">Add Watermark</span>
+      </a>
+
+      <a class="tool-card" href="tools/page-numbers.html">
+        <span class="tool-icon">🔢</span>
+        <span class="tool-name">Add Page Numbers</span>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="why">
+  <div class="container">
+
+    <h2 class="section-title">Why Choose Our PDF Tools?</h2>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>⚡ Fast Processing</h3>
+        <p>Optimized backend ensures quick file handling and conversion.</p>
+      </div>
+
+      <div class="why-card">
+        <h3>🔒 Secure Files</h3>
+        <p>Files are automatically removed after processing for privacy.</p>
+      </div>
+
+      <div class="why-card">
+        <h3>🌐 Works Everywhere</h3>
+        <p>Use on desktop, tablet or mobile without installing software.</p>
+      </div>
     </div>
 
   </div>
@@ -112,17 +186,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!input.files.length) return;
 
     const file = input.files[0];
-
     const fileType = file.type;
 
     if (fileType === "application/pdf") {
       window.location.href = "tools/compress-pdf.html";
     } 
-    else if (fileType === "image/jpeg" || fileType === "image/jpg") {
+    else if (
+      fileType === "image/jpeg" || 
+      fileType === "image/jpg" || 
+      fileType === "image/png"
+    ) {
       window.location.href = "tools/jpg-to-pdf.html";
-    } 
+    }
+    else if (
+      fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ) {
+      window.location.href = "tools/word-to-pdf.html";
+    }
     else {
-      alert("Unsupported file type. Please upload PDF or JPG.");
+      alert("Unsupported file type. Please upload PDF, JPG, PNG or DOCX.");
     }
 
   });
