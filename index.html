@@ -16,10 +16,8 @@
 
 <body>
 
-<!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="container hero-inner">
 
@@ -28,34 +26,21 @@
       Compress, merge, split, convert, unlock and protect PDFs — fast and secure.
     </p>
 
-    <!-- SMART UPLOAD BOX -->
     <div class="upload-box" id="homeUpload">
-
       <input type="file" id="homeFileInput" hidden />
-
       <div class="upload-icon">⚡</div>
-
-      <p class="upload-title">
-        Choose a file or drag & drop here
-      </p>
-
-      <p class="upload-hint">
-        Supported: PDF, JPG, PNG, DOCX
-      </p>
-
+      <p class="upload-title">Choose a file or drag & drop here</p>
+      <p class="upload-hint">Supported: PDF, JPG, PNG, DOCX</p>
       <div class="progress-container">
         <div class="progress-bar"></div>
       </div>
-
     </div>
 
   </div>
 </section>
 
-<!-- ================= MAIN TOOLS GRID ================= -->
 <section class="tools">
   <div class="container">
-
     <h2 class="section-title">Most Popular Tools</h2>
 
     <div class="tools-grid">
@@ -91,11 +76,9 @@
       </a>
 
     </div>
-
   </div>
 </section>
 
-<!-- ================= SECURITY TOOLS ================= -->
 <section class="tools alt-section">
   <div class="container">
 
@@ -134,14 +117,11 @@
       </a>
 
     </div>
-
   </div>
 </section>
 
-<!-- ================= WHY CHOOSE US ================= -->
 <section class="why">
   <div class="container">
-
     <h2 class="section-title">Why Choose Our PDF Tools?</h2>
 
     <div class="why-grid">
@@ -160,17 +140,51 @@
         <p>Use on desktop, tablet or mobile without installing software.</p>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ================= GLOBAL FOOTER ================= -->
+<!-- ================= PRICING SECTION (ADDED) ================= -->
+<section class="tools">
+  <div class="container">
+    <h2 class="section-title">Simple Pricing</h2>
+
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <span class="tool-name"><strong>Free</strong></span>
+        <p style="margin-top:10px;"><strong>$0</strong> / month</p>
+        <ul style="text-align:left; margin-top:15px;">
+          <li>✔ 2 files per merge</li>
+          <li>✔ 10MB file size limit</li>
+          <li>✔ 3 operations per day</li>
+          <li>✔ Standard processing speed</li>
+        </ul>
+      </div>
+
+      <div class="tool-card" style="border:2px solid #00e0ff;">
+        <span class="tool-name"><strong>Pro</strong></span>
+        <p style="margin-top:10px;"><strong>$6</strong> / month</p>
+        <ul style="text-align:left; margin-top:15px;">
+          <li>✔ Unlimited operations</li>
+          <li>✔ Up to 25MB files</li>
+          <li>✔ Batch processing</li>
+          <li>✔ Priority queue</li>
+        </ul>
+        <br>
+        <button style="padding:10px 18px; border-radius:6px; cursor:pointer;">
+          Upgrade to Pro
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <div id="site-footer"></div>
 
 <script src="assets/js/includes.js"></script>
 <script src="assets/js/app.js"></script>
 
-<!-- ================= HOMEPAGE SMART REDIRECT LOGIC ================= -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -212,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- ================= BACKGROUND PARTICLES ================= -->
 <div class="particles"></div>
 
 </body>
