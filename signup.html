@@ -73,7 +73,9 @@
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    const data = await apiRequest("/api/auth/register", {
+    /* ================= STEP 1: REGISTER ================= */
+
+    const registerData = await apiRequest("/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,12 +83,28 @@
       body: JSON.stringify({ email, password }),
     });
 
-    if (data?.token) {
-      saveToken(data.token);
+    if (!registerData || registerData.error) {
+      errorMessage.textContent =
+        registerData?.error || "Signup failed. Try again.";
+      return;
+    }
+
+    /* ================= STEP 2: AUTO LOGIN ================= */
+
+    const loginData = await apiRequest("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (loginData?.token) {
+      saveToken(loginData.token);
       window.location.href = "index.html";
     } else {
       errorMessage.textContent =
-        data?.message || "Signup failed. Try again.";
+        loginData?.error || "Login after signup failed.";
     }
   });
 </script>
