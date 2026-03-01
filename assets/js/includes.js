@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         link.href = base + target;
       });
 
-      // 🔐 Inject Auth State Into Header
+      // Inject auth state after header loads
       initHeaderAuth(base);
     });
 
@@ -28,8 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("site-footer").innerHTML = html;
     });
 
-
-  /* ================= AUTH LOGIC ================= */
+  /* ================= AUTH HEADER LOGIC ================= */
 
   async function initHeaderAuth(basePath) {
 
@@ -38,18 +37,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const token = getToken();
 
-    const loginBtn = document.querySelector(".login-btn");
+    // Target your actual login button
+    const authButton = document.querySelector(".btn-primary");
 
-    if (!loginBtn) return;
+    if (!authButton) return;
 
+    /* ===== NOT LOGGED IN ===== */
     if (!token) {
-      // Not logged in → ensure Login works correctly
-      loginBtn.href = basePath + "login.html";
-      loginBtn.textContent = "Login";
+      authButton.innerHTML = `
+        <a href="${basePath}login.html" style="margin-right:12px;">Login</a>
+        <a href="${basePath}signup.html">Sign Up</a>
+      `;
+      authButton.removeAttribute("href");
       return;
     }
 
-    // Logged in → fetch user
+    /* ===== LOGGED IN ===== */
+
     const data = await apiRequest("/api/auth/me");
 
     if (!data || !data.user) return;
@@ -60,22 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const FREE_DAILY_LIMIT = 3;
       const remaining = FREE_DAILY_LIMIT - user.dailyUsageCount;
 
-      loginBtn.innerHTML = `
+      authButton.innerHTML = `
         ${user.email} | ${user.dailyUsageCount}/${FREE_DAILY_LIMIT}
-        <span style="color:#ff6b6b; margin-left:10px; cursor:pointer;" id="logoutInline">
+        <span id="logoutInline" style="margin-left:10px;color:#ff6b6b;cursor:pointer;">
           Logout
         </span>
       `;
     } else {
-      loginBtn.innerHTML = `
+      authButton.innerHTML = `
         ${user.email} | PRO
-        <span style="color:#ff6b6b; margin-left:10px; cursor:pointer;" id="logoutInline">
+        <span id="logoutInline" style="margin-left:10px;color:#ff6b6b;cursor:pointer;">
           Logout
         </span>
       `;
     }
 
-    loginBtn.removeAttribute("href");
+    authButton.removeAttribute("href");
 
     const logoutBtn = document.getElementById("logoutInline");
 
