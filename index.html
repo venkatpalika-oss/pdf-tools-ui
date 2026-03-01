@@ -18,7 +18,6 @@
 
 <div id="site-header"></div>
 
-
 <section class="hero">
   <div class="container hero-inner">
 
@@ -184,61 +183,6 @@
 
 <script src="assets/js/includes.js"></script>
 <script src="assets/js/app.js"></script>
-
-<!-- ================= USER AUTH SCRIPT ================= -->
-<script type="module">
-  import { isLoggedIn, logout } from "./assets/js/auth.js";
-  import { apiRequest } from "./assets/js/api.js";
-
-  const userBar = document.getElementById("userBar");
-  const userBarContent = document.getElementById("userBarContent");
-
-  async function initUserBar() {
-    if (!isLoggedIn()) {
-      userBar.style.display = "block";
-      userBarContent.innerHTML = `
-        <a href="/login.html" style="color:#00e0ff;">Login</a>
-      `;
-      return;
-    }
-
-    const data = await apiRequest("/api/auth/me");
-
-    if (!data || !data.user) return;
-
-    const user = data.user;
-    userBar.style.display = "block";
-
-    if (user.plan === "free") {
-      const FREE_DAILY_LIMIT = 3;
-      const remaining = FREE_DAILY_LIMIT - user.dailyUsageCount;
-
-      userBarContent.innerHTML = `
-        Logged in as <strong>${user.email}</strong> |
-        Plan: <strong>${user.plan.toUpperCase()}</strong> |
-        ${user.dailyUsageCount}/${FREE_DAILY_LIMIT} used today (${remaining} left) |
-        <a href="#" id="logoutBtn" style="color:#ff6b6b;">Logout</a>
-      `;
-    } else {
-      userBarContent.innerHTML = `
-        Logged in as <strong>${user.email}</strong> |
-        Plan: <strong>PRO</strong> |
-        Unlimited usage |
-        <a href="#" id="logoutBtn" style="color:#ff6b6b;">Logout</a>
-      `;
-    }
-
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        logout();
-      });
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", initUserBar);
-</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
