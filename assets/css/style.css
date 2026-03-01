@@ -646,3 +646,80 @@ img, svg {
 .pro-item {
   opacity: 0.9;
 }
+/* =========================================================
+   MEGA MENU PREMIUM EFFECTS
+========================================================= */
+
+/* Lock Icon */
+
+.lock-icon {
+  margin-left: auto;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #ff00cc;
+  fill: none;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(255,0,204,0.6));
+}
+
+/* Tooltip */
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip-text {
+  position: absolute;
+  right: 0;
+  bottom: -28px;
+  background: rgba(15, 23, 42, 0.95);
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  transform: translateY(5px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  border: 1px solid rgba(255,0,204,0.3);
+  box-shadow: 0 0 12px rgba(255,0,204,0.4);
+}
+
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gradient Sweep Animation */
+
+.mega-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,255,255,0.05),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.mega-dropdown:hover .mega-menu::before {
+  transform: translateX(100%);
+}
+
+/* Make mega-menu position relative for overlay */
+.mega-menu {
+  position: absolute;
+  overflow: hidden;
+}
