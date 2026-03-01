@@ -10,14 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(html => {
       document.getElementById("site-header").innerHTML = html;
 
-      // Fix all relative links automatically
+      // Fix dynamic links
       document.querySelectorAll(".dynamic-link").forEach(link => {
         const target = link.getAttribute("data-path");
         link.href = base + target;
       });
 
-      // Inject auth state after header loads
-      initHeaderAuth(base);
+      initHeaderAuth();
     });
 
   /* ================= LOAD FOOTER ================= */
@@ -30,25 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= AUTH HEADER LOGIC ================= */
 
-  async function initHeaderAuth(basePath) {
+  async function initHeaderAuth() {
 
-    const { getToken, logout } = await import(basePath + "assets/js/auth.js");
-    const { apiRequest } = await import(basePath + "assets/js/api.js");
+    // ✅ Absolute imports (important fix)
+    const { getToken, logout } = await import("/assets/js/auth.js");
+    const { apiRequest } = await import("/assets/js/api.js");
+
+    const authButton = document.querySelector(".btn-primary");
+    if (!authButton) return;
 
     const token = getToken();
 
-    // Target your actual login button
-    const authButton = document.querySelector(".btn-primary");
-
-    if (!authButton) return;
-
     /* ===== NOT LOGGED IN ===== */
     if (!token) {
-      authButton.innerHTML = `
-        <a href="${basePath}login.html" style="margin-right:12px;">Login</a>
-        <a href="${basePath}signup.html">Sign Up</a>
-      `;
-      authButton.removeAttribute("href");
+      authButton.textContent = "Login";
+      authButton.href = "/login.html";
       return;
     }
 
@@ -56,39 +51,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const data = await apiRequest("/api/auth/me");
 
-    if (!data || !data.user) return;
+    if (!data || !data.user) {
+      authButton.textContent = "Login";
+      authButton.href = "/login.html";
+      return;
+    }
 
     const user = data.user;
 
     if (user.plan === "free") {
-      const FREE_DAILY_LIMIT = 3;
-      const remaining = FREE_DAILY_LIMIT - user.dailyUsageCount;
-
-      authButton.innerHTML = `
-        ${user.email} | ${user.dailyUsageCount}/${FREE_DAILY_LIMIT}
-        <span id="logoutInline" style="margin-left:10px;color:#ff6b6b;cursor:pointer;">
-          Logout
-        </span>
-      `;
+      authButton.textContent =
+        `${user.email} (${user.dailyUsageCount}/3)`;
     } else {
-      authButton.innerHTML = `
-        ${user.email} | PRO
-        <span id="logoutInline" style="margin-left:10px;color:#ff6b6b;cursor:pointer;">
-          Logout
-        </span>
-      `;
+      authButton.textContent =
+        `${user.email} (PRO)`;
     }
 
     authButton.removeAttribute("href");
-
-    const logoutBtn = document.getElementById("logoutInline");
-
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        logout();
-      });
-    }
+    authButton.addEventListener("click", logout);
   }
 
 });
