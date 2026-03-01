@@ -369,3 +369,58 @@ img, svg {
     transition: none !important;
   }
 }
+/* =========================================================
+   HEADER LAYOUT FIX (SAFE OVERRIDE)
+========================================================= */
+
+.site-header {
+  width: 95%; /* slightly wider */
+  max-width: 1200px;
+}
+
+.header-inner {
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.header-nav a {
+  margin-left: 0; /* override stacking margin */
+}
+
+/* Prevent login button from breaking layout */
+.header-nav .btn-primary {
+  flex-shrink: 0;
+}
+
+/* Improve dropdown alignment */
+.dropdown {
+  flex-shrink: 0;
+}
+
+/* Responsive Header Handling */
+@media (max-width: 1024px) {
+  .header-nav {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-nav {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
