@@ -543,3 +543,33 @@ img, svg {
     padding: 20px;
   }
 }
+/* =========================================================
+   MEGA MENU ICON STYLE
+========================================================= */
+
+.mega-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 14px;
+  opacity: 0.85;
+  transition: all 0.25s ease;
+}
+
+.mega-icon {
+  font-size: 16px;
+  width: 24px;
+  text-align: center;
+  filter: drop-shadow(0 0 6px rgba(0,255,255,0.5));
+}
+
+.mega-item:hover {
+  opacity: 1;
+  transform: translateX(6px);
+  color: #00f5ff;
+}
+
+.mega-item:hover .mega-icon {
+  transform: scale(1.1);
+}
