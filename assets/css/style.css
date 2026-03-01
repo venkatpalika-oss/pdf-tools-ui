@@ -424,3 +424,35 @@ img, svg {
     gap: 12px;
   }
 }
+/* =========================================================
+   DROPDOWN FIX (SAFE OVERRIDE)
+========================================================= */
+
+.header-nav {
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  display: none;
+  z-index: 2000;
+  min-width: 220px;
+  border: 1px solid rgba(0,255,255,0.2);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+}
+
+/* Show only when actual hover */
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Prevent dropdown stretching inline */
+.dropdown-menu a {
+  white-space: nowrap;
+}
