@@ -456,3 +456,21 @@ img, svg {
 .dropdown-menu a {
   white-space: nowrap;
 }
+/* =========================================================
+   DROPDOWN VERTICAL STACK FIX (SAFE)
+========================================================= */
+
+.dropdown-menu {
+  display: none;
+  flex-direction: column;   /* force vertical */
+}
+
+.dropdown-menu a {
+  display: block;
+  width: 100%;
+}
+
+/* Show dropdown properly */
+.dropdown:hover > .dropdown-menu {
+  display: flex;
+}
