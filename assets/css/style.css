@@ -723,3 +723,64 @@ img, svg {
   position: absolute;
   overflow: hidden;
 }
+/* =========================================================
+   PRO TOOL BEHAVIOR + CROWN ICON + BANNER
+========================================================= */
+
+/* Usage Banner */
+
+.mega-banner {
+  grid-column: 1 / -1;
+  background: linear-gradient(90deg, rgba(0,255,255,0.1), rgba(138,43,226,0.1));
+  padding: 14px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(0,255,255,0.2);
+}
+
+.upgrade-link {
+  color: #00f5ff;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.upgrade-link:hover {
+  text-shadow: 0 0 10px rgba(0,255,255,0.8);
+}
+
+/* PRO Indicator with Crown */
+
+.pro-indicator {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #ff00cc, #8a2be2);
+  font-weight: bold;
+  box-shadow: 0 0 12px rgba(255,0,204,0.6);
+}
+
+.pro-indicator svg {
+  width: 14px;
+  height: 14px;
+  fill: #fff;
+}
+
+/* Slight blur for locked tools */
+
+.pro-item {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.pro-item:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
