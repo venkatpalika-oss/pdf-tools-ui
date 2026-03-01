@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | PaperlyTools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero" style="padding-top:120px;">
+  <div class="container" style="max-width:420px;">
+
+    <h2 style="text-align:center;margin-bottom:30px;">Login to Your Account</h2>
+
+    <form id="loginForm">
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+        required
+        style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
+      />
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        required
+        style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
+      />
+
+      <button
+        type="submit"
+        style="width:100%;padding:12px;border-radius:6px;cursor:pointer;"
+      >
+        Login
+      </button>
+    </form>
+
+    <p id="errorMessage"
+       style="color:#ff6b6b;margin-top:15px;text-align:center;">
+    </p>
+
+    <p style="margin-top:20px;text-align:center;">
+      Don’t have an account?
+      <a href="signup.html">Sign Up</a>
+    </p>
+
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/includes.js"></script>
+
+<script type="module">
+  import { apiRequest } from "./assets/js/api.js";
+  import { saveToken } from "./assets/js/auth.js";
+
+  const form = document.getElementById("loginForm");
+  const errorMessage = document.getElementById("errorMessage");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    errorMessage.textContent = "";
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const data = await apiRequest("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (data?.token) {
+      saveToken(data.token);
+      window.location.href = "index.html";
+    } else {
+      errorMessage.textContent =
+        data?.message || "Invalid email or password.";
+    }
+  });
+</script>
+
+</body>
+</html>
