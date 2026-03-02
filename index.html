@@ -143,7 +143,8 @@
   </div>
 </section>
 
-<section class="tools">
+<!-- Added id="pricing" to prevent header 404 -->
+<section class="tools" id="pricing">
   <div class="container">
     <h2 class="section-title">Simple Pricing</h2>
 
@@ -224,13 +225,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* ================= STRIPE CHECKOUT ================= */
+/* ================= STRIPE CHECKOUT (JWT BASED) ================= */
 
 async function startCheckout() {
   try {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("paperly_token");
 
-    if (!user) {
+    if (!token) {
       alert("Please login first.");
       return;
     }
@@ -238,12 +239,9 @@ async function startCheckout() {
     const response = await fetch("https://api.paperlytools.com/api/checkout/create-checkout-session", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user._id,
-        email: user.email
-      })
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      }
     });
 
     const data = await response.json();
