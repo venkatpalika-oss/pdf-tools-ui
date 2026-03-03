@@ -1809,3 +1809,83 @@ input:checked + .slider::before {
   justify-content: flex-start;
   padding-left: 24px;
 }
+/* =========================================================
+   BILLING TOGGLE PREMIUM ANIMATION
+========================================================= */
+
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.toggle-label {
+  font-weight: 500;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-label.active {
+  opacity: 1;
+  color: #00f5ff;
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 26px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background: #1f2937;
+  border-radius: 30px;
+  inset: 0;
+  transition: 0.4s;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background: linear-gradient(90deg, #00f5ff, #9333ea);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* =========================================================
+   PRICE TRANSITION ANIMATION
+========================================================= */
+
+.plan-price {
+  display: inline-block;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.plan-price.animate-out {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.plan-price.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
