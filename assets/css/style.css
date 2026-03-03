@@ -1718,75 +1718,59 @@ input:checked + .slider::before {
   to { opacity: 1; transform: translateY(0); }
 }
 /* =========================================================
-   PRICING TABLE ALIGNMENT FIX (PRODUCTION SAFE)
+   PRICING LAYOUT STABILIZER (FOR comparison-table)
 ========================================================= */
 
-/* Ensure all pricing table cells are centered */
-.pricing-table th,
-.pricing-table td {
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* Keep feature column left aligned */
-.pricing-table td:first-child,
-.pricing-table th:first-child {
-  text-align: left;
-}
-
-/* Fix uneven column width */
-.pricing-table {
+.comparison-table {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
   width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
 }
 
 /* Equal width columns */
-.pricing-table th,
-.pricing-table td {
-  width: 25%;
-}
-/* =========================================================
-   MOST POPULAR BADGE CENTER FIX
-========================================================= */
-
-.plan-header {
-  position: relative;
+.comparison-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
-.most-popular-badge {
+/* Keep feature column left aligned */
+.feature-column {
+  text-align: left;
+}
+/* =========================================================
+   MOST POPULAR BADGE PERFECT CENTER
+========================================================= */
+
+.comparison-header {
+  position: relative;
+  text-align: center;
+  padding-top: 30px; /* space for badge */
+}
+
+.popular-badge {
   position: absolute;
-  top: -12px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  padding: 4px 14px;
-  font-size: 11px;
-  font-weight: 600;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #00f5ff, #0072ff);
-  color: #fff;
-  box-shadow: 0 0 12px rgba(0, 200, 255, 0.6);
+  white-space: nowrap;
 }
 /* =========================================================
    PLAN BUTTON CENTER FIX
 ========================================================= */
 
-.pricing-table td:last-child,
-.pricing-table td:nth-last-child(2),
-.pricing-table td:nth-last-child(3) {
-  text-align: center;
-}
-
-.plan-action {
+.plan-footer {
+  margin-top: auto; /* pushes button to bottom evenly */
+  padding: 30px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
 }
 
-.plan-action .btn,
-.plan-action button {
-  min-width: 160px;
+.plan-btn {
+  min-width: 180px;
   text-align: center;
 }
