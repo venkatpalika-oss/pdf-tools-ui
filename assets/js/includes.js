@@ -48,15 +48,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ===== LOGGED IN ===== */
 
-    const data = await apiRequest("/api/auth/me");
+const wrapper = document.createElement("div");
+wrapper.className = "user-auth-wrapper";
 
-    if (!data || !data.user) {
-      authButton.textContent = "Login";
-      authButton.href = "/login.html";
-      return;
-    }
+const logoutBtn = document.createElement("button");
+logoutBtn.className = "btn-primary logout-btn";
+logoutBtn.textContent = "Logout";
 
-    const user = data.user;
+logoutBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  logout();
+});
+
+// Hide login button
+authButton.style.display = "none";
+
+// Append logout button
+wrapper.appendChild(logoutBtn);
+authButton.parentElement.appendChild(wrapper);
 
     /* ===== CREATE DROPDOWN WRAPPER ===== */
 
