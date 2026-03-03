@@ -253,52 +253,67 @@ document.addEventListener("DOMContentLoaded", () => {
   const percentText = document.getElementById("aiPercent");
   const statusText = document.getElementById("aiStatus");
 
-  /* =========================
-     FILE UPLOAD + AI PREVIEW
-  ========================= */
+ /* =========================
+   FILE UPLOAD + AI PREVIEW (PREMIUM UPGRADE)
+========================= */
 
-  if (uploadBox && input) {
+if (uploadBox && input) {
 
-    uploadBox.addEventListener("click", () => input.click());
+  uploadBox.addEventListener("click", () => input.click());
 
-    input.addEventListener("change", () => {
+  input.addEventListener("change", () => {
 
-      if (!input.files.length) return;
+    if (!input.files.length) return;
 
-      const file = input.files[0];
-      const fileType = file.type;
+    const file = input.files[0];
+    const fileType = file.type;
 
-      if (preview) preview.classList.add("active");
+    if (preview) preview.classList.add("active");
 
-      let progress = 0;
+    let progress = 0;
 
-      const stages = [
-        { value: 20, text: "Analyzing document structure..." },
-        { value: 45, text: "Extracting text and metadata..." },
-        { value: 75, text: "Optimizing content..." },
-        { value: 100, text: "Finalizing process..." }
-      ];
+    const stages = [
+      { limit: 20, text: "Uploading document..." },
+      { limit: 40, text: "Extracting text layers..." },
+      { limit: 65, text: "Analyzing document structure..." },
+      { limit: 85, text: "Optimizing performance..." },
+      { limit: 100, text: "Finalizing output..." }
+    ];
 
-      const interval = setInterval(() => {
+    const interval = setInterval(() => {
 
-        progress += 2;
+      // Realistic AI-like speed variation
+      progress += Math.floor(Math.random() * 6) + 3;
 
-        if (progressBar) {
-          progressBar.style.width = progress + "%";
+      if (progress > 100) progress = 100;
+
+      if (progressBar) {
+        progressBar.style.width = progress + "%";
+      }
+
+      if (percentText) {
+        percentText.textContent = progress + "%";
+      }
+
+      // Intelligent stage switching
+      for (let stage of stages) {
+        if (progress <= stage.limit && statusText) {
+          statusText.textContent = stage.text;
+          break;
         }
+      }
 
-        if (percentText) {
-          percentText.textContent = progress + "%";
-        }
+      if (progress >= 100) {
 
-        stages.forEach(stage => {
-          if (progress === stage.value && statusText) {
-            statusText.textContent = stage.text;
-          }
-        });
+        clearInterval(interval);
 
-        if (progress >= 100) {
-          clearInterval(interval);
+        // Premium completion glow
+        const previewBox = document.getElementById("aiPreviewBox");
+        if (previewBox) previewBox.classList.add("completed");
+
+        setTimeout(() => {
+
+          if (preview) preview.classList.add("fade-out");
 
           setTimeout(() => {
 
@@ -323,14 +338,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
           }, 400);
 
-        }
+        }, 500);
 
-      }, 40);
+      }
 
-    });
+    }, 140);
 
-  }
+  });
 
+}
   /* =========================
      AI TYPING HEADLINE
   ========================= */
