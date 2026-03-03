@@ -867,3 +867,18 @@ img, svg {
     justify-content: space-between;
   }
 }
+/* =========================================================
+   MAGIC ICON SUBTLE EFFECT (APPENDED – SAFE)
+========================================================= */
+
+.magic-icon {
+  margin-right: 6px;
+  font-size: 13px;
+  opacity: 0.85;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mega-toggle:hover .magic-icon {
+  transform: rotate(12deg) scale(1.1);
+  opacity: 1;
+}
