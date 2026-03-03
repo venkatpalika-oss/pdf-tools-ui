@@ -81,20 +81,22 @@
 
   <!-- AI Overlay -->
   <div class="ai-preview-overlay" id="aiPreview">
-    <div class="ai-preview-box">
-      <div class="ai-loader"></div>
+  <div class="ai-preview-box" id="aiPreviewBox">
 
-      <p class="ai-preview-text" id="aiStatus">
-        AI analyzing your document...
-      </p>
+    <div class="ai-loader"></div>
 
-      <div class="ai-progress-container">
-        <div class="ai-progress-bar" id="aiProgressBar"></div>
-      </div>
+    <p class="ai-preview-text">
+      <span id="aiStage">Uploading document...</span>
+    </p>
 
-      <p class="ai-percent" id="aiPercent">0%</p>
+    <div class="ai-progress-container">
+      <div class="ai-progress-bar" id="aiProgressBar"></div>
     </div>
+
+    <div class="ai-progress-percent" id="aiProgressPercent">0%</div>
+
   </div>
+</div>
 
 </section>
 <section class="tools">
