@@ -25,8 +25,9 @@
       ✨ AI-Powered Productivity Assistant
     </div>
 
+    <!-- AI Typing Headline -->
     <h1>
-      Work Smarter with Your Documents
+      <span id="typingText"></span>
     </h1>
 
     <p class="hero-sub">
@@ -44,6 +45,12 @@
         <p class="upload-hint">
           No signup required • Secure processing • AI-enhanced
         </p>
+
+        <!-- AI Micro Line -->
+        <p class="upload-micro">
+          Powered by intelligent document processing
+        </p>
+
         <div class="progress-container">
           <div class="progress-bar"></div>
         </div>
@@ -70,7 +77,21 @@
       ✓ End-to-end encryption ✓ Files auto-deleted ✓ Cloud-based processing
     </p>
 
+    <!-- Live Counter -->
+    <p class="live-counter">
+      <span id="docCounter">12,487</span> documents processed today
+    </p>
+
   </div>
+
+  <!-- Floating AI Particles -->
+  <div class="ai-particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
 </section>
 
 <section class="tools">
@@ -177,7 +198,6 @@
   </div>
 </section>
 
-<!-- Added id="pricing" to prevent header 404 -->
 <section class="tools" id="pricing">
   <div class="container">
     <h2 class="section-title">Simple Pricing</h2>
@@ -225,41 +245,69 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadBox = document.getElementById("homeUpload");
   const input = document.getElementById("homeFileInput");
 
-  if (!uploadBox || !input) return;
+  if (uploadBox && input) {
 
-  uploadBox.addEventListener("click", () => input.click());
+    uploadBox.addEventListener("click", () => input.click());
 
-  input.addEventListener("change", () => {
+    input.addEventListener("change", () => {
 
-    if (!input.files.length) return;
+      if (!input.files.length) return;
 
-    const file = input.files[0];
-    const fileType = file.type;
+      const file = input.files[0];
+      const fileType = file.type;
 
-    if (fileType === "application/pdf") {
-      window.location.href = "tools/compress-pdf.html";
-    } 
-    else if (
-      fileType === "image/jpeg" || 
-      fileType === "image/jpg" || 
-      fileType === "image/png"
-    ) {
-      window.location.href = "tools/jpg-to-pdf.html";
+      if (fileType === "application/pdf") {
+        window.location.href = "tools/compress-pdf.html";
+      } 
+      else if (
+        fileType === "image/jpeg" || 
+        fileType === "image/jpg" || 
+        fileType === "image/png"
+      ) {
+        window.location.href = "tools/jpg-to-pdf.html";
+      }
+      else if (
+        fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      ) {
+        window.location.href = "tools/word-to-pdf.html";
+      }
+      else {
+        alert("Unsupported file type. Please upload PDF, JPG, PNG or DOCX.");
+      }
+
+    });
+
+  }
+
+  /* AI Typing Effect */
+  const typingTarget = document.getElementById("typingText");
+  if (typingTarget) {
+    const text = "Work Smarter with AI-Powered Documents";
+    let i = 0;
+    function typeEffect() {
+      if (i < text.length) {
+        typingTarget.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 35);
+      }
     }
-    else if (
-      fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    ) {
-      window.location.href = "tools/word-to-pdf.html";
-    }
-    else {
-      alert("Unsupported file type. Please upload PDF, JPG, PNG or DOCX.");
-    }
+    typeEffect();
+  }
 
-  });
+  /* Live Document Counter */
+  const counter = document.getElementById("docCounter");
+  if (counter) {
+    let base = 12000 + Math.floor(Math.random() * 800);
+    counter.textContent = base.toLocaleString();
+    setInterval(() => {
+      base += Math.floor(Math.random() * 3);
+      counter.textContent = base.toLocaleString();
+    }, 3000);
+  }
 
 });
 
-/* ================= STRIPE CHECKOUT (JWT BASED) ================= */
+/* ================= STRIPE CHECKOUT (UNCHANGED) ================= */
 
 async function startCheckout() {
   try {
