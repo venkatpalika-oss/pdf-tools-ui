@@ -993,3 +993,17 @@ img, svg {
   text-shadow: 0 0 10px rgba(0,245,255,0.8),
                0 0 20px rgba(138,43,226,0.6);
 }
+/* =========================================================
+   SPARK TWINKLE ANIMATION
+========================================================= */
+
+.spark {
+  transform-origin: center;
+  animation: sparkTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkTwinkle {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  50%  { transform: scale(1.15) rotate(8deg); opacity: 0.85; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
