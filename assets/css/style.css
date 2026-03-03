@@ -1419,3 +1419,57 @@ img, svg {
   color: #00f5ff;
   text-shadow: 0 0 8px rgba(0,245,255,0.5);
 }
+/* =========================================================
+   AI PREMIUM LEVEL UPGRADE
+========================================================= */
+
+/* Neural Pulse Background */
+
+.ai-preview-overlay::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle,
+    rgba(0,245,255,0.15),
+    rgba(138,43,226,0.1),
+    transparent 70%);
+  animation: neuralPulse 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes neuralPulse {
+  from { transform: scale(0.9); opacity: 0.6; }
+  to   { transform: scale(1.1); opacity: 1; }
+}
+
+/* Premium Completion Flash */
+
+.ai-preview-box.completed {
+  animation: completionFlash 0.6s ease;
+  box-shadow: 0 0 60px rgba(0,255,157,0.6);
+  border-color: rgba(0,255,157,0.6);
+}
+
+@keyframes completionFlash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Stage Text Style Upgrade */
+
+.ai-stage-text {
+  font-size: 15px;
+  margin-top: 12px;
+  opacity: 0.85;
+  letter-spacing: 0.4px;
+  transition: opacity 0.3s ease;
+}
+
+/* Smooth Fade Before Redirect */
+
+.ai-preview-overlay.fade-out {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
