@@ -784,3 +784,86 @@ img, svg {
   opacity: 1;
   transform: translateX(6px);
 }
+/* =========================================================
+   HEADER LEFT / RIGHT SPLIT (APPENDED – SAFE EXTENSION)
+   This section only supports new header structure:
+   .header-left
+   .header-nav-left
+   .header-right
+   Nothing above is modified.
+========================================================= */
+
+/* Layout containers */
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Remove old margin stacking if present */
+.header-nav-left a,
+.header-right a {
+  margin-left: 0;
+}
+
+/* Ensure mega dropdown aligns properly inside left nav */
+.header-nav-left .mega-dropdown {
+  flex-shrink: 0;
+}
+
+/* Prevent buttons from shrinking */
+.header-right .btn-primary {
+  flex-shrink: 0;
+}
+
+/* Responsive Handling */
+
+@media (max-width: 1024px) {
+  .header-left {
+    gap: 24px;
+  }
+
+  .header-nav-left {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .header-nav-left {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
