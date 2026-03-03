@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     a.click();
     document.body.removeChild(a);
   }
-
   function isValidFileType(file) {
     if (toolType === "jpg-to-pdf") {
       return file.type === "image/jpeg" || file.type === "image/jpg";
