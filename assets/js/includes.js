@@ -48,32 +48,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ===== LOGGED IN ===== */
 
-const wrapper = document.createElement("div");
-wrapper.className = "user-auth-wrapper";
+    const logoutWrapper = document.createElement("div");
+    logoutWrapper.className = "user-auth-wrapper";
 
-const logoutBtn = document.createElement("button");
-logoutBtn.className = "btn-primary logout-btn";
-logoutBtn.textContent = "Logout";
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn-primary logout-btn";
+    logoutBtn.textContent = "Logout";
 
-logoutBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  logout();
-});
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      logout();
+    });
 
-// Hide login button
-authButton.style.display = "none";
+    // Hide login button
+    authButton.style.display = "none";
 
-// Append logout button
-wrapper.appendChild(logoutBtn);
-authButton.parentElement.appendChild(wrapper);
+    // Append logout button
+    logoutWrapper.appendChild(logoutBtn);
+    authButton.parentElement.appendChild(logoutWrapper);
 
     /* ===== CREATE DROPDOWN WRAPPER ===== */
 
-    const wrapper = document.createElement("div");
-    wrapper.className = "user-dropdown";
+    const dropdownWrapper = document.createElement("div");
+    dropdownWrapper.className = "user-dropdown";
 
     const badge = document.createElement("button");
     badge.className = "btn-primary user-badge";
+
+    const user = await apiRequest("/api/auth/me");
 
     if (user.plan === "free") {
       badge.textContent = `${user.email} (${user.dailyUsageCount}/3)`;
@@ -116,11 +118,11 @@ authButton.parentElement.appendChild(wrapper);
     menu.appendChild(upgradeLink);
     menu.appendChild(logoutLink);
 
-    wrapper.appendChild(badge);
-    wrapper.appendChild(menu);
+    dropdownWrapper.appendChild(badge);
+    dropdownWrapper.appendChild(menu);
 
     authButton.style.display = "none";
-    authButton.parentElement.appendChild(wrapper);
+    authButton.parentElement.appendChild(dropdownWrapper);
 
     /* ===== TOGGLE DROPDOWN ===== */
 
@@ -129,7 +131,7 @@ authButton.parentElement.appendChild(wrapper);
     });
 
     document.addEventListener("click", (e) => {
-      if (!wrapper.contains(e.target)) {
+      if (!dropdownWrapper.contains(e.target)) {
         menu.classList.remove("active");
       }
     });
