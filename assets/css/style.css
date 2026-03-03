@@ -1560,3 +1560,100 @@ img, svg {
     grid-template-columns: 1fr;
   }
 }
+/* ============================================
+   BILLING TOGGLE
+============================================ */
+
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.toggle-label {
+  font-size: 14px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.toggle-label.active {
+  opacity: 1;
+  color: #00f5ff;
+}
+
+.switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* ============================================
+   PLAN BUTTONS
+============================================ */
+
+.plan-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.plan-btn:hover {
+  box-shadow: 0 0 20px rgba(0,245,255,0.6);
+  transform: translateY(-2px);
+}
+
+.disabled-btn {
+  background: rgba(255,255,255,0.1);
+  cursor: default;
+}
+
+.ai-btn {
+  background: linear-gradient(90deg, #8a2be2, #ff00cc);
+}
+
+/* ============================================
+   HOVER GLOW EFFECT
+============================================ */
+
+.comparison-column:hover {
+  box-shadow: 0 0 40px rgba(0,245,255,0.2);
+  transform: translateY(-4px);
+  transition: all 0.3s ease;
+}
