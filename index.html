@@ -25,7 +25,6 @@
       ✨ AI-Powered Productivity Assistant
     </div>
 
-    <!-- AI Typing Headline -->
     <h1>
       <span id="typingText"></span>
     </h1>
@@ -37,7 +36,6 @@
 
     <div class="hero-main-row">
 
-      <!-- Primary Upload -->
       <div class="upload-box" id="homeUpload">
         <input type="file" id="homeFileInput" hidden />
         <div class="upload-icon">⚡</div>
@@ -46,7 +44,6 @@
           No signup required • Secure processing • AI-enhanced
         </p>
 
-        <!-- AI Micro Line -->
         <p class="upload-micro">
           Powered by intelligent document processing
         </p>
@@ -56,7 +53,6 @@
         </div>
       </div>
 
-      <!-- AI Magic Card -->
       <div class="ai-card">
         <h3>✨ AI Magic Layer</h3>
         <ul>
@@ -77,33 +73,30 @@
       ✓ End-to-end encryption ✓ Files auto-deleted ✓ Cloud-based processing
     </p>
 
-    <!-- Live Counter -->
     <p class="live-counter">
       <span id="docCounter">12,487</span> documents processed today
     </p>
 
   </div>
 
-  <!-- Floating AI Particles -->
-  <div class="ai-particles">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  <!-- AI Overlay -->
+  <div class="ai-preview-overlay" id="aiPreview">
+    <div class="ai-preview-box">
+      <div class="ai-loader"></div>
 
-  <!-- AI Analyzing Overlay -->
-<div class="ai-preview-overlay" id="aiPreview">
-  <div class="ai-preview-box">
-    <div class="ai-loader"></div>
-    <p class="ai-preview-text">
-      AI analyzing your document<span class="dots"></span>
-    </p>
+      <p class="ai-preview-text" id="aiStatus">
+        AI analyzing your document...
+      </p>
+
+      <div class="ai-progress-container">
+        <div class="ai-progress-bar" id="aiProgressBar"></div>
+      </div>
+
+      <p class="ai-percent" id="aiPercent">0%</p>
+    </div>
   </div>
-</div>
 
 </section>
-
 <section class="tools">
   <div class="container">
     <h2 class="section-title">Most Popular Tools</h2>
@@ -248,12 +241,19 @@
 
 <script src="assets/js/includes.js"></script>
 <script src="assets/js/app.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const uploadBox = document.getElementById("homeUpload");
   const input = document.getElementById("homeFileInput");
+  const preview = document.getElementById("aiPreview");
+  const progressBar = document.getElementById("aiProgressBar");
+  const percentText = document.getElementById("aiPercent");
+  const statusText = document.getElementById("aiStatus");
+
+  /* =========================
+     FILE UPLOAD + AI PREVIEW
+  ========================= */
 
   if (uploadBox && input) {
 
@@ -266,30 +266,73 @@ document.addEventListener("DOMContentLoaded", () => {
       const file = input.files[0];
       const fileType = file.type;
 
-      if (fileType === "application/pdf") {
-        window.location.href = "tools/compress-pdf.html";
-      } 
-      else if (
-        fileType === "image/jpeg" || 
-        fileType === "image/jpg" || 
-        fileType === "image/png"
-      ) {
-        window.location.href = "tools/jpg-to-pdf.html";
-      }
-      else if (
-        fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-      ) {
-        window.location.href = "tools/word-to-pdf.html";
-      }
-      else {
-        alert("Unsupported file type. Please upload PDF, JPG, PNG or DOCX.");
-      }
+      if (preview) preview.classList.add("active");
+
+      let progress = 0;
+
+      const stages = [
+        { value: 20, text: "Analyzing document structure..." },
+        { value: 45, text: "Extracting text and metadata..." },
+        { value: 75, text: "Optimizing content..." },
+        { value: 100, text: "Finalizing process..." }
+      ];
+
+      const interval = setInterval(() => {
+
+        progress += 2;
+
+        if (progressBar) {
+          progressBar.style.width = progress + "%";
+        }
+
+        if (percentText) {
+          percentText.textContent = progress + "%";
+        }
+
+        stages.forEach(stage => {
+          if (progress === stage.value && statusText) {
+            statusText.textContent = stage.text;
+          }
+        });
+
+        if (progress >= 100) {
+          clearInterval(interval);
+
+          setTimeout(() => {
+
+            if (fileType === "application/pdf") {
+              window.location.href = "tools/compress-pdf.html";
+            } 
+            else if (
+              fileType === "image/jpeg" || 
+              fileType === "image/jpg" || 
+              fileType === "image/png"
+            ) {
+              window.location.href = "tools/jpg-to-pdf.html";
+            }
+            else if (
+              fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            ) {
+              window.location.href = "tools/word-to-pdf.html";
+            }
+            else {
+              alert("Unsupported file type. Please upload PDF, JPG, PNG or DOCX.");
+            }
+
+          }, 400);
+
+        }
+
+      }, 40);
 
     });
 
   }
 
-  /* AI Typing Effect */
+  /* =========================
+     AI TYPING HEADLINE
+  ========================= */
+
   const typingTarget = document.getElementById("typingText");
   if (typingTarget) {
     const text = "Work Smarter with AI-Powered Documents";
@@ -304,7 +347,10 @@ document.addEventListener("DOMContentLoaded", () => {
     typeEffect();
   }
 
-  /* Live Document Counter */
+  /* =========================
+     LIVE DOCUMENT COUNTER
+  ========================= */
+
   const counter = document.getElementById("docCounter");
   if (counter) {
     let base = 12000 + Math.floor(Math.random() * 800);
@@ -317,7 +363,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* ================= STRIPE CHECKOUT (UNCHANGED) ================= */
+/* =========================
+   STRIPE CHECKOUT (UNCHANGED)
+========================= */
 
 async function startCheckout() {
   try {
