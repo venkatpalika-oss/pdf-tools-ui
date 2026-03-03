@@ -110,7 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
     wrapper.appendChild(badge);
     wrapper.appendChild(menu);
 
-    authButton.replaceWith(wrapper);
+    authButton.style.display = "none";
+    authButton.parentElement.appendChild(wrapper);
 
     /* ===== TOGGLE DROPDOWN ===== */
 
