@@ -2213,3 +2213,56 @@ body {
   50%  { transform: translate(-50%, -52%) scale(1.15); }
   100% { transform: translate(-50%, -48%) scale(1); }
 }
+/* ==========================================
+   HEADER USER DROPDOWN (FINAL STABLE)
+========================================== */
+
+.header-right {
+  position: relative;
+}
+
+.user-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-badge {
+  background: linear-gradient(90deg,#00f5ff,#7c3aed);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.user-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #0f172a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 8px 0;
+  min-width: 180px;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.user-menu.active {
+  display: block;
+}
+
+.user-menu a {
+  display: block;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.user-menu a:hover {
+  background: rgba(255,255,255,0.05);
+}
