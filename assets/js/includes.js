@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function initHeaderAuth() {
 
-    // ✅ Absolute imports (important fix)
     const { getToken, logout } = await import("/assets/js/auth.js");
     const { apiRequest } = await import("/assets/js/api.js");
 
@@ -59,16 +58,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const user = data.user;
 
+    /* ===== CREATE DROPDOWN WRAPPER ===== */
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "user-dropdown";
+
+    const badge = document.createElement("button");
+    badge.className = "btn-primary user-badge";
+
     if (user.plan === "free") {
-      authButton.textContent =
-        `${user.email} (${user.dailyUsageCount}/3)`;
+      badge.textContent = `${user.email} (${user.dailyUsageCount}/3)`;
+      badge.classList.add("free-user");
     } else {
-      authButton.textContent =
-        `${user.email} (PRO)`;
+      badge.textContent = `${user.email} (PRO)`;
+      badge.classList.add("pro-user");
     }
 
-    authButton.removeAttribute("href");
-    authButton.addEventListener("click", logout);
+    const menu = document.createElement("div");
+    menu.className = "user-menu";
+
+    /* ===== ACCOUNT LINK ===== */
+
+    const accountLink = document.createElement("a");
+    accountLink.href = "/account.html";
+    accountLink.textContent = "Account";
+
+    /* ===== UPGRADE LINK ===== */
+
+    const upgradeLink = document.createElement("a");
+    upgradeLink.href = "/#pricing";
+    upgradeLink.textContent = "Upgrade to Pro";
+
+    if (user.plan === "free") {
+      upgradeLink.classList.add("upgrade-glow");
+    }
+
+    /* ===== LOGOUT LINK ===== */
+
+    const logoutLink = document.createElement("a");
+    logoutLink.href = "#";
+    logoutLink.textContent = "Logout";
+    logoutLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      logout();
+    });
+
+    menu.appendChild(accountLink);
+    menu.appendChild(upgradeLink);
+    menu.appendChild(logoutLink);
+
+    wrapper.appendChild(badge);
+    wrapper.appendChild(menu);
+
+    authButton.replaceWith(wrapper);
+
+    /* ===== TOGGLE DROPDOWN ===== */
+
+    badge.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!wrapper.contains(e.target)) {
+        menu.classList.remove("active");
+      }
+    });
+
   }
 
 });
