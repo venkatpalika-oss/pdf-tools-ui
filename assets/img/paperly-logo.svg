@@ -1,6 +1,12 @@
-<!-- PaperlyTools Logo SVG -->
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+<!-- PaperlyTools Logo SVG (Animated Spark Version) -->
+<svg viewBox="0 0 64 64"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img"
+     aria-label="PaperlyTools Logo">
+
   <defs>
+
+    <!-- Gradients -->
     <linearGradient id="paperGradient" x1="14" y1="10" x2="44" y2="54">
       <stop stop-color="#00F5FF"/>
       <stop offset="1" stop-color="#8A2BE2"/>
@@ -15,14 +21,46 @@
       <stop stop-color="#FFD700"/>
       <stop offset="1" stop-color="#FF00CC"/>
     </linearGradient>
+
+    <!-- Spark Animation -->
+    <style>
+      .spark {
+        transform-origin: 50% 50%;
+        animation: sparkTwinkle 3s ease-in-out infinite;
+      }
+
+      @keyframes sparkTwinkle {
+        0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+        50%  { transform: scale(1.15) rotate(8deg); opacity: 0.85; }
+        100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      }
+    </style>
+
   </defs>
 
-  <rect x="14" y="10" width="30" height="44" rx="6"
+  <!-- Paper Body -->
+  <rect x="14"
+        y="10"
+        width="30"
+        height="44"
+        rx="6"
         fill="url(#paperGradient)" />
-  
+
+  <!-- Fold Corner -->
   <path d="M44 10L54 20H44V10Z"
         fill="url(#foldGradient)" />
 
-  <path d="M50 8L52 14L58 16L52 18L50 24L48 18L42 16L48 14L50 8Z"
+  <!-- Animated Spark -->
+  <path class="spark"
+        d="M50 8
+           L52 14
+           L58 16
+           L52 18
+           L50 24
+           L48 18
+           L42 16
+           L48 14
+           L50 8Z"
         fill="url(#sparkGradient)" />
+
 </svg>
