@@ -455,7 +455,7 @@ if (uploadBox && input) {
    STRIPE CHECKOUT (UNCHANGED)
 ========================= */
 
-async function startCheckout() {
+async function startCheckout(planType) {
   try {
     const token = localStorage.getItem("paperly_token");
 
@@ -469,7 +469,10 @@ async function startCheckout() {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
-      }
+      },
+      body: JSON.stringify({
+        plan: planType
+      })
     });
 
     const data = await response.json();
@@ -477,12 +480,11 @@ async function startCheckout() {
     if (data.url) {
       window.location.href = data.url;
     } else {
-      console.log(data);
       alert("Checkout failed");
     }
 
   } catch (err) {
-    console.error("Checkout error:", err);
+    console.error(err);
     alert("Something went wrong");
   }
 }
