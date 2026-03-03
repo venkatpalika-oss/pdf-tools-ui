@@ -882,3 +882,66 @@ img, svg {
   transform: rotate(12deg) scale(1.1);
   opacity: 1;
 }
+/* =========================================================
+   USER DROPDOWN + UPGRADE GLOW (APPENDED SAFE)
+========================================================= */
+
+.user-dropdown {
+  position: relative;
+}
+
+.user-badge {
+  cursor: pointer;
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 120%;
+  background: rgba(15, 23, 42, 0.98);
+  border-radius: 12px;
+  padding: 12px 0;
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  border: 1px solid rgba(0,255,255,0.15);
+  z-index: 6000;
+}
+
+.user-menu.active {
+  display: flex;
+}
+
+.user-menu a {
+  padding: 10px 18px;
+  font-size: 14px;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+
+.user-menu a:hover {
+  opacity: 1;
+  background: rgba(0,255,255,0.08);
+}
+
+/* Upgrade glow for free users */
+
+.upgrade-glow {
+  position: relative;
+  font-weight: bold;
+}
+
+.upgrade-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(0,255,255,0.25), transparent);
+  transform: translateX(-100%);
+  animation: glowSweep 2.5s infinite;
+}
+
+@keyframes glowSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
