@@ -1388,3 +1388,34 @@ img, svg {
   66%  { content: ".."; }
   100% { content: "..."; }
 }
+/* =========================================================
+   AI ANALYZING PROGRESS ENHANCEMENT (SAFE APPEND)
+========================================================= */
+
+.ai-progress-container {
+  width: 260px;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  margin: 20px auto 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,245,255,0.2);
+}
+
+.ai-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  border-radius: 50px;
+  transition: width 0.15s linear;
+  box-shadow: 0 0 20px rgba(0,245,255,0.6);
+}
+
+.ai-progress-percent {
+  font-size: 13px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  color: #00f5ff;
+  text-shadow: 0 0 8px rgba(0,245,255,0.5);
+}
