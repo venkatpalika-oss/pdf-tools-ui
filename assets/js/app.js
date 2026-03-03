@@ -293,3 +293,8 @@ if (toggle) {
 
   });
 }
+import { initAuthUI } from "./auth.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  initAuthUI();
+});
