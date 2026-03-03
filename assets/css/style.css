@@ -1774,3 +1774,38 @@ input:checked + .slider::before {
   min-width: 180px;
   text-align: center;
 }
+/* =========================================================
+   PRICING HEADER HEIGHT LOCK (FINAL)
+========================================================= */
+
+.comparison-header {
+  height: 130px; /* fixed height ensures perfect alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Feature column header aligned left */
+.feature-column .comparison-header {
+  align-items: flex-start;
+  padding-left: 24px;
+}
+
+/* =========================================================
+   FORCE ROW HEIGHT CONSISTENCY
+========================================================= */
+
+.comparison-row {
+  height: 58px; /* fixed height keeps grid perfectly aligned */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Keep features left aligned */
+.feature-column .comparison-row {
+  justify-content: flex-start;
+  padding-left: 24px;
+}
