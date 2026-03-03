@@ -945,3 +945,29 @@ img, svg {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+/* =========================================================
+   BRAND LOGO STYLE (APPENDED SAFE)
+========================================================= */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.brand-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand-accent {
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
