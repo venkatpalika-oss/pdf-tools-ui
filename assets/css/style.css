@@ -971,3 +971,25 @@ img, svg {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* =========================================================
+   LOGO HOVER GLOW (SAFE APPEND)
+========================================================= */
+
+.logo-link {
+  transition: transform 0.25s ease;
+}
+
+.logo-link:hover {
+  transform: translateY(-2px);
+}
+
+.logo-link:hover .brand-icon {
+  filter: drop-shadow(0 0 12px rgba(0,245,255,0.8))
+          drop-shadow(0 0 24px rgba(138,43,226,0.6));
+  transition: filter 0.3s ease;
+}
+
+.logo-link:hover .brand-accent {
+  text-shadow: 0 0 10px rgba(0,245,255,0.8),
+               0 0 20px rgba(138,43,226,0.6);
+}
