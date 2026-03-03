@@ -260,3 +260,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+/* ============================================
+   BILLING TOGGLE LOGIC
+============================================ */
+
+const toggle = document.getElementById("billingToggle");
+const prices = document.querySelectorAll(".plan-price");
+const monthlyLabel = document.getElementById("monthlyLabel");
+const yearlyLabel = document.getElementById("yearlyLabel");
+
+if (toggle) {
+  toggle.addEventListener("change", () => {
+
+    prices.forEach(price => {
+
+      const monthly = price.dataset.monthly;
+      const yearly = price.dataset.yearly;
+
+      if (!monthly || !yearly) return;
+
+      if (toggle.checked) {
+        price.textContent = "$" + yearly;
+        yearlyLabel.classList.add("active");
+        monthlyLabel.classList.remove("active");
+      } else {
+        price.textContent = "$" + monthly;
+        monthlyLabel.classList.add("active");
+        yearlyLabel.classList.remove("active");
+      }
+
+    });
+
+  });
+}
