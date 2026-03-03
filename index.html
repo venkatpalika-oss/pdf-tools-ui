@@ -225,11 +225,14 @@
     </div>
 
     <!-- FREE -->
-    <div class="comparison-column">
-      <div class="comparison-header">
-        Free
-        <span class="plan-price">$0</span>
-      </div>
+    <div class="comparison-header">
+  Free
+  <span class="plan-price">$0</span>
+
+  <button class="plan-btn disabled-btn">
+    Current Plan
+  </button>
+</div>
 
       <div class="comparison-row highlight-limit">3 / day</div>
       <div class="comparison-row">10MB</div>
@@ -243,12 +246,15 @@
     </div>
 
     <!-- PRO -->
-    <div class="comparison-column popular-plan">
-      <div class="comparison-header">
-        Pro
-        <span class="plan-price">$6</span>
-        <span class="popular-badge">Most Popular</span>
-      </div>
+    <div class="comparison-header">
+  Pro
+  <span class="plan-price" data-monthly="6" data-yearly="60">$6</span>
+  <span class="popular-badge">Most Popular</span>
+
+  <button class="plan-btn" onclick="startCheckout('pro')">
+    Upgrade to Pro
+  </button>
+</div>
 
       <div class="comparison-row">Unlimited</div>
       <div class="comparison-row">25MB</div>
@@ -262,11 +268,14 @@
     </div>
 
     <!-- AI PRO -->
-    <div class="comparison-column ai-plan">
-      <div class="comparison-header">
-        AI Pro
-        <span class="plan-price">$12</span>
-      </div>
+    <div class="comparison-header">
+  AI Pro
+  <span class="plan-price" data-monthly="12" data-yearly="120">$12</span>
+
+  <button class="plan-btn ai-btn" onclick="startCheckout('ai')">
+    Upgrade to AI Pro
+  </button>
+</div>
 
       <div class="comparison-row">Unlimited</div>
       <div class="comparison-row">50MB</div>
