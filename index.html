@@ -204,47 +204,83 @@
 </section>
 
 <section class="tools" id="pricing">
-  <div class="container">
-    <h2 class="section-title">Simple Pricing</h2>
+ <div class="container">
+  <h2 class="section-title">Choose Your Plan</h2>
 
-   <div class="tools-grid">
+  <div class="comparison-table">
 
-  <div class="tool-card">
-    <span class="tool-name"><strong>Free</strong></span>
-    <p style="margin-top:10px;"><strong>$0</strong> / month</p>
+    <!-- Features Column -->
+    <div class="comparison-column feature-column">
+      <div class="comparison-header">Features</div>
 
-    <ul style="text-align:left; margin-top:15px;">
-      <li>✔ 2 files per merge</li>
-      <li>✔ 10MB file size limit</li>
+      <div class="comparison-row">Daily Operations</div>
+      <div class="comparison-row">File Size Limit</div>
+      <div class="comparison-row">Batch Processing</div>
+      <div class="comparison-row">Processing Speed</div>
+      <div class="comparison-row">AI Summarization</div>
+      <div class="comparison-row">AI Insights Extraction</div>
+      <div class="comparison-row">Smart Optimization</div>
+      <div class="comparison-row">Priority Queue</div>
+      <div class="comparison-row">Support Level</div>
+    </div>
 
-      <li>
-        ✔ <span style="color:#facc15; font-weight:600;">
-          3 operations per day
-        </span>
-      </li>
-
-      <li>✔ Standard processing speed</li>
-    </ul>
-
-  </div>
-
-      <div class="tool-card" style="border:2px solid #00e0ff;">
-        <span class="tool-name"><strong>Pro</strong></span>
-        <p style="margin-top:10px;"><strong>$6</strong> / month</p>
-        <ul style="text-align:left; margin-top:15px;">
-          <li>✔ Unlimited operations</li>
-          <li>✔ Up to 25MB files</li>
-          <li>✔ Batch processing</li>
-          <li>✔ Priority queue</li>
-        </ul>
-        <br>
-        <button onclick="startCheckout()" style="padding:10px 18px; border-radius:6px; cursor:pointer;">
-          Upgrade to Pro
-        </button>
+    <!-- FREE -->
+    <div class="comparison-column">
+      <div class="comparison-header">
+        Free
+        <span class="plan-price">$0</span>
       </div>
 
+      <div class="comparison-row highlight-limit">3 / day</div>
+      <div class="comparison-row">10MB</div>
+      <div class="comparison-row">—</div>
+      <div class="comparison-row">Standard</div>
+      <div class="comparison-row">—</div>
+      <div class="comparison-row">—</div>
+      <div class="comparison-row">Basic</div>
+      <div class="comparison-row">—</div>
+      <div class="comparison-row">Community</div>
     </div>
+
+    <!-- PRO -->
+    <div class="comparison-column popular-plan">
+      <div class="comparison-header">
+        Pro
+        <span class="plan-price">$6</span>
+        <span class="popular-badge">Most Popular</span>
+      </div>
+
+      <div class="comparison-row">Unlimited</div>
+      <div class="comparison-row">25MB</div>
+      <div class="comparison-row">✔</div>
+      <div class="comparison-row">Fast</div>
+      <div class="comparison-row">—</div>
+      <div class="comparison-row">—</div>
+      <div class="comparison-row">Advanced</div>
+      <div class="comparison-row">✔</div>
+      <div class="comparison-row">Priority Email</div>
+    </div>
+
+    <!-- AI PRO -->
+    <div class="comparison-column ai-plan">
+      <div class="comparison-header">
+        AI Pro
+        <span class="plan-price">$12</span>
+      </div>
+
+      <div class="comparison-row">Unlimited</div>
+      <div class="comparison-row">50MB</div>
+      <div class="comparison-row">✔</div>
+      <div class="comparison-row">Ultra Fast</div>
+      <div class="comparison-row">✔</div>
+      <div class="comparison-row">✔</div>
+      <div class="comparison-row">AI-Powered</div>
+      <div class="comparison-row">✔</div>
+      <div class="comparison-row">Dedicated Support</div>
+    </div>
+
   </div>
+</div>
 </section>
 
 <div id="site-footer"></div>
