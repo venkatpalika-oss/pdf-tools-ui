@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const { getToken, logout } = await import("/assets/js/auth.js");
     const { apiRequest } = await import("/assets/js/api.js");
 
-    const authButton = document.querySelector(".btn-primary");
+    const authButton = document.getElementById("authButton");
     if (!authButton) return;
 
     const token = getToken();
