@@ -1007,3 +1007,32 @@ img, svg {
   50%  { transform: scale(1.15) rotate(8deg); opacity: 0.85; }
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
+/* =========================================================
+   PREMIUM HERO CLEANUP
+========================================================= */
+
+.hero {
+  text-align: center;
+  padding: 140px 20px 120px 20px;
+}
+
+.hero-logo {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 25px rgba(0,245,255,0.6))
+          drop-shadow(0 0 50px rgba(138,43,226,0.4));
+}
+
+.hero h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  font-size: 20px;
+  max-width: 720px;
+  margin: 0 auto 50px auto;
+  line-height: 1.6;
+  opacity: 0.85;
+}
