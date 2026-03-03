@@ -314,76 +314,61 @@
 <script src="assets/js/includes.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const uploadBox = document.getElementById("homeUpload");
   const input = document.getElementById("homeFileInput");
   const preview = document.getElementById("aiPreview");
   const progressBar = document.getElementById("aiProgressBar");
-  const percentText = document.getElementById("aiPercent");
-  const statusText = document.getElementById("aiStatus");
+  const percentText = document.getElementById("aiProgressPercent");
+  const statusText = document.getElementById("aiStage");
 
- /* =========================
-   FILE UPLOAD + AI PREVIEW (PREMIUM UPGRADE)
-========================= */
+  /* =========================
+     FILE UPLOAD + AI PREVIEW
+  ========================= */
 
-if (uploadBox && input) {
+  if (uploadBox && input) {
 
-  uploadBox.addEventListener("click", () => input.click());
+    uploadBox.addEventListener("click", () => input.click());
 
-  input.addEventListener("change", () => {
+    input.addEventListener("change", () => {
 
-    if (!input.files.length) return;
+      if (!input.files.length) return;
 
-    const file = input.files[0];
-    const fileType = file.type;
+      const file = input.files[0];
+      const fileType = file.type;
 
-    if (preview) preview.classList.add("active");
+      if (preview) preview.classList.add("active");
 
-    let progress = 0;
+      let progress = 0;
 
-    const stages = [
-      { limit: 20, text: "Uploading document..." },
-      { limit: 40, text: "Extracting text layers..." },
-      { limit: 65, text: "Analyzing document structure..." },
-      { limit: 85, text: "Optimizing performance..." },
-      { limit: 100, text: "Finalizing output..." }
-    ];
+      const stages = [
+        { limit: 20, text: "Uploading document..." },
+        { limit: 40, text: "Extracting text layers..." },
+        { limit: 65, text: "Analyzing document structure..." },
+        { limit: 85, text: "Optimizing performance..." },
+        { limit: 100, text: "Finalizing output..." }
+      ];
 
-    const interval = setInterval(() => {
+      const interval = setInterval(() => {
 
-      // Realistic AI-like speed variation
-      progress += Math.floor(Math.random() * 6) + 3;
+        progress += Math.floor(Math.random() * 6) + 3;
+        if (progress > 100) progress = 100;
 
-      if (progress > 100) progress = 100;
+        if (progressBar) progressBar.style.width = progress + "%";
+        if (percentText) percentText.textContent = progress + "%";
 
-      if (progressBar) {
-        progressBar.style.width = progress + "%";
-      }
-
-      if (percentText) {
-        percentText.textContent = progress + "%";
-      }
-
-      // Intelligent stage switching
-      for (let stage of stages) {
-        if (progress <= stage.limit && statusText) {
-          statusText.textContent = stage.text;
-          break;
+        for (let stage of stages) {
+          if (progress <= stage.limit && statusText) {
+            statusText.textContent = stage.text;
+            break;
+          }
         }
-      }
 
-      if (progress >= 100) {
+        if (progress >= 100) {
 
-        clearInterval(interval);
-
-        // Premium completion glow
-        const previewBox = document.getElementById("aiPreviewBox");
-        if (previewBox) previewBox.classList.add("completed");
-
-        setTimeout(() => {
-
-          if (preview) preview.classList.add("fade-out");
+          clearInterval(interval);
 
           setTimeout(() => {
 
@@ -403,20 +388,19 @@ if (uploadBox && input) {
               window.location.href = "tools/word-to-pdf.html";
             }
             else {
-              alert("Unsupported file type. Please upload PDF, JPG, PNG or DOCX.");
+              alert("Unsupported file type.");
             }
 
           }, 400);
 
-        }, 500);
+        }
 
-      }
+      }, 140);
 
-    }, 140);
+    });
 
-  });
+  }
 
-}
   /* =========================
      AI TYPING HEADLINE
   ========================= */
@@ -449,6 +433,56 @@ if (uploadBox && input) {
     }, 3000);
   }
 
+  /* =========================
+     BILLING TOGGLE LOGIC
+  ========================= */
+
+  const toggle = document.getElementById("billingToggle");
+  const monthlyLabel = document.getElementById("monthlyLabel");
+  const yearlyLabel = document.getElementById("yearlyLabel");
+  const prices = document.querySelectorAll(".plan-price");
+
+  if (toggle) {
+
+    toggle.addEventListener("change", () => {
+
+      const isYearly = toggle.checked;
+
+      if (monthlyLabel)
+        monthlyLabel.classList.toggle("active", !isYearly);
+
+      if (yearlyLabel)
+        yearlyLabel.classList.toggle("active", isYearly);
+
+      prices.forEach(price => {
+
+        const monthly = price.getAttribute("data-monthly");
+        const yearly = price.getAttribute("data-yearly");
+
+        if (!monthly || !yearly) return;
+
+        price.classList.add("animate-out");
+
+        setTimeout(() => {
+
+          const newValue = isYearly ? yearly : monthly;
+          price.textContent = "$" + newValue;
+
+          price.classList.remove("animate-out");
+          price.classList.add("animate-in");
+
+          setTimeout(() => {
+            price.classList.remove("animate-in");
+          }, 250);
+
+        }, 200);
+
+      });
+
+    });
+
+  }
+
 });
 
 /* =========================
@@ -470,9 +504,7 @@ async function startCheckout(planType) {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
       },
-      body: JSON.stringify({
-        plan: planType
-      })
+      body: JSON.stringify({ plan: planType })
     });
 
     const data = await response.json();
@@ -489,8 +521,3 @@ async function startCheckout(planType) {
   }
 }
 </script>
-
-<div class="particles"></div>
-
-</body>
-</html>
