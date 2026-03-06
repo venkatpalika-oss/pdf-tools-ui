@@ -39,22 +39,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const token = getToken();
 
-    /* ===== NOT LOGGED IN ===== */
+    /* ================= NOT LOGGED IN ================= */
 
     if (!token) {
       authButton.textContent = "Login";
       authButton.href = "/login.html";
+      authButton.style.display = "inline-block";
       return;
     }
 
-    /* ===== FETCH USER INFO SAFELY ===== */
+    /* ================= FETCH USER INFO ================= */
 
     let user = null;
 
     try {
+
       const data = await apiRequest("/api/auth/me");
 
-      // Support both response structures
       if (data?.user) {
         user = data.user;
       } else {
@@ -62,10 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
     } catch (err) {
-      console.warn("Auth check failed:", err);
+      console.warn("Auth fetch failed:", err);
     }
 
+    /* ================= FALLBACK: TOKEN EXISTS BUT USER DATA FAILED ================= */
+
     if (!user) {
+
       console.warn("User data unavailable. Showing logout only.");
 
       const logoutBtn = document.createElement("button");
@@ -78,12 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       authButton.style.display = "none";
-      authButton.parentElement.appendChild(logoutBtn);
+
+      if (authButton.parentElement) {
+        authButton.parentElement.appendChild(logoutBtn);
+      }
 
       return;
     }
 
-    /* ===== CREATE DROPDOWN WRAPPER ===== */
+    /* ================= CREATE USER DROPDOWN ================= */
 
     const dropdownWrapper = document.createElement("div");
     dropdownWrapper.className = "user-dropdown";
@@ -102,13 +109,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const menu = document.createElement("div");
     menu.className = "user-menu";
 
-    /* ===== ACCOUNT LINK ===== */
+    /* ================= ACCOUNT ================= */
 
     const accountLink = document.createElement("a");
     accountLink.href = "/account.html";
     accountLink.textContent = "Account";
 
-    /* ===== UPGRADE LINK ===== */
+    /* ================= UPGRADE ================= */
 
     const upgradeLink = document.createElement("a");
     upgradeLink.href = "/#pricing";
@@ -118,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       upgradeLink.classList.add("upgrade-glow");
     }
 
-    /* ===== LOGOUT LINK ===== */
+    /* ================= LOGOUT ================= */
 
     const logoutLink = document.createElement("a");
     logoutLink.href = "#";
@@ -137,11 +144,15 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdownWrapper.appendChild(menu);
 
     authButton.style.display = "none";
-    authButton.parentElement.appendChild(dropdownWrapper);
 
-    /* ===== TOGGLE DROPDOWN ===== */
+    if (authButton.parentElement) {
+      authButton.parentElement.appendChild(dropdownWrapper);
+    }
 
-    badge.addEventListener("click", () => {
+    /* ================= DROPDOWN TOGGLE ================= */
+
+    badge.addEventListener("click", (e) => {
+      e.stopPropagation();
       menu.classList.toggle("active");
     });
 
