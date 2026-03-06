@@ -8,12 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(base + "includes/header.html")
     .then(res => res.text())
     .then(html => {
-      document.getElementById("site-header").innerHTML = html;
+      const headerContainer = document.getElementById("site-header");
+      if (!headerContainer) return;
+
+      headerContainer.innerHTML = html;
 
       // Fix dynamic links
       document.querySelectorAll(".dynamic-link").forEach(link => {
         const target = link.getAttribute("data-path");
-        link.href = base + target;
+        if (target) link.href = base + target;
       });
 
       initHeaderAuth();
@@ -24,7 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(base + "includes/footer.html")
     .then(res => res.text())
     .then(html => {
-      document.getElementById("site-footer").innerHTML = html;
+      const footerContainer = document.getElementById("site-footer");
+      if (footerContainer) footerContainer.innerHTML = html;
     });
 
   /* ================= AUTH HEADER LOGIC ================= */
@@ -53,44 +57,48 @@ document.addEventListener("DOMContentLoaded", () => {
     let user = null;
 
     try {
-
       const data = await apiRequest("/api/auth/me");
 
-      if (data?.user) {
-        user = data.user;
-      } else {
-        user = data;
-      }
+      if (data?.user) user = data.user;
+      else user = data;
 
     } catch (err) {
       console.warn("Auth fetch failed:", err);
     }
 
-    /* ================= FALLBACK: TOKEN EXISTS BUT USER DATA FAILED ================= */
+    const parent = authButton.parentElement;
+    if (!parent) return;
+
+    /* ================= FALLBACK (LOGOUT ONLY) ================= */
 
     if (!user) {
 
       console.warn("User data unavailable. Showing logout only.");
 
-      const logoutBtn = document.createElement("button");
-      logoutBtn.className = "btn-primary logout-btn";
-      logoutBtn.textContent = "Logout";
-
-      logoutBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        logout();
-      });
-
       authButton.style.display = "none";
 
-      if (authButton.parentElement) {
-        authButton.parentElement.appendChild(logoutBtn);
+      if (!document.querySelector(".logout-btn")) {
+
+        const logoutBtn = document.createElement("button");
+        logoutBtn.className = "btn-primary logout-btn";
+        logoutBtn.textContent = "Logout";
+
+        logoutBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          logout();
+        });
+
+        parent.appendChild(logoutBtn);
       }
 
       return;
     }
 
     /* ================= CREATE USER DROPDOWN ================= */
+
+    authButton.style.display = "none";
+
+    if (document.querySelector(".user-dropdown")) return;
 
     const dropdownWrapper = document.createElement("div");
     dropdownWrapper.className = "user-dropdown";
@@ -109,13 +117,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const menu = document.createElement("div");
     menu.className = "user-menu";
 
-    /* ================= ACCOUNT ================= */
+    /* ACCOUNT */
 
     const accountLink = document.createElement("a");
     accountLink.href = "/account.html";
     accountLink.textContent = "Account";
 
-    /* ================= UPGRADE ================= */
+    /* UPGRADE */
 
     const upgradeLink = document.createElement("a");
     upgradeLink.href = "/#pricing";
@@ -125,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
       upgradeLink.classList.add("upgrade-glow");
     }
 
-    /* ================= LOGOUT ================= */
+    /* LOGOUT */
 
     const logoutLink = document.createElement("a");
     logoutLink.href = "#";
@@ -143,11 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdownWrapper.appendChild(badge);
     dropdownWrapper.appendChild(menu);
 
-    authButton.style.display = "none";
-
-    if (authButton.parentElement) {
-      authButton.parentElement.appendChild(dropdownWrapper);
-    }
+    parent.appendChild(dropdownWrapper);
 
     /* ================= DROPDOWN TOGGLE ================= */
 
