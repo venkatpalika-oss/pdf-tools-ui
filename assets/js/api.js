@@ -32,9 +32,17 @@ export async function apiRequest(endpoint, options = {}) {
   const token = getToken();
 
   const headers = {
-    "Content-Type": "application/json",
     ...(options.headers || {})
   };
+
+  /*
+    IMPORTANT:
+    Only set JSON header if body is NOT FormData.
+    This allows file uploads to work correctly.
+  */
+  if (!(options.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
 
   // Attach JWT automatically if exists
   if (token) {
