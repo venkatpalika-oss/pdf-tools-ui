@@ -23,7 +23,23 @@ export function removeToken() {
 }
 
 export function isLoggedIn() {
-  return !!getToken();
+
+  const token = getToken();
+
+  if (!token) return false;
+
+  const payload = parseJwt(token);
+
+  if (!payload) return false;
+
+  // Check token expiration
+  if (payload.exp && Date.now() >= payload.exp * 1000) {
+    console.warn("Token expired. Logging out.");
+    logout();
+    return false;
+  }
+
+  return true;
 }
 
 /* ============================================
@@ -31,9 +47,15 @@ export function isLoggedIn() {
 ============================================ */
 
 function parseJwt(token) {
+
   try {
+
     const base64Url = token.split(".")[1];
+
+    if (!base64Url) return null;
+
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+
     const jsonPayload = decodeURIComponent(
       atob(base64)
         .split("")
@@ -44,10 +66,17 @@ function parseJwt(token) {
     );
 
     return JSON.parse(jsonPayload);
-  } catch (err) {
-    console.error("JWT parse error:", err);
-    return null;
+
   }
+
+  catch (err) {
+
+    console.error("JWT parse error:", err);
+
+    return null;
+
+  }
+
 }
 
 /* ============================================
@@ -55,13 +84,31 @@ function parseJwt(token) {
 ============================================ */
 
 export function getCurrentUser() {
+
   const token = getToken();
+
   if (!token) return null;
 
   const payload = parseJwt(token);
+
   if (!payload) return null;
 
   return payload;
+
+}
+
+/* ============================================
+   USER HELPERS
+============================================ */
+
+export function getUserEmail() {
+
+  const user = getCurrentUser();
+
+  if (!user) return null;
+
+  return user.email || null;
+
 }
 
 /* ============================================
@@ -69,19 +116,29 @@ export function getCurrentUser() {
 ============================================ */
 
 export function getUserPlan() {
+
   const user = getCurrentUser();
+
   if (!user) return "free";
+
   return user.plan || "free";
+
 }
 
 export function isProUser() {
+
   const plan = getUserPlan();
+
   return plan === "pro" || plan === "aipro";
+
 }
 
 export function isAIProUser() {
+
   const plan = getUserPlan();
+
   return plan === "aipro";
+
 }
 
 /* ============================================
@@ -89,6 +146,7 @@ export function isAIProUser() {
 ============================================ */
 
 export function initAuthUI() {
+
   const user = getCurrentUser();
 
   const loginBtn = document.querySelector(".nav-login");
@@ -96,32 +154,50 @@ export function initAuthUI() {
   const userBadge = document.querySelector(".user-badge");
   const upgradeBtn = document.querySelector(".nav-upgrade");
 
+  /* ============================
+     LOGGED OUT STATE
+  ============================ */
+
   if (!user) {
-    // Logged OUT state
+
     if (loginBtn) loginBtn.style.display = "inline-flex";
     if (signupBtn) signupBtn.style.display = "inline-flex";
+
     if (userBadge) userBadge.style.display = "none";
+
     return;
+
   }
 
-  // Logged IN state
+  /* ============================
+     LOGGED IN STATE
+  ============================ */
+
   if (loginBtn) loginBtn.style.display = "none";
   if (signupBtn) signupBtn.style.display = "none";
 
   const plan = user.plan || "free";
 
   if (userBadge) {
+
     userBadge.style.display = "inline-flex";
+
     userBadge.innerHTML = `
       <span class="badge-glow ${plan}">
         ${plan.toUpperCase()}
       </span>
     `;
+
   }
+
+  /* ============================
+     FREE USER UPGRADE PULSE
+  ============================ */
 
   if (plan === "free" && upgradeBtn) {
     upgradeBtn.classList.add("pulse-upgrade");
   }
+
 }
 
 /* ============================================
@@ -129,6 +205,11 @@ export function initAuthUI() {
 ============================================ */
 
 export function logout() {
+
   removeToken();
+
+  console.log("User logged out.");
+
   window.location.href = "/login.html";
+
 }
