@@ -315,15 +315,31 @@ progressBar.style.width="0%";
 
       box.classList.add("has-file");
 
-      const fileName=files.length===1
-      ? files[0].name
-      : `${files.length} files selected`;
+     const queue = box.querySelector(".file-queue");
 
-      const title=box.querySelector(".upload-title");
+queue.innerHTML = "";
 
-      title.innerHTML=`📄 <strong>${fileName}</strong>`;
+files.forEach((file,index)=>{
 
-      title.style.animation="popFile 0.4s ease";
+  const item=document.createElement("div");
+  item.className="file-item";
+
+  item.innerHTML=`
+  <span>${file.name}</span>
+  <span class="file-remove">✖</span>
+  `;
+
+  item.querySelector(".file-remove").onclick=()=>{
+
+    files.splice(index,1);
+
+    item.remove();
+
+  };
+
+  queue.appendChild(item);
+
+});
 
       switch(toolType){
 
