@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (progressBar) progressBar.style.width = progress + "%";
       }, 250);
 
-      const response = await fetch(`${API_BASE}${endpoint}`, {
+      const result = await apiRequest("/api/compress", {
         method: "POST",
         body: formData
       });
