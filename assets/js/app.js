@@ -1,3 +1,6 @@
+import { apiRequest } from "./api.js";
+import { initAuthUI } from "./auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= CONFIG ================= */
@@ -33,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     a.click();
     document.body.removeChild(a);
   }
+
   function isValidFileType(file) {
     if (toolType === "jpg-to-pdf") {
       return file.type === "image/jpeg" || file.type === "image/jpg";
@@ -62,27 +66,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (progressBar) progressBar.style.width = progress + "%";
       }, 250);
 
-      const result = await apiRequest("/api/compress", {
+      const data = await apiRequest(endpoint, {
         method: "POST",
         body: formData
       });
 
       clearInterval(interval);
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || `Server error ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (!data.downloadUrl) {
+      if (!data || !data.downloadUrl) {
         throw new Error("Invalid server response");
       }
 
       if (progressBar) progressBar.style.width = "100%";
 
       setTimeout(() => {
+
         setStatus(box, "Completed ✅", "success");
         safeDownload(data.downloadUrl);
 
@@ -90,22 +88,26 @@ document.addEventListener("DOMContentLoaded", () => {
           progressContainer.style.display = "none";
           progressBar.style.width = "0%";
         }
+
       }, 600);
 
     } catch (error) {
+
       console.error("❌ API Error:", error);
       setStatus(box, "Failed ❌", "error");
 
       const progressContainer = box.querySelector(".progress-container");
       if (progressContainer) progressContainer.style.display = "none";
 
-      alert(error.message);
+      alert(error.message || "Processing failed.");
+
     }
   }
 
   /* ================= TOOL FUNCTIONS ================= */
 
   function compressPDF(file, box) {
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -118,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mergePDF(files, box) {
+
     if (files.length < 2) {
       alert("Please select at least 2 PDF files.");
       return;
@@ -130,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function splitPDF(file, box) {
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -137,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function pdfToImage(file, box) {
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -144,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function watermarkPDF(file, box) {
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -156,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function pdfToWord(file, box) {
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -163,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function jpgToPDF(files, box) {
+
     const formData = new FormData();
     files.forEach(file => formData.append("files", file));
 
@@ -196,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : `${files.length} files selected`;
 
       const title = box.querySelector(".upload-title");
+
       title.innerHTML = `📄 <strong>${fileName}</strong>`;
       title.style.animation = "popFile 0.4s ease";
 
@@ -247,6 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     box.addEventListener("drop", e => {
+
       e.preventDefault();
       box.classList.remove("dragging");
 
@@ -254,47 +264,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
       input.files = e.dataTransfer.files;
       input.dispatchEvent(new Event("change"));
-    });
-
-  });
-
-});
-
-/* ============================================
-   BILLING TOGGLE LOGIC
-============================================ */
-
-const toggle = document.getElementById("billingToggle");
-const prices = document.querySelectorAll(".plan-price");
-const monthlyLabel = document.getElementById("monthlyLabel");
-const yearlyLabel = document.getElementById("yearlyLabel");
-
-if (toggle) {
-  toggle.addEventListener("change", () => {
-
-    prices.forEach(price => {
-
-      const monthly = price.dataset.monthly;
-      const yearly = price.dataset.yearly;
-
-      if (!monthly || !yearly) return;
-
-      if (toggle.checked) {
-        price.textContent = "$" + yearly;
-        yearlyLabel.classList.add("active");
-        monthlyLabel.classList.remove("active");
-      } else {
-        price.textContent = "$" + monthly;
-        monthlyLabel.classList.add("active");
-        yearlyLabel.classList.remove("active");
-      }
 
     });
 
   });
-}
-import { initAuthUI } from "./auth.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+  /* ============================================
+     BILLING TOGGLE LOGIC
+  ============================================ */
+
+  const toggle = document.getElementById("billingToggle");
+  const prices = document.querySelectorAll(".plan-price");
+  const monthlyLabel = document.getElementById("monthlyLabel");
+  const yearlyLabel = document.getElementById("yearlyLabel");
+
+  if (toggle) {
+
+    toggle.addEventListener("change", () => {
+
+      prices.forEach(price => {
+
+        const monthly = price.dataset.monthly;
+        const yearly = price.dataset.yearly;
+
+        if (!monthly || !yearly) return;
+
+        if (toggle.checked) {
+
+          price.textContent = "$" + yearly;
+          yearlyLabel.classList.add("active");
+          monthlyLabel.classList.remove("active");
+
+        } else {
+
+          price.textContent = "$" + monthly;
+          monthlyLabel.classList.add("active");
+          yearlyLabel.classList.remove("active");
+
+        }
+
+      });
+
+    });
+
+  }
+
+  /* ================= AUTH UI ================= */
+
   initAuthUI();
+
 });
