@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const API_BASE = "https://pdf-tools-api-c4f5.onrender.com";
   const FREE_FILE_LIMIT_MB = 20;
+  const ANON_LIMIT = 2;
 
   console.log("🚀 PDF Tools JS Loaded");
   console.log("🌐 API BASE:", API_BASE);
@@ -28,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tool) {
 
       const endpoint = tool.api.replace("/","");
-
       toolType = endpoint;
 
       console.log("Dynamic tool detected:", toolType);
@@ -38,6 +38,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (!uploadBoxes.length) return;
+
+  /* ================= ANON LOGIN WALL ================= */
+
+  function getAnonUsage(){
+    const usage = localStorage.getItem("anonUsage");
+    return usage ? parseInt(usage) : 0;
+  }
+
+  function incrementAnonUsage(){
+    const current = getAnonUsage();
+    localStorage.setItem("anonUsage", current + 1);
+  }
+
+  function checkLoginWall(){
+
+    const token = localStorage.getItem("token");
+
+    if(!token){
+
+      const usage = getAnonUsage();
+
+      if(usage >= ANON_LIMIT){
+
+        alert("Create a free account to continue using PaperlyTools.");
+        window.location.href = "/login.html";
+        return false;
+
+      }
+
+      incrementAnonUsage();
+    }
+
+    return true;
+  }
 
   /* ================= HELPERS ================= */
 
@@ -81,9 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function isValidFileType(file) {
 
     if (toolType === "jpg-to-pdf") {
-
       return file.type === "image/jpeg" || file.type === "image/jpg";
-
     }
 
     return file.type === "application/pdf";
@@ -97,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if(sizeMB > FREE_FILE_LIMIT_MB){
 
       alert(`File too large. Free plan supports up to ${FREE_FILE_LIMIT_MB} MB.`);
-
       return false;
 
     }
@@ -172,18 +203,32 @@ ${data.originalSize ? `
 </div>
 `:""}
 
+${data.usage && data.usage.remaining === 0 ? `
+<button class="upgrade-btn">Upgrade to Download</button>
+` : `
 <button class="download-btn">Download File</button>
+`}
+
 <button class="upload-again-btn">Upload Another</button>
 
 </div>
 `;
 
 const downloadBtn = box.querySelector(".download-btn");
+const upgradeBtn = box.querySelector(".upgrade-btn");
 const againBtn = box.querySelector(".upload-again-btn");
 
+if(downloadBtn){
 downloadBtn.addEventListener("click",()=>{
 safeDownload(data.downloadUrl);
 });
+}
+
+if(upgradeBtn){
+upgradeBtn.addEventListener("click",()=>{
+window.location.href="/pricing.html";
+});
+}
 
 againBtn.addEventListener("click",()=>{
 window.location.reload();
@@ -219,9 +264,7 @@ progressBar.style.width="0%";
   /* ================= TOOL FUNCTIONS ================= */
 
   function compressPDF(file,box){
-
     const formData=new FormData();
-
     formData.append("file",file);
 
     const levelSelect=document.getElementById("levelSelect");
@@ -231,95 +274,65 @@ progressBar.style.width="0%";
     }
 
     sendRequest("/api/compress",formData,box,"Compressing… ⏳");
-
   }
 
   function mergePDF(files,box){
 
     if(files.length<2){
-
       alert("Please select at least 2 PDF files.");
-
       return;
-
     }
 
     const formData=new FormData();
-
     files.forEach(file=>formData.append("files",file));
 
     sendRequest("/api/merge",formData,box,"Merging… ⏳");
-
   }
 
   function splitPDF(file,box){
-
     const formData=new FormData();
-
     formData.append("file",file);
-
     sendRequest("/api/split",formData,box,"Splitting… ⏳");
-
   }
 
   function pdfToImage(file,box){
-
     const formData=new FormData();
-
     formData.append("file",file);
-
     sendRequest("/api/pdf-to-image",formData,box,"Converting to Images… ⏳");
-
   }
 
   function watermarkPDF(file,box){
-
     const formData=new FormData();
-
     formData.append("file",file);
 
     const watermarkInput=document.getElementById("watermarkText");
-
     const text=watermarkInput?.value?.trim() || "CONFIDENTIAL";
 
     formData.append("text",text);
 
     sendRequest("/api/watermark",formData,box,"Adding Watermark… ⏳");
-
   }
 
   function pdfToWord(file,box){
-
     const formData=new FormData();
-
     formData.append("file",file);
-
     sendRequest("/api/pdf-to-word",formData,box,"Converting to Word… ⏳");
-
   }
 
   function jpgToPDF(files,box){
-
     const formData=new FormData();
-
     files.forEach(file=>formData.append("files",file));
-
     sendRequest("/api/jpg-to-pdf",formData,box,"Converting to PDF… ⏳");
-
   }
 
   function unlockPDF(file,box){
-
     const formData=new FormData();
-
     formData.append("file",file);
 
     const password=document.getElementById("passwordInput")?.value || "";
-
     formData.append("password",password);
 
     sendRequest("/api/unlock",formData,box,"Unlocking… ⏳");
-
   }
 
   /* ================= MAIN ================= */
@@ -327,23 +340,21 @@ progressBar.style.width="0%";
   uploadBoxes.forEach(box=>{
 
     const input=box.querySelector(".file-input");
-
     if(!input) return;
 
     box.addEventListener("click",()=>input.click());
 
     input.addEventListener("change",()=>{
 
+      if(!checkLoginWall()) return;
+
       if(!input.files.length) return;
 
       const files=Array.from(input.files);
 
       if(files.some(file=>!isValidFileType(file) || !validateFileSize(file))){
-
         setStatus(box,"Invalid file ❌","error");
-
         return;
-
       }
 
       box.classList.add("has-file");
@@ -365,11 +376,8 @@ progressBar.style.width="0%";
           `;
 
           item.querySelector(".file-remove").addEventListener("click",(e)=>{
-
             e.stopPropagation();
-
             item.remove();
-
           });
 
           queue.appendChild(item);
