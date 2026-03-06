@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     authButton.style.display = "none";
 
-    /* ================= IMMEDIATE LOGOUT BUTTON ================= */
+    /* ================= SHOW LOGOUT IMMEDIATELY ================= */
 
     let logoutBtn = document.querySelector(".logout-btn");
 
@@ -95,11 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("Auth fetch failed:", err);
     }
 
-    if (!user) return;
+    /* ================= IF USER INVALID KEEP LOGOUT ================= */
+
+    if (!user || !user.email) {
+      return;
+    }
 
     /* ================= UPGRADE TO DROPDOWN ================= */
 
-    logoutBtn.remove();
+    if (logoutBtn) logoutBtn.remove();
 
     if (document.querySelector(".user-dropdown")) return;
 
