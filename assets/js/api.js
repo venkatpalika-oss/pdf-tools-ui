@@ -16,10 +16,11 @@ const API_BASE = "https://pdf-tools-api-c4f5.onrender.com";
 ============================================ */
 
 export function apiUrl(endpoint) {
-  // Ensure endpoint always starts with "/"
+
   if (!endpoint.startsWith("/")) {
     endpoint = "/" + endpoint;
   }
+
   return `${API_BASE}${endpoint}`;
 }
 
@@ -36,15 +37,14 @@ export async function apiRequest(endpoint, options = {}) {
   };
 
   /*
-    IMPORTANT:
     Only set JSON header if body is NOT FormData.
-    This allows file uploads to work correctly.
+    Required for file uploads.
   */
   if (!(options.body instanceof FormData)) {
     headers["Content-Type"] = "application/json";
   }
 
-  // Attach JWT automatically if exists
+  // Attach JWT automatically
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }
@@ -56,36 +56,71 @@ export async function apiRequest(endpoint, options = {}) {
       headers
     });
 
+    const contentType = response.headers.get("content-type");
+
+    let data = null;
+
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    }
+
     /* ============================
-       Handle Unauthorized Globally
+       Handle Unauthorized
     ============================ */
 
     if (response.status === 401) {
+
       console.warn("Session expired or invalid token.");
+
       logout(); // Clears token + reloads
-      return null;
+
+      return {
+        error: "Session expired. Please login again."
+      };
+
     }
 
     /* ============================
-       Handle Non-OK Responses
+       Handle Limit / Paywall
+    ============================ */
+
+    if (response.status === 403) {
+
+      console.warn("Access blocked:", data?.error);
+
+      return {
+        error: data?.error || "Access denied.",
+        usage: data?.usage
+      };
+
+    }
+
+    /* ============================
+       Handle Other Errors
     ============================ */
 
     if (!response.ok) {
+
       console.error(`API Error ${response.status}`);
-      return null;
+
+      return {
+        error: data?.error || "Server error"
+      };
+
     }
 
-    // Safe JSON parsing
-    const contentType = response.headers.get("content-type");
+    return data;
 
-    if (contentType && contentType.includes("application/json")) {
-      return await response.json();
-    }
-
-    return null;
-
-  } catch (error) {
-    console.error("Network / API failure:", error);
-    return null;
   }
+
+  catch (error) {
+
+    console.error("Network / API failure:", error);
+
+    return {
+      error: "Network error. Please try again."
+    };
+
+  }
+
 }
