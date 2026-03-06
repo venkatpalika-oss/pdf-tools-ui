@@ -79,19 +79,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (progressBar) progressBar.style.width = "100%";
 
-      setTimeout(() => {
+      title.innerHTML = `
+  <div class="result-actions">
 
-  setStatus(box, "Completed ✅", "success");
+    <div class="result-success">Completed ✅</div>
 
-  const title = box.querySelector(".upload-title");
+    ${data.originalSize ? `
+      <div class="compression-info">
+        <div>Original: ${(data.originalSize / (1024*1024)).toFixed(2)} MB</div>
+        <div>Compressed: ${(data.compressedSize / (1024*1024)).toFixed(2)} MB</div>
+        <div class="saved-percent">Saved ${data.savedPercent}%</div>
+      </div>
+    ` : ""}
 
-  title.innerHTML = `
-    <div class="result-actions">
-      <div class="result-success">Completed ✅</div>
-      <button class="download-btn">Download File</button>
-      <button class="upload-again-btn">Upload Another</button>
-    </div>
-  `;
+    <button class="download-btn">Download File</button>
+    <button class="upload-again-btn">Upload Another</button>
+
+  </div>
+`;
 
   const downloadBtn = box.querySelector(".download-btn");
   const againBtn = box.querySelector(".upload-again-btn");
