@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(base + "includes/header.html")
     .then(res => res.text())
     .then(html => {
+
       const headerContainer = document.getElementById("site-header");
       if (!headerContainer) return;
 
@@ -27,11 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(base + "includes/footer.html")
     .then(res => res.text())
     .then(html => {
+
       const footerContainer = document.getElementById("site-footer");
       if (footerContainer) footerContainer.innerHTML = html;
+
     });
 
-  /* ================= AUTH HEADER LOGIC ================= */
+  /* ================= AUTH HEADER ================= */
 
   async function initHeaderAuth() {
 
@@ -52,11 +55,37 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    /* ================= FETCH USER INFO ================= */
+    /* ================= TOKEN EXISTS ================= */
+
+    const parent = authButton.parentElement;
+    if (!parent) return;
+
+    authButton.style.display = "none";
+
+    /* ================= IMMEDIATE LOGOUT BUTTON ================= */
+
+    let logoutBtn = document.querySelector(".logout-btn");
+
+    if (!logoutBtn) {
+
+      logoutBtn = document.createElement("button");
+      logoutBtn.className = "btn-primary logout-btn";
+      logoutBtn.textContent = "Logout";
+
+      logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        logout();
+      });
+
+      parent.appendChild(logoutBtn);
+    }
+
+    /* ================= TRY FETCH USER ================= */
 
     let user = null;
 
     try {
+
       const data = await apiRequest("/api/auth/me");
 
       if (data?.user) user = data.user;
@@ -66,37 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("Auth fetch failed:", err);
     }
 
-    const parent = authButton.parentElement;
-    if (!parent) return;
+    if (!user) return;
 
-    /* ================= FALLBACK (LOGOUT ONLY) ================= */
+    /* ================= UPGRADE TO DROPDOWN ================= */
 
-    if (!user) {
-
-      console.warn("User data unavailable. Showing logout only.");
-
-      authButton.style.display = "none";
-
-      if (!document.querySelector(".logout-btn")) {
-
-        const logoutBtn = document.createElement("button");
-        logoutBtn.className = "btn-primary logout-btn";
-        logoutBtn.textContent = "Logout";
-
-        logoutBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          logout();
-        });
-
-        parent.appendChild(logoutBtn);
-      }
-
-      return;
-    }
-
-    /* ================= CREATE USER DROPDOWN ================= */
-
-    authButton.style.display = "none";
+    logoutBtn.remove();
 
     if (document.querySelector(".user-dropdown")) return;
 
@@ -117,13 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const menu = document.createElement("div");
     menu.className = "user-menu";
 
-    /* ACCOUNT */
-
     const accountLink = document.createElement("a");
     accountLink.href = "/account.html";
     accountLink.textContent = "Account";
-
-    /* UPGRADE */
 
     const upgradeLink = document.createElement("a");
     upgradeLink.href = "/#pricing";
@@ -132,8 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (user.plan === "free") {
       upgradeLink.classList.add("upgrade-glow");
     }
-
-    /* LOGOUT */
 
     const logoutLink = document.createElement("a");
     logoutLink.href = "#";
