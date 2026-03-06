@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ================= CONFIG ================= */
 
   const API_BASE = "https://pdf-tools-api-c4f5.onrender.com";
+  const FREE_FILE_LIMIT_MB = 20;
 
   console.log("🚀 PDF Tools JS Loaded");
   console.log("🌐 API BASE:", API_BASE);
@@ -89,6 +90,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+  function validateFileSize(file){
+
+    const sizeMB = file.size / (1024*1024);
+
+    if(sizeMB > FREE_FILE_LIMIT_MB){
+
+      alert(`File too large. Free plan supports up to ${FREE_FILE_LIMIT_MB} MB.`);
+
+      return false;
+
+    }
+
+    return true;
+
+  }
+
   /* ================= PROGRESS + REQUEST ================= */
 
   async function sendRequest(endpoint, formData, box, loadingText) {
@@ -127,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(interval);
 
       if (!data || !data.downloadUrl) {
-        throw new Error("Invalid server response");
+        throw new Error(data?.error || "Invalid server response");
       }
 
       if (progressBar) progressBar.style.width = "100%";
@@ -140,9 +157,10 @@ title.innerHTML = `
 <div class="result-actions">
 
 <div class="result-success">Completed ✅</div>
+
 ${data.usage ? `
 <div class="usage-info">
-Free files remaining today: ${data.usage.remaining}
+Free files remaining today: ${data.usage.remaining ?? "Unlimited"}
 </div>
 ` : ""}
 
@@ -320,9 +338,9 @@ progressBar.style.width="0%";
 
       const files=Array.from(input.files);
 
-      if(files.some(file=>!isValidFileType(file))){
+      if(files.some(file=>!isValidFileType(file) || !validateFileSize(file))){
 
-        setStatus(box,"Invalid file type ❌","error");
+        setStatus(box,"Invalid file ❌","error");
 
         return;
 
