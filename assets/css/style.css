@@ -2321,3 +2321,13 @@ body {
   color:#00d9f5;
   cursor:pointer;
 }
+.compression-info{
+  margin:10px 0;
+  font-size:14px;
+  opacity:0.9;
+}
+
+.saved-percent{
+  color:#3cff8f;
+  font-weight:600;
+}
