@@ -140,6 +140,11 @@ title.innerHTML = `
 <div class="result-actions">
 
 <div class="result-success">Completed ✅</div>
+${data.usage ? `
+<div class="usage-info">
+Free files remaining today: ${data.usage.remaining}
+</div>
+` : ""}
 
 ${data.originalSize ? `
 <div class="compression-info">
