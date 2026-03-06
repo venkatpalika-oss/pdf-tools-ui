@@ -67,6 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+  function formatFileSize(bytes){
+
+    const mb = bytes / (1024*1024);
+
+    if(mb >= 1) return mb.toFixed(2)+" MB";
+
+    return (bytes/1024).toFixed(1)+" KB";
+
+  }
+
   function isValidFileType(file) {
 
     if (toolType === "jpg-to-pdf") {
@@ -315,31 +325,35 @@ progressBar.style.width="0%";
 
       box.classList.add("has-file");
 
-     const queue = box.querySelector(".file-queue");
+      const queue = box.querySelector(".file-queue");
 
-queue.innerHTML = "";
+      if(queue){
 
-files.forEach((file,index)=>{
+        queue.innerHTML="";
 
-  const item=document.createElement("div");
-  item.className="file-item";
+        files.forEach((file)=>{
 
-  item.innerHTML=`
-  <span>${file.name}</span>
-  <span class="file-remove">✖</span>
-  `;
+          const item=document.createElement("div");
+          item.className="file-item";
 
-  item.querySelector(".file-remove").onclick=()=>{
+          item.innerHTML=`
+          <span>${file.name} (${formatFileSize(file.size)})</span>
+          <span class="file-remove">✖</span>
+          `;
 
-    files.splice(index,1);
+          item.querySelector(".file-remove").addEventListener("click",(e)=>{
 
-    item.remove();
+            e.stopPropagation();
 
-  };
+            item.remove();
 
-  queue.appendChild(item);
+          });
 
-});
+          queue.appendChild(item);
+
+        });
+
+      }
 
       switch(toolType){
 
