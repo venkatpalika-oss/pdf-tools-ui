@@ -26,11 +26,17 @@ Upload your PDF file and process it using PaperlyTools.
 
 <div class="upload-box">
 
-<input type="file" id="fileInput" accept=".pdf">
+  <input type="file" class="file-input" multiple />
 
-<button id="processBtn">
-Process File
-</button>
+  <div class="upload-title">
+    Drop your file here or click to upload
+  </div>
+
+  <div class="file-queue"></div>
+
+  <div class="progress-container" style="display:none;">
+    <div class="progress-bar"></div>
+  </div>
 
 </div>
 
