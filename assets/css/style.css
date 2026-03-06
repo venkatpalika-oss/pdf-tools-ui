@@ -2296,3 +2296,28 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(124,58,237,0.4);
 }
+.result-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+.download-btn{
+  background:linear-gradient(90deg,#00f5a0,#00d9f5);
+  border:none;
+  padding:10px 20px;
+  border-radius:8px;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.upload-again-btn{
+  background:transparent;
+  border:1px solid #00d9f5;
+  padding:8px 18px;
+  border-radius:8px;
+  color:#00d9f5;
+  cursor:pointer;
+}
