@@ -79,6 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (progressBar) progressBar.style.width = "100%";
 
+      /* ===== INSERTED FIX (do not remove) ===== */
+
+      const title = box.querySelector(".upload-title");
+
+      setTimeout(() => {
+
+      /* ======================================== */
+
       title.innerHTML = `
   <div class="result-actions">
 
