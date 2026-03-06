@@ -40,32 +40,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = getToken();
 
     /* ===== NOT LOGGED IN ===== */
+
     if (!token) {
       authButton.textContent = "Login";
       authButton.href = "/login.html";
       return;
     }
 
-    /* ===== LOGGED IN ===== */
+    /* ===== FETCH USER INFO SAFELY ===== */
 
-    const logoutWrapper = document.createElement("div");
-    logoutWrapper.className = "user-auth-wrapper";
+    let user = null;
 
-    const logoutBtn = document.createElement("button");
-    logoutBtn.className = "btn-primary logout-btn";
-    logoutBtn.textContent = "Logout";
+    try {
+      const data = await apiRequest("/api/auth/me");
 
-    logoutBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      logout();
-    });
+      // Support both response structures
+      if (data?.user) {
+        user = data.user;
+      } else {
+        user = data;
+      }
 
-    // Hide login button
-    authButton.style.display = "none";
+    } catch (err) {
+      console.warn("Auth check failed:", err);
+    }
 
-    // Append logout button
-    logoutWrapper.appendChild(logoutBtn);
-    authButton.parentElement.appendChild(logoutWrapper);
+    if (!user) {
+      console.warn("User data unavailable. Showing logout only.");
+
+      const logoutBtn = document.createElement("button");
+      logoutBtn.className = "btn-primary logout-btn";
+      logoutBtn.textContent = "Logout";
+
+      logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        logout();
+      });
+
+      authButton.style.display = "none";
+      authButton.parentElement.appendChild(logoutBtn);
+
+      return;
+    }
 
     /* ===== CREATE DROPDOWN WRAPPER ===== */
 
@@ -74,8 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const badge = document.createElement("button");
     badge.className = "btn-primary user-badge";
-
-    const user = await apiRequest("/api/auth/me");
 
     if (user.plan === "free") {
       badge.textContent = `${user.email} (${user.dailyUsageCount}/3)`;
@@ -109,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoutLink = document.createElement("a");
     logoutLink.href = "#";
     logoutLink.textContent = "Logout";
+
     logoutLink.addEventListener("click", (e) => {
       e.preventDefault();
       logout();
