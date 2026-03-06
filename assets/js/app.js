@@ -81,15 +81,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
 
-        setStatus(box, "Completed ✅", "success");
-        safeDownload(data.downloadUrl);
+  setStatus(box, "Completed ✅", "success");
 
-        if (progressContainer) {
-          progressContainer.style.display = "none";
-          progressBar.style.width = "0%";
-        }
+  const title = box.querySelector(".upload-title");
 
-      }, 600);
+  title.innerHTML = `
+    <div class="result-actions">
+      <div class="result-success">Completed ✅</div>
+      <button class="download-btn">Download File</button>
+      <button class="upload-again-btn">Upload Another</button>
+    </div>
+  `;
+
+  const downloadBtn = box.querySelector(".download-btn");
+  const againBtn = box.querySelector(".upload-again-btn");
+
+  downloadBtn.addEventListener("click", () => {
+    safeDownload(data.downloadUrl);
+  });
+
+  againBtn.addEventListener("click", () => {
+    window.location.reload();
+  });
+
+  if (progressContainer) {
+    progressContainer.style.display = "none";
+    progressBar.style.width = "0%";
+  }
+
+}, 600);
 
     } catch (error) {
 
