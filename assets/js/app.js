@@ -1,5 +1,6 @@
 import { apiRequest } from "./api.js";
 import { initAuthUI } from "./auth.js";
+import { tools } from "./tools-config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -11,42 +12,77 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("🌐 API BASE:", API_BASE);
 
   const uploadBoxes = document.querySelectorAll(".upload-box");
-  const toolType = document.body.dataset.tool;
+
+  let toolType = document.body.dataset.tool;
+
+  /* ===== dynamic fallback for template ===== */
+
+  if (!toolType) {
+
+    const path = window.location.pathname;
+    const slug = path.split("/").pop().replace(".html","");
+
+    const tool = tools.find(t => t.slug === slug);
+
+    if (tool) {
+
+      const endpoint = tool.api.replace("/","");
+
+      toolType = endpoint;
+
+      console.log("Dynamic tool detected:", toolType);
+
+    }
+
+  }
 
   if (!uploadBoxes.length) return;
 
   /* ================= HELPERS ================= */
 
   function setStatus(box, text, state = "") {
+
     const title = box.querySelector(".upload-title");
     if (!title) return;
 
     title.textContent = text;
 
-    box.classList.remove("has-file", "error", "success", "loading");
+    box.classList.remove("has-file","error","success","loading");
+
     if (state) box.classList.add(state);
+
   }
 
   function safeDownload(url) {
+
     const a = document.createElement("a");
+
     a.href = url;
     a.target = "_blank";
     a.rel = "noopener";
+
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
   }
 
   function isValidFileType(file) {
+
     if (toolType === "jpg-to-pdf") {
+
       return file.type === "image/jpeg" || file.type === "image/jpg";
+
     }
+
     return file.type === "application/pdf";
+
   }
 
   /* ================= PROGRESS + REQUEST ================= */
 
   async function sendRequest(endpoint, formData, box, loadingText) {
+
     try {
 
       const progressContainer = box.querySelector(".progress-container");
@@ -55,20 +91,27 @@ document.addEventListener("DOMContentLoaded", () => {
       setStatus(box, loadingText, "loading");
 
       if (progressContainer) {
+
         progressContainer.style.display = "block";
         progressBar.style.width = "10%";
+
       }
 
       let progress = 10;
-      const interval = setInterval(() => {
-        progress += Math.random() * 12;
-        if (progress > 85) progress = 85;
-        if (progressBar) progressBar.style.width = progress + "%";
-      }, 250);
 
-      const data = await apiRequest(endpoint, {
-        method: "POST",
-        body: formData
+      const interval = setInterval(() => {
+
+        progress += Math.random() * 12;
+
+        if (progress > 85) progress = 85;
+
+        if (progressBar) progressBar.style.width = progress + "%";
+
+      },250);
+
+      const data = await apiRequest(endpoint,{
+        method:"POST",
+        body:formData
       });
 
       clearInterval(interval);
@@ -79,268 +122,251 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (progressBar) progressBar.style.width = "100%";
 
-      /* ===== INSERTED FIX (do not remove) ===== */
-
       const title = box.querySelector(".upload-title");
 
-      setTimeout(() => {
+      setTimeout(()=>{
 
-      /* ======================================== */
+title.innerHTML = `
+<div class="result-actions">
 
-      title.innerHTML = `
-  <div class="result-actions">
+<div class="result-success">Completed ✅</div>
 
-    <div class="result-success">Completed ✅</div>
+${data.originalSize ? `
+<div class="compression-info">
+<div>Original: ${(data.originalSize/(1024*1024)).toFixed(2)} MB</div>
+<div>Compressed: ${(data.compressedSize/(1024*1024)).toFixed(2)} MB</div>
+<div class="saved-percent">Saved ${data.savedPercent}%</div>
+</div>
+`:""}
 
-    ${data.originalSize ? `
-      <div class="compression-info">
-        <div>Original: ${(data.originalSize / (1024*1024)).toFixed(2)} MB</div>
-        <div>Compressed: ${(data.compressedSize / (1024*1024)).toFixed(2)} MB</div>
-        <div class="saved-percent">Saved ${data.savedPercent}%</div>
-      </div>
-    ` : ""}
+<button class="download-btn">Download File</button>
+<button class="upload-again-btn">Upload Another</button>
 
-    <button class="download-btn">Download File</button>
-    <button class="upload-again-btn">Upload Another</button>
-
-  </div>
+</div>
 `;
 
-  const downloadBtn = box.querySelector(".download-btn");
-  const againBtn = box.querySelector(".upload-again-btn");
+const downloadBtn = box.querySelector(".download-btn");
+const againBtn = box.querySelector(".upload-again-btn");
 
-  downloadBtn.addEventListener("click", () => {
-    safeDownload(data.downloadUrl);
-  });
+downloadBtn.addEventListener("click",()=>{
+safeDownload(data.downloadUrl);
+});
 
-  againBtn.addEventListener("click", () => {
-    window.location.reload();
-  });
+againBtn.addEventListener("click",()=>{
+window.location.reload();
+});
 
-  if (progressContainer) {
-    progressContainer.style.display = "none";
-    progressBar.style.width = "0%";
-  }
+if(progressContainer){
 
-}, 600);
+progressContainer.style.display="none";
+progressBar.style.width="0%";
 
-    } catch (error) {
+}
 
-      console.error("❌ API Error:", error);
-      setStatus(box, "Failed ❌", "error");
+},600);
+
+    }
+
+    catch(error){
+
+      console.error("❌ API Error:",error);
+
+      setStatus(box,"Failed ❌","error");
 
       const progressContainer = box.querySelector(".progress-container");
-      if (progressContainer) progressContainer.style.display = "none";
+
+      if(progressContainer) progressContainer.style.display="none";
 
       alert(error.message || "Processing failed.");
 
     }
+
   }
 
   /* ================= TOOL FUNCTIONS ================= */
 
-  function compressPDF(file, box) {
+  function compressPDF(file,box){
 
-    const formData = new FormData();
-    formData.append("file", file);
+    const formData=new FormData();
 
-    const levelSelect = document.getElementById("levelSelect");
-    if (levelSelect) {
-      formData.append("level", levelSelect.value);
+    formData.append("file",file);
+
+    const levelSelect=document.getElementById("levelSelect");
+
+    if(levelSelect){
+      formData.append("level",levelSelect.value);
     }
 
-    sendRequest("/api/compress", formData, box, "Compressing… ⏳");
+    sendRequest("/api/compress",formData,box,"Compressing… ⏳");
+
   }
 
-  function mergePDF(files, box) {
+  function mergePDF(files,box){
 
-    if (files.length < 2) {
+    if(files.length<2){
+
       alert("Please select at least 2 PDF files.");
+
       return;
+
     }
 
-    const formData = new FormData();
-    files.forEach(file => formData.append("files", file));
+    const formData=new FormData();
 
-    sendRequest("/api/merge", formData, box, "Merging… ⏳");
+    files.forEach(file=>formData.append("files",file));
+
+    sendRequest("/api/merge",formData,box,"Merging… ⏳");
+
   }
 
-  function splitPDF(file, box) {
+  function splitPDF(file,box){
 
-    const formData = new FormData();
-    formData.append("file", file);
+    const formData=new FormData();
 
-    sendRequest("/api/split", formData, box, "Splitting… ⏳");
+    formData.append("file",file);
+
+    sendRequest("/api/split",formData,box,"Splitting… ⏳");
+
   }
 
-  function pdfToImage(file, box) {
+  function pdfToImage(file,box){
 
-    const formData = new FormData();
-    formData.append("file", file);
+    const formData=new FormData();
 
-    sendRequest("/api/pdf-to-image", formData, box, "Converting to Images… ⏳");
+    formData.append("file",file);
+
+    sendRequest("/api/pdf-to-image",formData,box,"Converting to Images… ⏳");
+
   }
 
-  function watermarkPDF(file, box) {
+  function watermarkPDF(file,box){
 
-    const formData = new FormData();
-    formData.append("file", file);
+    const formData=new FormData();
 
-    const watermarkInput = document.getElementById("watermarkText");
-    const text = watermarkInput?.value?.trim() || "CONFIDENTIAL";
+    formData.append("file",file);
 
-    formData.append("text", text);
+    const watermarkInput=document.getElementById("watermarkText");
 
-    sendRequest("/api/watermark", formData, box, "Adding Watermark… ⏳");
+    const text=watermarkInput?.value?.trim() || "CONFIDENTIAL";
+
+    formData.append("text",text);
+
+    sendRequest("/api/watermark",formData,box,"Adding Watermark… ⏳");
+
   }
 
-  function pdfToWord(file, box) {
+  function pdfToWord(file,box){
 
-    const formData = new FormData();
-    formData.append("file", file);
+    const formData=new FormData();
 
-    sendRequest("/api/pdf-to-word", formData, box, "Converting to Word… ⏳");
+    formData.append("file",file);
+
+    sendRequest("/api/pdf-to-word",formData,box,"Converting to Word… ⏳");
+
   }
 
-  function jpgToPDF(files, box) {
+  function jpgToPDF(files,box){
 
-    const formData = new FormData();
-    files.forEach(file => formData.append("files", file));
+    const formData=new FormData();
 
-    sendRequest("/api/jpg-to-pdf", formData, box, "Converting to PDF… ⏳");
+    files.forEach(file=>formData.append("files",file));
+
+    sendRequest("/api/jpg-to-pdf",formData,box,"Converting to PDF… ⏳");
+
+  }
+
+  function unlockPDF(file,box){
+
+    const formData=new FormData();
+
+    formData.append("file",file);
+
+    const password=document.getElementById("passwordInput")?.value || "";
+
+    formData.append("password",password);
+
+    sendRequest("/api/unlock",formData,box,"Unlocking… ⏳");
+
   }
 
   /* ================= MAIN ================= */
 
-  uploadBoxes.forEach(box => {
+  uploadBoxes.forEach(box=>{
 
-    const input = box.querySelector(".file-input");
-    if (!input) return;
+    const input=box.querySelector(".file-input");
 
-    box.addEventListener("click", () => input.click());
+    if(!input) return;
 
-    input.addEventListener("change", () => {
+    box.addEventListener("click",()=>input.click());
 
-      if (!input.files.length) return;
+    input.addEventListener("change",()=>{
 
-      const files = Array.from(input.files);
+      if(!input.files.length) return;
 
-      if (files.some(file => !isValidFileType(file))) {
-        setStatus(box, "Invalid file type ❌", "error");
+      const files=Array.from(input.files);
+
+      if(files.some(file=>!isValidFileType(file))){
+
+        setStatus(box,"Invalid file type ❌","error");
+
         return;
+
       }
 
       box.classList.add("has-file");
 
-      const fileName = files.length === 1
-        ? files[0].name
-        : `${files.length} files selected`;
+      const fileName=files.length===1
+      ? files[0].name
+      : `${files.length} files selected`;
 
-      const title = box.querySelector(".upload-title");
+      const title=box.querySelector(".upload-title");
 
-      title.innerHTML = `📄 <strong>${fileName}</strong>`;
-      title.style.animation = "popFile 0.4s ease";
+      title.innerHTML=`📄 <strong>${fileName}</strong>`;
 
-      switch (toolType) {
+      title.style.animation="popFile 0.4s ease";
+
+      switch(toolType){
 
         case "compress":
-          compressPDF(files[0], box);
-          break;
+        compressPDF(files[0],box);
+        break;
 
         case "merge":
-          mergePDF(files, box);
-          break;
+        mergePDF(files,box);
+        break;
 
         case "split":
-          splitPDF(files[0], box);
-          break;
+        splitPDF(files[0],box);
+        break;
 
         case "pdf-to-image":
-          pdfToImage(files[0], box);
-          break;
+        pdfToImage(files[0],box);
+        break;
 
         case "watermark":
-          watermarkPDF(files[0], box);
-          break;
+        watermarkPDF(files[0],box);
+        break;
 
         case "pdf-to-word":
-          pdfToWord(files[0], box);
-          break;
+        pdfToWord(files[0],box);
+        break;
 
         case "jpg-to-pdf":
-          jpgToPDF(files, box);
-          break;
+        jpgToPDF(files,box);
+        break;
+
+        case "unlock":
+        unlockPDF(files[0],box);
+        break;
 
         default:
-          console.warn("Unknown tool type:", toolType);
+        console.warn("Unknown tool type:",toolType);
+
       }
 
     });
 
-    /* ================= DRAG & DROP ================= */
-
-    box.addEventListener("dragover", e => {
-      e.preventDefault();
-      box.classList.add("dragging");
-    });
-
-    box.addEventListener("dragleave", () => {
-      box.classList.remove("dragging");
-    });
-
-    box.addEventListener("drop", e => {
-
-      e.preventDefault();
-      box.classList.remove("dragging");
-
-      if (!e.dataTransfer.files.length) return;
-
-      input.files = e.dataTransfer.files;
-      input.dispatchEvent(new Event("change"));
-
-    });
-
   });
-
-  /* ============================================
-     BILLING TOGGLE LOGIC
-  ============================================ */
-
-  const toggle = document.getElementById("billingToggle");
-  const prices = document.querySelectorAll(".plan-price");
-  const monthlyLabel = document.getElementById("monthlyLabel");
-  const yearlyLabel = document.getElementById("yearlyLabel");
-
-  if (toggle) {
-
-    toggle.addEventListener("change", () => {
-
-      prices.forEach(price => {
-
-        const monthly = price.dataset.monthly;
-        const yearly = price.dataset.yearly;
-
-        if (!monthly || !yearly) return;
-
-        if (toggle.checked) {
-
-          price.textContent = "$" + yearly;
-          yearlyLabel.classList.add("active");
-          monthlyLabel.classList.remove("active");
-
-        } else {
-
-          price.textContent = "$" + monthly;
-          monthlyLabel.classList.add("active");
-          yearlyLabel.classList.remove("active");
-
-        }
-
-      });
-
-    });
-
-  }
 
   /* ================= AUTH UI ================= */
 
