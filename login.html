@@ -49,6 +49,13 @@ Login
 style="color:#ff6b6b;margin-top:15px;text-align:center;">
 </p>
 
+<button
+id="resendBtn"
+style="display:none;margin-top:10px;width:100%;padding:10px;border-radius:6px;cursor:pointer;"
+>
+Resend Verification Email
+</button>
+
 <p style="margin-top:20px;text-align:center;">
 Don’t have an account?
 <a href="signup.html">Sign Up</a>
@@ -68,12 +75,14 @@ import { saveToken } from "./assets/js/auth.js";
 
 const form = document.getElementById("loginForm");
 const errorMessage = document.getElementById("errorMessage");
+const resendBtn = document.getElementById("resendBtn");
 
 form.addEventListener("submit", async (e) => {
 
 e.preventDefault();
 
 errorMessage.textContent = "";
+resendBtn.style.display = "none";
 
 const email = document.getElementById("email").value.trim();
 const password = document.getElementById("password").value.trim();
@@ -96,8 +105,52 @@ return;
 
 }
 
+const error = data?.error || "Login failed. Please try again.";
+
+errorMessage.textContent = error;
+
+/* ================= SHOW RESEND BUTTON ================= */
+
+if (error.toLowerCase().includes("verify")) {
+resendBtn.style.display = "block";
+}
+
+});
+
+/* ================= RESEND VERIFICATION ================= */
+
+resendBtn.addEventListener("click", async () => {
+
+const email = document.getElementById("email").value.trim();
+
+if (!email) {
+errorMessage.textContent = "Enter your email first.";
+return;
+}
+
+const response = await apiRequest("/api/auth/resend-verification", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({ email })
+});
+
+if (response?.message) {
+
+errorMessage.style.color = "#4ade80";
 errorMessage.textContent =
-data?.error || "Login failed. Please try again.";
+"Verification email sent. Please check your inbox.";
+
+resendBtn.style.display = "none";
+
+}
+else {
+
+errorMessage.textContent =
+response?.error || "Failed to resend verification email.";
+
+}
 
 });
 
