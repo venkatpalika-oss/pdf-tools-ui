@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Sign Up | PaperlyTools</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+<meta charset="UTF-8" />
+<title>Sign Up | PaperlyTools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
@@ -12,46 +12,50 @@
 <div id="site-header"></div>
 
 <section class="hero" style="padding-top:120px;">
-  <div class="container" style="max-width:420px;">
+<div class="container" style="max-width:420px;">
 
-    <h2 style="text-align:center;margin-bottom:30px;">Create Your Account</h2>
+<h2 style="text-align:center;margin-bottom:30px;">
+Create Your Account
+</h2>
 
-    <form id="signupForm">
-      <input
-        type="email"
-        id="email"
-        placeholder="Email"
-        required
-        style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
-      />
+<form id="signupForm">
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        required
-        minlength="6"
-        style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
-      />
+<input
+type="email"
+id="email"
+placeholder="Email"
+required
+style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
+/>
 
-      <button
-        type="submit"
-        style="width:100%;padding:12px;border-radius:6px;cursor:pointer;"
-      >
-        Create Account
-      </button>
-    </form>
+<input
+type="password"
+id="password"
+placeholder="Password"
+required
+minlength="6"
+style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
+/>
 
-    <p id="errorMessage"
-       style="color:#ff6b6b;margin-top:15px;text-align:center;">
-    </p>
+<button
+type="submit"
+style="width:100%;padding:12px;border-radius:6px;cursor:pointer;"
+>
+Create Account
+</button>
 
-    <p style="margin-top:20px;text-align:center;">
-      Already have an account?
-      <a href="login.html">Login</a>
-    </p>
+</form>
 
-  </div>
+<p id="message"
+style="margin-top:15px;text-align:center;">
+</p>
+
+<p style="margin-top:20px;text-align:center;">
+Already have an account?
+<a href="login.html">Login</a>
+</p>
+
+</div>
 </section>
 
 <div id="site-footer"></div>
@@ -59,54 +63,55 @@
 <script src="assets/js/includes.js"></script>
 
 <script type="module">
-  import { apiRequest } from "./assets/js/api.js";
-  import { saveToken } from "./assets/js/auth.js";
 
-  const form = document.getElementById("signupForm");
-  const errorMessage = document.getElementById("errorMessage");
+import { apiRequest } from "./assets/js/api.js";
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+const form = document.getElementById("signupForm");
+const message = document.getElementById("message");
 
-    errorMessage.textContent = "";
+form.addEventListener("submit", async (e) => {
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+e.preventDefault();
 
-    /* ================= STEP 1: REGISTER ================= */
+message.style.color = "#fff";
+message.textContent = "Creating account...";
 
-    const registerData = await apiRequest("/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+const email = document.getElementById("email").value.trim();
+const password = document.getElementById("password").value.trim();
 
-    if (!registerData || registerData.error) {
-      errorMessage.textContent =
-        registerData?.error || "Signup failed. Try again.";
-      return;
-    }
+/* ================= REGISTER ================= */
 
-    /* ================= STEP 2: AUTO LOGIN ================= */
+const data = await apiRequest("/api/auth/register", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({ email, password })
+});
 
-    const loginData = await apiRequest("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+if (!data || data.error) {
 
-    if (loginData?.token) {
-      saveToken(loginData.token);
-      window.location.href = "index.html";
-    } else {
-      errorMessage.textContent =
-        loginData?.error || "Login after signup failed.";
-    }
-  });
+message.style.color = "#ff6b6b";
+message.textContent =
+data?.error || "Signup failed. Try again.";
+
+return;
+
+}
+
+/* ================= SUCCESS MESSAGE ================= */
+
+message.style.color = "#4ade80";
+
+message.innerHTML = `
+Account created successfully.<br><br>
+Please check your email to verify your account before logging in.
+`;
+
+form.reset();
+
+});
+
 </script>
 
 </body>
