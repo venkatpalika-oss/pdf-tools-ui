@@ -11,6 +11,7 @@ const TOKEN_KEY = "paperly_token";
 ============================================ */
 
 export function saveToken(token) {
+  if (!token) return;
   localStorage.setItem(TOKEN_KEY, token);
 }
 
@@ -22,17 +23,19 @@ export function removeToken() {
   localStorage.removeItem(TOKEN_KEY);
 }
 
+/* ============================================
+   LOGIN STATE
+============================================ */
+
 export function isLoggedIn() {
 
   const token = getToken();
-
   if (!token) return false;
 
   const payload = parseJwt(token);
-
   if (!payload) return false;
 
-  // Check token expiration
+  // Token expiration check
   if (payload.exp && Date.now() >= payload.exp * 1000) {
     console.warn("Token expired. Logging out.");
     logout();
@@ -43,25 +46,29 @@ export function isLoggedIn() {
 }
 
 /* ============================================
-   JWT PARSER (Safe)
+   JWT PARSER (SAFE)
 ============================================ */
 
 function parseJwt(token) {
 
   try {
 
+    if (!token || token.split(".").length !== 3) {
+      return null;
+    }
+
     const base64Url = token.split(".")[1];
 
-    if (!base64Url) return null;
-
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const base64 = base64Url
+      .replace(/-/g, "+")
+      .replace(/_/g, "/");
 
     const jsonPayload = decodeURIComponent(
       atob(base64)
         .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
+        .map(c =>
+          "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+        )
         .join("")
     );
 
@@ -72,7 +79,6 @@ function parseJwt(token) {
   catch (err) {
 
     console.error("JWT parse error:", err);
-
     return null;
 
   }
@@ -80,17 +86,15 @@ function parseJwt(token) {
 }
 
 /* ============================================
-   CURRENT USER DATA (From JWT)
+   CURRENT USER DATA
 ============================================ */
 
 export function getCurrentUser() {
 
   const token = getToken();
-
   if (!token) return null;
 
   const payload = parseJwt(token);
-
   if (!payload) return null;
 
   return payload;
@@ -104,7 +108,6 @@ export function getCurrentUser() {
 export function getUserEmail() {
 
   const user = getCurrentUser();
-
   if (!user) return null;
 
   return user.email || null;
@@ -118,7 +121,6 @@ export function getUserEmail() {
 export function getUserPlan() {
 
   const user = getCurrentUser();
-
   if (!user) return "free";
 
   return user.plan || "free";
@@ -128,7 +130,6 @@ export function getUserPlan() {
 export function isProUser() {
 
   const plan = getUserPlan();
-
   return plan === "pro" || plan === "aipro";
 
 }
@@ -136,13 +137,12 @@ export function isProUser() {
 export function isAIProUser() {
 
   const plan = getUserPlan();
-
   return plan === "aipro";
 
 }
 
 /* ============================================
-   HEADER UI STATE HANDLER (Premium SaaS Feel)
+   HEADER UI STATE HANDLER
 ============================================ */
 
 export function initAuthUI() {
@@ -210,6 +210,7 @@ export function logout() {
 
   console.log("User logged out.");
 
+  // Always redirect to login page
   window.location.href = "/login.html";
 
 }
