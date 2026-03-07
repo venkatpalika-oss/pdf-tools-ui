@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Email Verification | PaperlyTools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero" style="padding-top:120px;">
+<div class="container" style="max-width:500px;text-align:center;">
+
+<h2 style="margin-bottom:20px;">
+Verifying your account...
+</h2>
+
+<p id="statusText">
+Please wait while we verify your email.
+</p>
+
+<br>
+
+<a
+href="login.html"
+id="loginButton"
+style="display:none;padding:10px 20px;border-radius:6px;background:#4ade80;color:#000;text-decoration:none;"
+>
+Go to Login
+</a>
+
+</div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/includes.js"></script>
+
+<script type="module">
+
+import { apiRequest } from "./assets/js/api.js";
+
+const statusText = document.getElementById("statusText");
+const loginButton = document.getElementById("loginButton");
+
+/* ================= GET TOKEN ================= */
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
+
+if (!token) {
+
+statusText.textContent = "Invalid verification link.";
+
+}
+
+/* ================= VERIFY EMAIL ================= */
+
+async function verifyEmail() {
+
+const response = await apiRequest(`/api/auth/verify-email/${token}`);
+
+if (!response || response.error) {
+
+statusText.style.color = "#ff6b6b";
+statusText.textContent =
+response?.error || "Verification failed.";
+
+return;
+
+}
+
+/* ================= SUCCESS ================= */
+
+statusText.style.color = "#4ade80";
+
+statusText.textContent =
+"Your email has been verified successfully.";
+
+loginButton.style.display = "inline-block";
+
+}
+
+verifyEmail();
+
+</script>
+
+</body>
+</html>
