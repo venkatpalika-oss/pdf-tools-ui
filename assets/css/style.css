@@ -2437,3 +2437,24 @@ body::after {
   from { transform: translate(-50%, -50%) scale(1); }
   to { transform: translate(-45%, -55%) scale(1.2); }
 }
+/* =========================================================
+   CURSOR AI GLOW EFFECT
+========================================================= */
+
+.cursor-glow {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(0,245,255,0.18),
+    rgba(138,43,226,0.12),
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  filter: blur(40px);
+  transition: transform 0.08s linear;
+}
