@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>PDF Tools – Compress, Merge, Split & Convert PDFs Online</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<title>PDF Tools – Compress, Merge, Split & Convert PDFs Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description"
-        content="Free online PDF tools to compress, merge, split, convert, unlock, protect, rotate and edit PDFs. Fast, secure and easy to use." />
+<meta name="description"
+content="Free online PDF tools to compress, merge, split, convert, unlock, protect, rotate and edit PDFs. Fast, secure and easy to use." />
 
-  <meta name="keywords"
-        content="PDF tools, compress PDF, merge PDF, split PDF, convert PDF, JPG to PDF, PDF to Word, unlock PDF, protect PDF, rotate PDF" />
+<meta name="keywords"
+content="PDF tools, compress PDF, merge PDF, split PDF, convert PDF, JPG to PDF, PDF to Word, unlock PDF, protect PDF, rotate PDF" />
 
-  <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="canonical" href="https://paperlytools.com/" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="PaperlyTools – Free Online PDF Tools">
+<meta property="og:description" content="Compress, merge, split, convert and secure PDF files instantly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paperlytools.com">
+<meta property="og:image" content="https://paperlytools.com/assets/img/preview.png">
+
+<link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
@@ -19,165 +28,168 @@
 <div id="site-header"></div>
 
 <section class="hero">
-  <div class="hero-inner">
+<div class="hero-inner">
 
-    <div class="hero-badge">
-      ✨ AI-Powered Productivity Assistant
-    </div>
+<div class="hero-badge">
+✨ AI-Powered Productivity Assistant
+</div>
 
-    <h1>
-      <span id="typingText"></span>
-    </h1>
+<h1>
+<span id="typingText"></span>
+</h1>
 
-    <p class="hero-sub">
-      PaperlyTools combines powerful PDF utilities with an intelligent AI layer —
-      helping you compress, convert, enhance and automate documents instantly.
-    </p>
+<p class="hero-sub">
+PaperlyTools combines powerful PDF utilities with an intelligent AI layer —
+helping you compress, convert, enhance and automate documents instantly.
+</p>
 
-    <div class="hero-main-row">
+<div class="hero-main-row">
 
-      <div class="upload-box" id="homeUpload">
-        <input type="file" id="homeFileInput" hidden />
-        <div class="upload-icon">⚡</div>
-        <p class="upload-title">Drop your document here</p>
-        <p class="upload-hint">
-          No signup required • Secure processing • AI-enhanced
-        </p>
+<div class="upload-box" id="homeUpload">
+<input type="file" id="homeFileInput" hidden />
+<div class="upload-icon">⚡</div>
+<p class="upload-title">Drop your document here</p>
+<p class="upload-hint">
+No signup required • Secure processing • AI-enhanced
+</p>
 
-        <p class="upload-micro">
-          Powered by intelligent document processing
-        </p>
+<p class="upload-micro">
+Powered by intelligent document processing
+</p>
 
-        <div class="progress-container">
-          <div class="progress-bar"></div>
-        </div>
-      </div>
+<div class="progress-container">
+<div class="progress-bar"></div>
+</div>
+</div>
 
-      <div class="ai-card">
-        <h3>✨ AI Magic Layer</h3>
-        <ul>
-          <li>Auto summarize documents</li>
-          <li>Extract insights instantly</li>
-          <li>Smart compression optimization</li>
-          <li>Intelligent formatting suggestions</li>
-        </ul>
+<div class="ai-card">
+<h3>✨ AI Magic Layer</h3>
+<ul>
+<li>Auto summarize documents</li>
+<li>Extract insights instantly</li>
+<li>Smart compression optimization</li>
+<li>Intelligent formatting suggestions</li>
+</ul>
 
-        <a href="#" class="secondary-btn">
-          Try Magic →
-        </a>
-      </div>
+<a href="#" class="secondary-btn">
+Try Magic →
+</a>
+</div>
 
-    </div>
+</div>
 
-    <p class="trust-line">
-      ✓ End-to-end encryption ✓ Files auto-deleted ✓ Cloud-based processing
-    </p>
+<p class="trust-line">
+✓ End-to-end encryption ✓ Files auto-deleted ✓ Cloud-based processing
+</p>
 
-    <p class="live-counter">
-      <span id="docCounter">12,487</span> documents processed today
-    </p>
+<p class="live-counter">
+<span id="docCounter">12,487</span> documents processed today
+</p>
 
-  </div>
+</div>
 
-  <!-- AI Overlay -->
-  <div class="ai-preview-overlay" id="aiPreview">
-  <div class="ai-preview-box" id="aiPreviewBox">
+<div class="ai-preview-overlay" id="aiPreview">
+<div class="ai-preview-box" id="aiPreviewBox">
 
-    <div class="ai-loader"></div>
+<div class="ai-loader"></div>
 
-    <p class="ai-preview-text">
-      <span id="aiStage">Uploading document...</span>
-    </p>
+<p class="ai-preview-text">
+<span id="aiStage">Uploading document...</span>
+</p>
 
-    <div class="ai-progress-container">
-      <div class="ai-progress-bar" id="aiProgressBar"></div>
-    </div>
+<div class="ai-progress-container">
+<div class="ai-progress-bar" id="aiProgressBar"></div>
+</div>
 
-    <div class="ai-progress-percent" id="aiProgressPercent">0%</div>
+<div class="ai-progress-percent" id="aiProgressPercent">0%</div>
 
-  </div>
+</div>
 </div>
 
 </section>
+
+
 <section class="tools">
-  <div class="container">
-    <h2 class="section-title">Most Popular Tools</h2>
+<div class="container">
 
-    <div class="tools-grid">
+<h2 class="section-title">Most Popular Tools</h2>
 
-      <a class="tool-card" href="tools/compress-pdf.html">
-        <span class="tool-icon">📉</span>
-        <span class="tool-name">Compress PDF</span>
-      </a>
+<div class="tools-grid">
 
-      <a class="tool-card" href="tools/merge-pdf.html">
-        <span class="tool-icon">🧩</span>
-        <span class="tool-name">Merge PDF</span>
-      </a>
+<a class="tool-card" href="tools/compress-pdf.html">
+<span class="tool-icon">📉</span>
+<span class="tool-name">Compress PDF</span>
+</a>
 
-      <a class="tool-card" href="tools/split-pdf.html">
-        <span class="tool-icon">✂️</span>
-        <span class="tool-name">Split PDF</span>
-      </a>
+<a class="tool-card" href="tools/merge-pdf.html">
+<span class="tool-icon">🧩</span>
+<span class="tool-name">Merge PDF</span>
+</a>
 
-      <a class="tool-card" href="tools/pdf-to-word.html">
-        <span class="tool-icon">📝</span>
-        <span class="tool-name">PDF to Word</span>
-      </a>
+<a class="tool-card" href="tools/split-pdf.html">
+<span class="tool-icon">✂️</span>
+<span class="tool-name">Split PDF</span>
+</a>
 
-      <a class="tool-card" href="tools/jpg-to-pdf.html">
-        <span class="tool-icon">🖼️</span>
-        <span class="tool-name">JPG to PDF</span>
-      </a>
+<a class="tool-card" href="tools/pdf-to-word.html">
+<span class="tool-icon">📝</span>
+<span class="tool-name">PDF to Word</span>
+</a>
 
-      <a class="tool-card" href="tools/pdf-to-jpg.html">
-        <span class="tool-icon">🖼️</span>
-        <span class="tool-name">PDF to JPG</span>
-      </a>
+<a class="tool-card" href="tools/jpg-to-pdf.html">
+<span class="tool-icon">🖼️</span>
+<span class="tool-name">JPG to PDF</span>
+</a>
 
-    </div>
-  </div>
+<a class="tool-card" href="tools/pdf-to-image.html">
+<span class="tool-icon">🖼️</span>
+<span class="tool-name">PDF to JPG</span>
+</a>
+
+</div>
+</div>
 </section>
 
+
 <section class="tools alt-section">
-  <div class="container">
+<div class="container">
 
-    <h2 class="section-title">Security & Optimization</h2>
+<h2 class="section-title">Security & Optimization</h2>
 
-    <div class="tools-grid">
+<div class="tools-grid">
 
-      <a class="tool-card" href="tools/unlock-pdf.html">
-        <span class="tool-icon">🔓</span>
-        <span class="tool-name">Unlock PDF</span>
-      </a>
+<a class="tool-card" href="tools/unlock-pdf.html">
+<span class="tool-icon">🔓</span>
+<span class="tool-name">Unlock PDF</span>
+</a>
 
-      <a class="tool-card" href="tools/protect-pdf.html">
-        <span class="tool-icon">🔐</span>
-        <span class="tool-name">Protect PDF</span>
-      </a>
+<a class="tool-card" href="tools/protect-pdf.html">
+<span class="tool-icon">🔐</span>
+<span class="tool-name">Protect PDF</span>
+</a>
 
-      <a class="tool-card" href="tools/rotate-pdf.html">
-        <span class="tool-icon">🔄</span>
-        <span class="tool-name">Rotate PDF</span>
-      </a>
+<a class="tool-card" href="tools/rotate-pdf.html">
+<span class="tool-icon">🔄</span>
+<span class="tool-name">Rotate PDF</span>
+</a>
 
-      <a class="tool-card" href="tools/organize-pdf.html">
-        <span class="tool-icon">📂</span>
-        <span class="tool-name">Organize PDF</span>
-      </a>
+<a class="tool-card" href="tools/organize-pdf.html">
+<span class="tool-icon">📂</span>
+<span class="tool-name">Organize PDF</span>
+</a>
 
-      <a class="tool-card" href="tools/watermark-pdf.html">
-        <span class="tool-icon">💧</span>
-        <span class="tool-name">Add Watermark</span>
-      </a>
+<a class="tool-card" href="tools/watermark.html">
+<span class="tool-icon">💧</span>
+<span class="tool-name">Add Watermark</span>
+</a>
 
-      <a class="tool-card" href="tools/page-numbers.html">
-        <span class="tool-icon">🔢</span>
-        <span class="tool-name">Add Page Numbers</span>
-      </a>
+<a class="tool-card" href="tools/add-page-numbers.html">
+<span class="tool-icon">🔢</span>
+<span class="tool-name">Add Page Numbers</span>
+</a>
 
-    </div>
-  </div>
+</div>
+</div>
 </section>
 
 <section class="why">
