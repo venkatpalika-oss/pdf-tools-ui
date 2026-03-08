@@ -32,7 +32,7 @@ export const tools = [
   slug: "pdf-to-image",
   title: "PDF to Image",
   description: "Convert PDF pages into high-quality images.",
-  api: "/pdfToImage"
+  api: "/pdf-to-image"
 },
 
 {
@@ -47,6 +47,34 @@ export const tools = [
   title: "Unlock PDF",
   description: "Remove password protection from PDF files.",
   api: "/unlock"
+},
+
+{
+  slug: "protect-pdf",
+  title: "Protect PDF",
+  description: "Add password protection to your PDF files.",
+  api: "/protect"
+},
+
+{
+  slug: "rotate-pdf",
+  title: "Rotate PDF",
+  description: "Rotate PDF pages clockwise or anticlockwise.",
+  api: "/rotate"
+},
+
+{
+  slug: "organize-pdf",
+  title: "Organize PDF",
+  description: "Reorder, arrange, or manage PDF pages easily.",
+  api: "/organize"
+},
+
+{
+  slug: "add-page-numbers",
+  title: "Add Page Numbers",
+  description: "Automatically add page numbers to your PDF.",
+  api: "/page-numbers"
 }
 
 ];
