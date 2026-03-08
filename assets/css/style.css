@@ -2542,3 +2542,57 @@ transition:transform .7s ease;
 .tool-card:hover::before{
 transform:translateX(100%);
 }
+/* =========================================================
+   AI INTERACTIVE UPLOAD ZONE
+========================================================= */
+
+.upload-box{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow layer that follows the cursor */
+
+.upload-glow{
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  pointer-events:none;
+
+  background:radial-gradient(
+    circle,
+    rgba(0,245,255,0.35),
+    rgba(138,43,226,0.2),
+    transparent 70%
+  );
+
+  transform:translate(-50%,-50%);
+  opacity:0;
+  transition:opacity .2s ease;
+  filter:blur(30px);
+}
+
+/* Glow appears on hover */
+
+.upload-box:hover .upload-glow{
+  opacity:1;
+}
+
+/* subtle AI border pulse */
+
+.upload-box::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  border:1px solid rgba(0,245,255,.25);
+  animation:borderPulse 3s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes borderPulse{
+  0%{opacity:.3}
+  50%{opacity:.7}
+  100%{opacity:.3}
+}
