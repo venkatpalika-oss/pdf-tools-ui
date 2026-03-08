@@ -2458,3 +2458,87 @@ body::after {
   filter: blur(40px);
   transition: transform 0.08s linear;
 }
+/* =========================================================
+   TOOL DASHBOARD
+========================================================= */
+
+.tools-title{
+text-align:center;
+font-size:28px;
+margin-bottom:40px;
+}
+
+.tool-dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:26px;
+}
+
+/* tool cards */
+
+.tool-card{
+position:relative;
+padding:30px;
+border-radius:18px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+transition:all .35s ease;
+text-align:left;
+overflow:hidden;
+}
+
+/* animated hover */
+
+.tool-card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:
+0 20px 40px rgba(0,0,0,.6),
+0 0 35px rgba(0,245,255,.25);
+}
+
+/* icon */
+
+.tool-icon{
+font-size:28px;
+margin-bottom:10px;
+transition:transform .3s ease;
+}
+
+.tool-card:hover .tool-icon{
+transform:scale(1.2) rotate(6deg);
+}
+
+/* title */
+
+.tool-name{
+font-weight:600;
+font-size:16px;
+margin-bottom:6px;
+}
+
+/* description */
+
+.tool-desc{
+font-size:13px;
+opacity:.7;
+}
+
+/* gradient sweep */
+
+.tool-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(0,245,255,0.15),
+transparent
+);
+transform:translateX(-100%);
+transition:transform .7s ease;
+}
+
+.tool-card:hover::before{
+transform:translateX(100%);
+}
