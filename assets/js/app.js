@@ -444,3 +444,22 @@ document.addEventListener("mousemove", (e) => {
   glow.style.left = e.clientX + "px";
   glow.style.top = e.clientY + "px";
 });
+/* ==========================================
+   Interactive Upload Glow
+========================================== */
+
+const upload = document.getElementById("homeUpload");
+const glow = document.querySelector(".upload-glow");
+
+if (upload && glow) {
+
+  upload.addEventListener("mousemove", (e) => {
+
+    const rect = upload.getBoundingClientRect();
+
+    glow.style.left = (e.clientX - rect.left) + "px";
+    glow.style.top = (e.clientY - rect.top) + "px";
+
+  });
+
+}
