@@ -2991,3 +2991,30 @@ align-items:center;
 height:40px;
 line-height:1;
 }
+/* ================================
+   HEADER BASELINE ALIGNMENT FIX
+================================ */
+
+.brand-icon{
+  height:22px;
+  width:auto;
+  display:block;
+}
+
+.brand-text{
+  line-height:1;
+  display:flex;
+  align-items:center;
+}
+
+.logo-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.header-nav-left button{
+  display:flex;
+  align-items:center;
+  height:40px;
+}
