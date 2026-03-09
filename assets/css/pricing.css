@@ -1,1 +1,326 @@
+/* =========================================================
+   PRICING SECTION
+========================================================= */
 
+.pricing-comparison,
+#pricing {
+  padding: 100px 0;
+}
+
+/* =========================================================
+   BILLING TOGGLE
+========================================================= */
+
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.toggle-label {
+  font-weight: 500;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-label.active {
+  opacity: 1;
+  color: #00f5ff;
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+}
+
+/* Switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 28px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #1a1f2e;
+  border-radius: 30px;
+  transition: 0.4s;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #00f5ff, #9333ea);
+  transition: 0.4s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* =========================================================
+   PRICING TABLE LAYOUT
+========================================================= */
+
+.comparison-table {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.comparison-column {
+  flex: 1;
+  position: relative;
+  border-radius: 16px;
+  background: rgba(20, 25, 40, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Hover Lift */
+
+.comparison-column:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+/* =========================================================
+   FEATURE COLUMN
+========================================================= */
+
+.feature-column {
+  text-align: left;
+  background: transparent;
+  border: none;
+}
+
+.feature-column .comparison-header {
+  align-items: flex-start;
+  padding-left: 24px;
+}
+
+.feature-column .comparison-row {
+  justify-content: flex-start;
+  padding-left: 24px;
+}
+
+/* =========================================================
+   COLUMN HEADER
+========================================================= */
+
+.comparison-header {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-top: 30px;
+}
+
+/* =========================================================
+   PRICE TEXT
+========================================================= */
+
+.plan-price {
+  display: inline-block;
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 4px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.plan-price.animate-out {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.plan-price.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.plan-price.yearly-active {
+  color: #00f5ff;
+  text-shadow: 0 0 12px rgba(0,245,255,0.7);
+}
+
+/* =========================================================
+   MOST POPULAR BADGE
+========================================================= */
+
+.popular-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #00f5ff, #9333ea);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0,245,255,0.5);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PRO COLUMN HIGHLIGHT
+========================================================= */
+
+.popular-column {
+  border: 1px solid rgba(0,245,255,0.4);
+  box-shadow: 0 0 30px rgba(0,245,255,0.2);
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+.popular-column::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, #00f5ff, #9333ea);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Floating glow orb */
+
+.popular-column::after {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(
+      circle,
+      rgba(0,245,255,0.7) 0%,
+      rgba(147,51,234,0.5) 40%,
+      transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: floatOrb 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes floatOrb {
+  0%   { transform: translate(-50%, -48%) scale(1); }
+  50%  { transform: translate(-50%, -52%) scale(1.15); }
+  100% { transform: translate(-50%, -48%) scale(1); }
+}
+
+/* =========================================================
+   ROWS
+========================================================= */
+
+.comparison-row {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 14px;
+}
+
+.highlight-limit {
+  color: #facc15;
+  font-weight: 600;
+}
+
+/* =========================================================
+   PLAN BUTTON
+========================================================= */
+
+.plan-footer {
+  margin-top: auto;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.plan-btn {
+  min-width: 190px;
+  border-radius: 30px;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.plan-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,245,255,0.4);
+}
+
+.ai-btn {
+  background: linear-gradient(90deg, #8a2be2, #ff00cc);
+}
+
+.ai-btn:hover {
+  box-shadow: 0 10px 25px rgba(147,51,234,0.5);
+}
+
+.disabled-btn {
+  background: rgba(255,255,255,0.1);
+  cursor: default;
+}
+
+/* =========================================================
+   SECTION FADE IN
+========================================================= */
+
+@keyframes fadeUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#pricing {
+  animation: fadeUpSoft 0.8s ease forwards;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+  .comparison-table {
+    flex-direction: column;
+  }
+}
