@@ -2774,3 +2774,62 @@ align-items:center;
 gap:6px;
 padding:6px 4px;
 }
+/* =========================================================
+   HEADER CONTAINER FIX
+========================================================= */
+
+/* Remove vertical padding only for header */
+
+.site-header .container{
+padding:0 20px;
+}
+
+/* Perfect vertical alignment */
+
+.header-inner{
+height:72px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+/* Left side layout */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:34px;
+}
+
+/* Navigation alignment */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:24px;
+}
+
+/* Logo alignment */
+
+.logo-link{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* Right side alignment */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+/* Fix dropdown trigger alignment */
+
+.mega-toggle{
+display:flex;
+align-items:center;
+gap:6px;
+padding:6px 6px;
+}
