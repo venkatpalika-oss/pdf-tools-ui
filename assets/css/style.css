@@ -424,6 +424,8 @@ img, svg {
   gap: 18px;
   flex-wrap: nowrap;
   white-space: nowrap;
+   /* move Tools & Magic slightly down */
+margin-top: 3px;
 }
 
 .header-nav-left a {
