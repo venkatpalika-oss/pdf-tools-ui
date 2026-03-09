@@ -3050,3 +3050,31 @@ height:40px;
 height:24px;
 display:block;
 }
+/* =========================================
+   HEADER ALIGNMENT FORCE FIX
+   (must be at end of CSS)
+========================================= */
+
+.logo-link{
+  height:40px;
+  display:flex;
+  align-items:center;
+}
+
+.mega-toggle{
+  height:40px;
+  display:flex;
+  align-items:center;
+}
+
+.header-right a,
+.btn-primary{
+  height:40px;
+  display:flex;
+  align-items:center;
+}
+
+.brand-icon{
+  height:22px;
+  width:auto;
+}
