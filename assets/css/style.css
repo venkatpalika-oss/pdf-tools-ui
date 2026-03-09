@@ -991,7 +991,7 @@ img, svg {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.5px;
-}
+ }
 
 .brand-accent {
   background: linear-gradient(90deg, #00f5ff, #8a2be2);
@@ -2913,9 +2913,10 @@ opacity:1;
 
 .header-nav-left a,
 .header-nav-left button{
-  display:flex;
-  align-items:center;
-  height:40px;
+display:flex;
+align-items:center;
+height:40px;
+line-height:1;
 }
 /* =========================================================
    FINAL NAV ALIGNMENT FIX
@@ -2987,6 +2988,159 @@ height:100%;
 .header-nav-left button{
 display:flex;
 align-items:center;
-height:100%;
+height:40px;
+line-height:1;
+}
+/* ================================
+   HEADER BASELINE ALIGNMENT FIX
+================================ */
+
+.brand-icon{
+  height:22px;
+  width:auto;
+  display:block;
+}
+
+.brand-text{
+  line-height:1;
+  display:flex;
+  align-items:center;
+}
+
+.logo-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.header-nav-left button{
+  display:flex;
+  align-items:center;
+  height:40px;
+}
+/* ===============================
+   NAV BASELINE ALIGNMENT FIX
+================================ */
+
+.logo-link{
+display:flex;
+align-items:center;
+}
+
+.header-nav-left{
+display:flex;
+align-items:center;
+}
+
+.mega-toggle{
+display:flex;
+align-items:center;
+height:40px;
+line-height:40px;
+padding:0 4px;
+}
+
+.brand-text{
+display:flex;
+align-items:center;
+height:40px;
+}
+
+.brand-icon{
+height:24px;
+display:block;
+}
+/* =========================================
+   HEADER ALIGNMENT FORCE FIX
+   (must be at end of CSS)
+========================================= */
+
+.logo-link{
+  height:40px;
+  display:flex;
+  align-items:center;
+}
+
+.mega-toggle{
+  height:40px;
+  display:flex;
+  align-items:center;
+}
+
+.header-right a,
+.btn-primary{
+  height:40px;
+  display:flex;
+  align-items:center;
+}
+
+.brand-icon{
+  height:22px;
+  width:auto;
+}
+/* ===============================
+   HEADER TEXT BASELINE FIX
+================================ */
+
+.mega-toggle{
+  line-height: normal !important;
+}
+
+.header-nav-left button{
+  align-items: center;
+  justify-content: center;
+}
+/* ==============================
+   HEADER LOGO ALIGNMENT FIX
+============================== */
+
+.logo{
+display:flex;
+align-items:center;
+height:40px;
+}
+/* =========================================
+   HEADER TYPOGRAPHY BASELINE FIX
+========================================= */
+
+.brand-text{
+display:flex;
+align-items:center;
+line-height:1;
+}
+
+.brand-text strong{
+line-height:1;
+}
+
+.brand-accent{
+line-height:1;
+display:inline-flex;
+align-items:center;
+}
+
+/* Align nav items perfectly */
+
+.header-nav-left a,
+.header-nav-left button,
+.header-right a,
+.btn-primary{
+display:flex;
+align-items:center;
+height:40px;
+line-height:1;
+}
+
+/* Fix logo icon alignment */
+
+.brand-icon{
+height:22px;
+width:auto;
+display:block;
+}
+
+/* Prevent vertical text shift */
+
+.mega-toggle{
 line-height:1;
 }
