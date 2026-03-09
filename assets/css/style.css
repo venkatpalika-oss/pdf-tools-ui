@@ -2688,3 +2688,89 @@ display:flex;
 align-items:center;
 justify-content:center;
 }
+/* =========================================================
+   HEADER ALIGNMENT FINAL FIX
+========================================================= */
+
+/* Center the header perfectly */
+
+.site-header{
+margin:20px auto;
+width:95%;
+max-width:1200px;
+}
+
+/* Fix header layout */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+width:100%;
+}
+
+/* Left section */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:34px;
+}
+
+/* Navigation */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:24px;
+}
+
+/* Right section */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* Logo alignment */
+
+.logo-link{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* =========================================================
+   DROPDOWN STABILITY FIX
+========================================================= */
+
+.mega-dropdown{
+position:relative;
+padding-bottom:22px; /* hover bridge */
+}
+
+/* Keep menu visible while hovering */
+
+.mega-dropdown:hover .mega-menu,
+.mega-menu:hover{
+opacity:1;
+pointer-events:auto;
+transform:translateX(-50%) translateY(0);
+}
+
+/* Menu position */
+
+.mega-menu{
+top:100%;
+margin-top:8px;
+}
+
+/* Improve toggle hit area */
+
+.mega-toggle{
+display:flex;
+align-items:center;
+gap:6px;
+padding:6px 4px;
+}
