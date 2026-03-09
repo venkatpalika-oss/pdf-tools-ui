@@ -38,7 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function initHeaderAuth() {
 
-    const { getToken, logout } = await import("/assets/js/auth.js");
+    // Fix import path for both root pages and /tools/ pages
+    const authModulePath = base + "assets/js/auth.js";
+    const { getToken, logout } = await import(authModulePath);
 
     const authButton = document.getElementById("authButton");
     if (!authButton) return;
@@ -50,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!token) {
 
       authButton.textContent = "Login";
-      authButton.href = "/login.html";
+      authButton.href = base + "login.html";
       authButton.style.display = "inline-block";
 
       return;
@@ -63,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     authButton.style.display = "none";
 
-    // Prevent duplicate buttons
-    if (document.querySelector(".logout-btn")) return;
+    // Prevent duplicate logout buttons
+    if (parent.querySelector(".logout-btn")) return;
 
     const logoutBtn = document.createElement("button");
     logoutBtn.className = "btn-primary logout-btn";
