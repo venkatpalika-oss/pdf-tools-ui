@@ -2,479 +2,2589 @@
    GLOBAL RESET
 ========================================================= */
 
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:"Segoe UI",Arial,sans-serif;
-background:radial-gradient(circle at top left,#0f0f1a,#050510 70%);
-color:#fff;
-overflow-x:hidden;
-position:relative;
+* {
+  box-sizing: border-box;
 }
 
-a{color:inherit;text-decoration:none}
-
-.container{
-max-width:1100px;
-margin:0 auto;
-padding:24px 16px;
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(circle at top left, #0f0f1a, #050510 70%);
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
-img,svg{max-width:100%;height:auto}
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-html{scroll-behavior:smooth}
-
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
 
 /* =========================================================
-   HEADER
+   HEADER (Dark Tech)
 ========================================================= */
 
-.site-header{
-position:sticky;
-top:20px;
-margin:20px auto;
-width:95%;
-max-width:1200px;
-border-radius:14px;
-backdrop-filter:blur(15px);
-background:rgba(10,10,20,.6);
-box-shadow:0 0 25px rgba(0,255,255,.2);
-border:1px solid rgba(0,255,255,.08);
-z-index:1000;
-transition:.35s;
+.site-header {
+  position: sticky;
+  top: 20px;
+  margin: 0 auto;
+  width: 90%;
+  border-radius: 14px;
+  backdrop-filter: blur(15px);
+  background: rgba(10,10,20,0.6);
+  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+  z-index: 1000;
 }
 
-.site-header.scrolled{
-background:rgba(10,10,25,.92);
-box-shadow:
-0 10px 40px rgba(0,0,0,.6),
-0 0 30px rgba(0,245,255,.15);
-border:1px solid rgba(0,245,255,.25);
-backdrop-filter:blur(20px);
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.header-inner{
-display:flex;
-align-items:center;
-justify-content:space-between;
-min-height:72px;
-gap:30px;
+.logo {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.header-left{
-display:flex;
-align-items:center;
-gap:34px;
+.logo span {
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.header-nav-left{
-display:flex;
-align-items:center;
-gap:24px;
+.header-nav a {
+  margin-left: 18px;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
-.header-right{
-display:flex;
-align-items:center;
-gap:20px;
+.header-nav a:hover {
+  opacity: 1;
 }
 
+.btn-primary {
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 0 12px rgba(0,255,255,0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 25px rgba(0,255,255,0.8);
+  transform: translateY(-2px);
+}
 
 /* =========================================================
-   LOGO
+   HERO SECTION (Neon Tech)
 ========================================================= */
 
-.logo-link{
-display:flex;
-align-items:center;
-gap:10px;
-height:40px;
-transition:.25s;
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.logo-link:hover{transform:translateY(-2px)}
-
-.brand-icon{
-height:22px;
-width:auto;
-display:block;
+.hero-inner {
+  width: 100%;
 }
 
-.brand-text{
-display:flex;
-align-items:center;
-font-size:20px;
-font-weight:700;
-letter-spacing:-.5px;
-line-height:1;
+.hero h1 {
+  font-size: 52px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
 }
 
-.brand-accent{
-background:linear-gradient(90deg,#00f5ff,#8a2be2);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.hero-sub {
+  font-size: 18px;
+  opacity: 0.75;
+  margin-bottom: 60px;
 }
-
 
 /* =========================================================
-   NAVIGATION
+   UPLOAD BOX (Neon Glass)
 ========================================================= */
 
-.header-nav-left a,
-.header-nav-left button,
-.header-right a,
-.btn-primary{
-display:flex;
-align-items:center;
-height:40px;
-line-height:1;
+.upload-box {
+  background: rgba(255,255,255,0.04);
+  border: 2px solid rgba(0,255,255,0.4);
+  border-radius: 20px;
+  padding: 60px 30px;
+  max-width: 520px;
+  margin: auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+  position: relative;
+  overflow: hidden;
 }
 
-.mega-toggle{
-appearance:none;
-border:none;
-background:transparent;
-font:inherit;
-color:inherit;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:6px;
-height:40px;
-padding:0;
+.upload-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(0,255,255,0.6);
 }
 
+.upload-box.dragging {
+  border-color: #22c55e;
+  box-shadow: 0 0 35px rgba(34,197,94,0.7);
+}
+
+.upload-icon {
+  font-size: 42px;
+  margin-bottom: 20px;
+  animation: floatIcon 3s infinite ease-in-out;
+}
+
+@keyframes floatIcon {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.upload-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.upload-hint {
+  opacity: 0.6;
+  margin-top: 10px;
+}
 
 /* =========================================================
-   BUTTON
+   PROGRESS BAR
 ========================================================= */
 
-.btn-primary{
-background:linear-gradient(90deg,#00f5ff,#8a2be2);
-padding:8px 16px;
-border-radius:8px;
-font-size:14px;
-box-shadow:0 0 12px rgba(0,255,255,.4);
-transition:.3s;
-position:relative;
-overflow:hidden;
+.progress-container {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  margin-top: 20px;
+  overflow: hidden;
+  display: none;
 }
 
-.btn-primary:hover{
-box-shadow:0 0 25px rgba(0,255,255,.8);
-transform:translateY(-2px);
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  transition: width 0.3s ease;
 }
-
-.btn-primary::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,.2),transparent);
-transform:translateX(-100%);
-transition:.6s;
-}
-
-.btn-primary:hover::after{
-transform:translateX(100%);
-}
-
 
 /* =========================================================
-   MEGA MENU
+   STATUS STATES
 ========================================================= */
 
-.mega-dropdown{
-position:relative;
-padding-bottom:20px;
+.upload-box.loading {
+  border-color: #facc15;
 }
 
-.mega-menu{
-position:absolute;
-top:100%;
-left:50%;
-transform:translateX(-50%) translateY(10px);
-
-width:720px;
-padding:22px;
-
-background:rgba(12,18,32,.85);
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(0,255,255,.15);
-border-radius:14px;
-
-box-shadow:
-0 20px 60px rgba(0,0,0,.6),
-0 0 40px rgba(0,245,255,.15);
-
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:26px;
-
-opacity:0;
-pointer-events:none;
-
-transition:.25s;
-
-z-index:1000;
+.upload-box.success {
+  border-color: #00ff9d;
+  box-shadow: 0 0 40px rgba(0,255,157,0.7);
+  animation: successPulse 0.8s ease;
 }
 
-.mega-dropdown:hover .mega-menu,
-.mega-menu:hover{
-opacity:1;
-pointer-events:auto;
-transform:translateX(-50%) translateY(0);
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-.mega-column h4{
-font-size:12px;
-letter-spacing:1px;
-text-transform:uppercase;
-color:#6ee7ff;
-margin-bottom:10px;
+.upload-box.error {
+  border-color: #ff0055;
+  box-shadow: 0 0 30px rgba(255,0,85,0.6);
 }
-
-.mega-item{
-display:flex;
-align-items:center;
-gap:12px;
-padding:10px 0;
-font-size:14px;
-opacity:.85;
-transition:.25s;
-}
-
-.mega-item:hover{
-opacity:1;
-transform:translateX(6px);
-color:#00f5ff;
-}
-
-.mega-icon svg{
-width:18px;
-height:18px;
-stroke:#00f5ff;
-fill:none;
-stroke-width:2;
-filter:drop-shadow(0 0 6px rgba(0,255,255,.7));
-}
-
-.pro-indicator{
-display:inline-flex;
-align-items:center;
-gap:4px;
-font-size:10px;
-padding:2px 6px;
-border-radius:6px;
-background:linear-gradient(90deg,#ff4fd8,#a64dff);
-margin-left:8px;
-}
-
 
 /* =========================================================
-   HERO
+   TOOL GRID (Dark Cards)
 ========================================================= */
 
-.hero{
-text-align:center;
-padding:120px 20px;
-min-height:85vh;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-overflow:hidden;
+.tools {
+  padding: 60px 0;
 }
 
-.hero h1{
-font-size:52px;
-font-weight:700;
-background:linear-gradient(90deg,#00f5ff,#8a2be2);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-margin-bottom:20px;
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
 }
 
-.hero-sub{
-font-size:18px;
-opacity:.75;
-margin-bottom:60px;
+.tool-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 28px 18px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
+.tool-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(0,255,255,0.4);
+}
 
+.tool-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.tool-name {
+  font-weight: 600;
+  font-size: 15px;
+}
 /* =========================================================
-   UPLOAD BOX
+   TOOL CARD PREMIUM INTERACTION (SAFE APPEND)
 ========================================================= */
 
-.upload-box{
-background:rgba(255,255,255,.04);
-border:2px solid rgba(0,255,255,.4);
-border-radius:20px;
-padding:60px 30px;
-max-width:520px;
-margin:auto;
-cursor:pointer;
-transition:.3s;
-backdrop-filter:blur(18px);
-box-shadow:0 0 20px rgba(0,255,255,.2);
-position:relative;
-overflow:hidden;
+.tool-card {
+  position: relative;
+  overflow: hidden;
 }
 
-.upload-box:hover{
-transform:translateY(-6px);
-box-shadow:0 0 35px rgba(0,255,255,.6);
+/* subtle glow sweep */
+.tool-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,245,255,0.12),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
 }
 
-.upload-icon{
-font-size:42px;
-margin-bottom:20px;
+.tool-card:hover::before {
+  transform: translateX(100%);
 }
 
-.upload-title{
-font-size:18px;
-font-weight:600;
+/* stronger lift */
+.tool-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.6),
+    0 0 30px rgba(0,245,255,0.25);
 }
-
-.upload-hint{
-opacity:.6;
-margin-top:10px;
-}
-
-
-/* =========================================================
-   TOOL GRID
-========================================================= */
-
-.tools{padding:60px 0}
-
-.tools-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
-}
-
-.tool-card{
-background:rgba(255,255,255,.05);
-border-radius:16px;
-padding:28px 18px;
-text-align:center;
-transition:.3s;
-border:1px solid rgba(255,255,255,.08);
-position:relative;
-overflow:hidden;
-}
-
-.tool-card:hover{
-transform:translateY(-8px) scale(1.02);
-box-shadow:
-0 20px 40px rgba(0,0,0,.6),
-0 0 30px rgba(0,245,255,.25);
-}
-
-.tool-icon{
-font-size:28px;
-margin-bottom:10px;
-}
-
-.tool-name{
-font-weight:600;
-font-size:15px;
-}
-
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
-.site-footer{
-background:rgba(10,10,20,.9);
-border-top:1px solid rgba(255,255,255,.08);
+.site-footer {
+  background: rgba(10,10,20,0.9);
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.footer-inner{
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.footer-links a{
-margin-right:18px;
-font-size:14px;
-opacity:.7;
+.footer-links a {
+  margin-right: 18px;
+  font-size: 14px;
+  opacity: 0.7;
 }
 
-.footer-links a:hover{opacity:1}
-
-.footer-copy{
-font-size:14px;
-opacity:.6;
-margin-top:8px;
+.footer-links a:hover {
+  opacity: 1;
 }
 
+.footer-copy {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-top: 8px;
+}
+
+/* =========================================================
+   SEO CONTENT (Dark)
+========================================================= */
+
+.seo-content {
+  padding: 60px 0;
+}
+
+.seo-content h2,
+.seo-content h3 {
+  color: #00f5ff;
+}
+
+.seo-content ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:900px){
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 34px;
+  }
 
-.header-inner{
-flex-direction:column;
-align-items:flex-start;
-gap:12px;
+  .footer-inner {
+    flex-direction: column;
+  }
 }
-
-.header-left{
-flex-direction:column;
-align-items:flex-start;
-gap:16px;
-width:100%;
-}
-
-.header-nav-left{
-flex-wrap:wrap;
-gap:12px;
-}
-
-.header-right{
-width:100%;
-justify-content:space-between;
-}
-
-.mega-menu{
-position:static;
-transform:none;
-width:100%;
-}
-}
-
-@media(max-width:600px){
-
-.hero h1{font-size:34px}
-
-.footer-inner{flex-direction:column}
-
-.site-header{
-top:10px;
-width:95%;
-}
-
-.hero{padding:80px 16px}
-
-.upload-box{padding:40px 20px}
-
-}
-
 
 /* =========================================================
-   REDUCE MOTION
+   CONVERSION & STABILITY IMPROVEMENTS (APPENDED)
 ========================================================= */
 
-@media(prefers-reduced-motion:reduce){
-*{
-animation:none!important;
-transition:none!important;
+html {
+  scroll-behavior: smooth;
 }
+
+@media (max-width: 768px) {
+  .site-header {
+    top: 10px;
+    width: 95%;
+  }
+
+  .hero {
+    padding: 80px 16px;
+  }
+
+  .upload-box {
+    padding: 40px 20px;
+  }
+}
+
+/* Stronger CTA Shine Effect */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(100%);
+}
+
+/* Prevent layout shift */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduce heavy animations for low power devices */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* =========================================================
+   HEADER LAYOUT FIX (SAFE OVERRIDE)
+========================================================= */
+
+.site-header {
+  width: 95%; /* slightly wider */
+  max-width: 1200px;
+}
+
+.header-inner {
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.header-nav a {
+  margin-left: 0; /* override stacking margin */
+}
+
+/* Prevent login button from breaking layout */
+.header-nav .btn-primary {
+  flex-shrink: 0;
+}
+
+/* Improve dropdown alignment */
+.dropdown {
+  flex-shrink: 0;
+}
+
+/* Responsive Header Handling */
+@media (max-width: 1024px) {
+  .header-nav {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-nav {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+/* =========================================================
+   DROPDOWN FIX (SAFE OVERRIDE)
+========================================================= */
+
+.header-nav {
+  position: relative;
+}
+
+/* =========================================================
+   MEGA MENU (FULL WIDTH SAAS STYLE)
+========================================================= */
+
+.mega-dropdown {
+  position: relative;
+}
+
+.mega-toggle {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   PREMIUM MEGA MENU (Stripe Style)
+========================================================= */
+
+.mega-menu{
+
+  position:absolute;
+  top:48px;
+  left:50%;
+
+  width:720px;
+
+  padding:22px;
+
+  border-radius:14px;
+
+  background:rgba(12,18,32,0.85);
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(0,255,255,0.15);
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,0.6),
+  0 0 40px rgba(0,245,255,0.15);
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+
+  opacity:0;
+  transform:translateX(-50%) translateY(10px);
+  pointer-events:none;
+
+  transition:opacity .25s ease, transform .25s ease;
+
+  overflow:hidden;
+
+  z-index:1000;
+}
+
+/* dropdown animation */
+
+.mega-dropdown:hover .mega-menu{
+
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+  pointer-events:auto;
+
+}
+
+.mega-column h4{
+
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+
+  color:#6ee7ff;
+
+  margin-bottom:10px;
+
+}
+
+.mega-column a {
+  display: block;
+  padding: 8px 0;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.mega-column a:hover {
+  opacity: 1;
+  transform: translateX(4px);
+  color: #00f5ff;
+}
+
+/* Mobile fallback */
+@media (max-width: 900px) {
+  .mega-menu {
+    position: static;
+    transform: none;
+    width: 100%;
+    padding: 20px;
+  }
+}
+/* =========================================================
+   MEGA MENU ICON STYLE
+========================================================= */
+
+.mega-item{
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:8px 10px;
+
+  border-radius:8px;
+
+  transition:all .2s ease;
+
+  font-size:14px;
+}
+
+.mega-icon {
+  width:22px;
+  height:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+   
+  filter: drop-shadow(0 0 6px rgba(0,255,255,0.5));
+  transition: transform .25s ease, filter .25s ease;
+}
+
+/* animate icon when hovering tool item */
+
+.mega-item:hover .mega-icon{
+  transform: scale(1.15) rotate(8deg);
+  filter: drop-shadow(0 0 10px rgba(0,255,255,0.8));
+}
+/* =========================================================
+   MEGA MENU ANIMATION FIX (STABLE)
+========================================================= */
+
+/* Icon Styling */
+
+
+.mega-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #00f5ff;
+  fill: none;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(0,255,255,0.7));
+  transition: transform 0.25s ease;
+}
+
+.mega-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 14px;
+  opacity: 0.85;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.mega-item:hover {
+  opacity: 1;
+  transform: translateX(6px);
+  color: #00f5ff;
+}
+
+.mega-item:hover .mega-icon svg {
+  transform: scale(1.15);
+}
+
+/* PRO Badge */
+
+.pro-badge {
+  margin-left: auto;
+  background: linear-gradient(90deg, #ff00cc, #8a2be2);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 10px rgba(255,0,204,0.6);
+}
+
+.pro-item {
+  opacity: 0.9;
+}
+/* =========================================================
+   MEGA MENU PREMIUM EFFECTS
+========================================================= */
+
+/* Lock Icon */
+
+.lock-icon {
+  margin-left: auto;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #ff00cc;
+  fill: none;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(255,0,204,0.6));
+}
+
+/* Tooltip */
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip-text {
+  position: absolute;
+  right: 0;
+  bottom: -28px;
+  background: rgba(15, 23, 42, 0.95);
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  transform: translateY(5px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  border: 1px solid rgba(255,0,204,0.3);
+  box-shadow: 0 0 12px rgba(255,0,204,0.4);
+}
+
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gradient Sweep Animation */
+
+.mega-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,255,255,0.05),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.mega-dropdown:hover .mega-menu::before {
+  transform: translateX(100%);
+}
+
+/* Make mega-menu position relative for overlay */
+.mega-menu {
+  position: absolute;
+  overflow: hidden;
+}
+/* =========================================================
+   PRO TOOL BEHAVIOR + CROWN ICON + BANNER
+========================================================= */
+
+/* Usage Banner */
+
+.mega-banner {
+  grid-column: 1 / -1;
+  background: linear-gradient(90deg, rgba(0,255,255,0.1), rgba(138,43,226,0.1));
+  padding: 14px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;                 /* small spacing after colon */
+  border: 1px solid rgba(0,255,255,0.2);
+}
+
+/* Push upgrade link to right */
+.mega-banner .upgrade-link {
+  margin-left: auto;
+}
+
+.upgrade-link {
+  color: #00f5ff;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.upgrade-link:hover {
+  text-shadow: 0 0 10px rgba(0,255,255,0.8);
+}
+
+/* PRO Indicator with Crown */
+
+/* Compact PRO badge */
+
+.pro-indicator{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+
+  font-size:10px;
+  font-weight:600;
+
+  padding:2px 6px;
+  border-radius:6px;
+
+  background:linear-gradient(90deg,#ff4fd8,#a64dff);
+  color:#fff;
+
+  margin-left:8px;   /* smaller spacing */
+
+  white-space:nowrap;
+}
+
+.pro-indicator svg {
+  width: 10px;
+  height: 10px;
+  fill: #fff;
+}
+
+/* Slight blur for locked tools */
+
+.pro-item {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.pro-item:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
+/* =========================================================
+   HEADER LEFT / RIGHT SPLIT (APPENDED – SAFE EXTENSION)
+   This section only supports new header structure:
+   .header-left
+   .header-nav-left
+   .header-right
+   Nothing above is modified.
+========================================================= */
+
+/* Layout containers */
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Remove old margin stacking if present */
+.header-nav-left a,
+.header-right a {
+  margin-left: 0;
+}
+
+/* Ensure mega dropdown aligns properly inside left nav */
+.header-nav-left .mega-dropdown {
+  flex-shrink: 0;
+}
+
+/* Prevent buttons from shrinking */
+.header-right .btn-primary {
+  flex-shrink: 0;
+}
+
+/* Responsive Handling */
+
+@media (max-width: 1024px) {
+  .header-left {
+    gap: 24px;
+  }
+
+  .header-nav-left {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .header-nav-left {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+/* =========================================================
+   MAGIC ICON SUBTLE EFFECT (APPENDED – SAFE)
+========================================================= */
+
+.magic-icon {
+  margin-right: 6px;
+  font-size: 13px;
+  opacity: 0.85;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mega-toggle:hover .magic-icon {
+  transform: rotate(12deg) scale(1.1);
+  opacity: 1;
+}
+/* =========================================================
+   USER DROPDOWN + UPGRADE GLOW (APPENDED SAFE)
+========================================================= */
+
+.user-dropdown {
+  position: relative;
+}
+
+.user-badge {
+  cursor: pointer;
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 120%;
+  background: rgba(15, 23, 42, 0.98);
+  border-radius: 12px;
+  padding: 12px 0;
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  border: 1px solid rgba(0,255,255,0.15);
+  z-index: 6000;
+}
+
+.user-menu.active {
+  display: flex;
+}
+
+.user-menu a {
+  padding: 10px 18px;
+  font-size: 14px;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+
+.user-menu a:hover {
+  opacity: 1;
+  background: rgba(0,255,255,0.08);
+}
+
+/* Upgrade glow for free users */
+
+.upgrade-glow {
+  position: relative;
+  font-weight: bold;
+}
+
+.upgrade-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(0,255,255,0.25), transparent);
+  transform: translateX(-100%);
+  animation: glowSweep 2.5s infinite;
+}
+
+@keyframes glowSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+/* =========================================================
+   BRAND LOGO STYLE (APPENDED SAFE)
+========================================================= */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.brand-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand-accent {
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* =========================================================
+   LOGO HOVER GLOW (SAFE APPEND)
+========================================================= */
+
+.logo-link {
+  transition: transform 0.25s ease;
+}
+
+.logo-link:hover {
+  transform: translateY(-2px);
+}
+
+.logo-link:hover .brand-icon {
+  filter: drop-shadow(0 0 12px rgba(0,245,255,0.8))
+          drop-shadow(0 0 24px rgba(138,43,226,0.6));
+  transition: filter 0.3s ease;
+}
+
+.logo-link:hover .brand-accent {
+  text-shadow: 0 0 10px rgba(0,245,255,0.8),
+               0 0 20px rgba(138,43,226,0.6);
+}
+/* =========================================================
+   SPARK TWINKLE ANIMATION
+========================================================= */
+
+.spark {
+  transform-origin: center;
+  animation: sparkTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkTwinkle {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  50%  { transform: scale(1.15) rotate(8deg); opacity: 0.85; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+/* =========================================================
+   AI HERO PREMIUM UPGRADE
+========================================================= */
+
+.hero {
+  position: relative;
+  padding: 140px 20px 120px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  background: rgba(0,255,255,0.1);
+  border: 1px solid rgba(0,255,255,0.4);
+  letter-spacing: 0.5px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  font-size: 20px;
+  max-width: 820px;
+  margin: 0 auto 60px auto;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.hero-main-row {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.ai-card {
+  max-width: 340px;
+  text-align: left;
+  padding: 30px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(138,43,226,0.3);
+  backdrop-filter: blur(10px);
+}
+
+.ai-card h3 {
+  margin-bottom: 15px;
+  color: #8a2be2;
+}
+
+.ai-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.ai-card li {
+  margin-bottom: 12px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.trust-line {
+  margin-top: 40px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Subtle AI background glow */
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle,
+    rgba(0,245,255,0.15),
+    rgba(138,43,226,0.1),
+    transparent 70%);
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: aiPulse 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes aiPulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+/* =========================================================
+   AI WAVE BACKGROUND
+========================================================= */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,245,255,0.15),
+    transparent 70%
+  );
+  animation: waveMove 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes waveMove {
+  from { transform: scaleX(1); opacity: 0.6; }
+  to   { transform: scaleX(1.1); opacity: 1; }
+}
+/* =========================================================
+   FLOATING AI PARTICLES
+========================================================= */
+
+.ai-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ai-particles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00f5ff;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: floatUp 10s linear infinite;
+}
+
+.ai-particles span:nth-child(1) { left: 20%; animation-delay: 0s; }
+.ai-particles span:nth-child(2) { left: 40%; animation-delay: 2s; }
+.ai-particles span:nth-child(3) { left: 60%; animation-delay: 4s; }
+.ai-particles span:nth-child(4) { left: 80%; animation-delay: 6s; }
+
+@keyframes floatUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to   { transform: translateY(-200px); opacity: 0.6; }
+}
+#typingText::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+/* =========================================================
+   AI HERO ADVANCED ENHANCEMENTS (SAFE APPEND)
+========================================================= */
+
+/* ------------------------------
+   Typing Cursor Effect
+------------------------------ */
+
+#typingText::after {
+  content: "|";
+  margin-left: 4px;
+  animation: aiBlink 1s infinite;
+  opacity: 0.7;
+}
+
+@keyframes aiBlink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+/* ------------------------------
+   Upload Micro Text
+------------------------------ */
+
+.upload-micro {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 8px;
+  letter-spacing: 0.4px;
+}
+
+/* ------------------------------
+   Live Counter Styling
+------------------------------ */
+
+.live-counter {
+  margin-top: 25px;
+  font-size: 14px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+.live-counter span {
+  font-weight: 600;
+  color: #00f5ff;
+  text-shadow: 0 0 10px rgba(0,245,255,0.6);
+}
+
+/* ------------------------------
+   AI Background Glow Pulse
+------------------------------ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle,
+    rgba(0,245,255,0.12),
+    rgba(138,43,226,0.08),
+    transparent 70%);
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: aiPulse 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes aiPulse {
+  from { opacity: 0.5; }
+  to   { opacity: 1; }
+}
+
+/* ------------------------------
+   Wave Energy Layer
+------------------------------ */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,245,255,0.15),
+    transparent 70%
+  );
+  animation: waveMove 6s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes waveMove {
+  from { transform: scaleX(1); opacity: 0.6; }
+  to   { transform: scaleX(1.1); opacity: 1; }
+}
+
+/* ------------------------------
+   Floating AI Particles
+------------------------------ */
+
+.ai-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ai-particles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00f5ff;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: floatUp 12s linear infinite;
+}
+
+.ai-particles span:nth-child(1) {
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.ai-particles span:nth-child(2) {
+  left: 35%;
+  animation-delay: 3s;
+}
+
+.ai-particles span:nth-child(3) {
+  left: 60%;
+  animation-delay: 6s;
+}
+
+.ai-particles span:nth-child(4) {
+  left: 80%;
+  animation-delay: 9s;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(120px); opacity: 0; }
+  50%  { opacity: 0.6; }
+  100% { transform: translateY(-250px); opacity: 0; }
+}
+
+/* ------------------------------
+   Ensure Content Stays Above Glow
+------------------------------ */
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+/* =========================================================
+   AI ANALYZING DEMO PREVIEW
+========================================================= */
+
+.ai-preview-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,10,20,0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+.ai-preview-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ai-preview-box {
+  text-align: center;
+  padding: 40px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(0,245,255,0.3);
+  box-shadow: 0 0 40px rgba(0,245,255,0.3);
+}
+
+.ai-loader {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  border: 4px solid rgba(0,245,255,0.2);
+  border-top: 4px solid #00f5ff;
+  animation: aiSpin 1s linear infinite;
+}
+
+@keyframes aiSpin {
+  to { transform: rotate(360deg); }
+}
+
+.ai-preview-text {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.dots::after {
+  content: "";
+  animation: dotAnimation 1.5s infinite steps(3);
+}
+
+@keyframes dotAnimation {
+  0%   { content: ""; }
+  33%  { content: "."; }
+  66%  { content: ".."; }
+  100% { content: "..."; }
+}
+/* =========================================================
+   AI ANALYZING PROGRESS ENHANCEMENT (SAFE APPEND)
+========================================================= */
+
+.ai-progress-container {
+  width: 260px;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  margin: 20px auto 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,245,255,0.2);
+}
+
+.ai-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  border-radius: 50px;
+  transition: width 0.15s linear;
+  box-shadow: 0 0 20px rgba(0,245,255,0.6);
+}
+
+.ai-progress-percent {
+  font-size: 13px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  color: #00f5ff;
+  text-shadow: 0 0 8px rgba(0,245,255,0.5);
+}
+/* =========================================================
+   AI PREMIUM LEVEL UPGRADE
+========================================================= */
+
+/* Neural Pulse Background */
+
+.ai-preview-overlay::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle,
+    rgba(0,245,255,0.15),
+    rgba(138,43,226,0.1),
+    transparent 70%);
+  animation: neuralPulse 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes neuralPulse {
+  from { transform: scale(0.9); opacity: 0.6; }
+  to   { transform: scale(1.1); opacity: 1; }
+}
+
+/* Premium Completion Flash */
+
+.ai-preview-box.completed {
+  animation: completionFlash 0.6s ease;
+  box-shadow: 0 0 60px rgba(0,255,157,0.6);
+  border-color: rgba(0,255,157,0.6);
+}
+
+@keyframes completionFlash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Stage Text Style Upgrade */
+
+.ai-stage-text {
+  font-size: 15px;
+  margin-top: 12px;
+  opacity: 0.85;
+  letter-spacing: 0.4px;
+  transition: opacity 0.3s ease;
+}
+
+/* Smooth Fade Before Redirect */
+
+.ai-preview-overlay.fade-out {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+/* =========================================================
+   PRICING COMPARISON TABLE
+========================================================= */
+
+.pricing-comparison,
+#pricing {
+  padding: 100px 0;
+}
+
+.comparison-table {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.comparison-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-header {
+  padding: 20px;
+  font-weight: 600;
+  text-align: center;
+  background: rgba(0,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+}
+
+.plan-price {
+  display: block;
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.popular-plan {
+  border-left: 2px solid #00f5ff;
+  border-right: 2px solid #00f5ff;
+  box-shadow: 0 0 40px rgba(0,245,255,0.2);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  padding: 4px 10px;
+  font-size: 10px;
+  border-radius: 20px;
+}
+
+.ai-plan {
+  background: rgba(138,43,226,0.08);
+}
+
+.comparison-row {
+  padding: 16px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 14px;
+}
+
+.feature-column .comparison-row {
+  text-align: left;
+  opacity: 0.8;
+}
+
+.highlight-limit {
+  color: #facc15;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .comparison-table {
+    grid-template-columns: 1fr;
+  }
+}
+/* ============================================
+   BILLING TOGGLE
+============================================ */
+
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.toggle-label {
+  font-size: 14px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.toggle-label.active {
+  opacity: 1;
+  color: #00f5ff;
+}
+
+.switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* ============================================
+   PLAN BUTTONS
+============================================ */
+
+.plan-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.plan-btn:hover {
+  box-shadow: 0 0 20px rgba(0,245,255,0.6);
+  transform: translateY(-2px);
+}
+
+.disabled-btn {
+  background: rgba(255,255,255,0.1);
+  cursor: default;
+}
+
+.ai-btn {
+  background: linear-gradient(90deg, #8a2be2, #ff00cc);
+}
+
+/* ============================================
+   HOVER GLOW EFFECT
+============================================ */
+
+.comparison-column:hover {
+  box-shadow: 0 0 40px rgba(0,245,255,0.2);
+  transform: translateY(-4px);
+  transition: all 0.3s ease;
+}
+/* =========================================================
+   AUTH UI PREMIUM STYLES
+========================================================= */
+
+.user-badge {
+  display: none;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.badge-glow {
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+/* FREE */
+.badge-glow.free {
+  background: rgba(255, 255, 255, 0.08);
+  color: #aaa;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* PRO */
+.badge-glow.pro {
+  background: linear-gradient(90deg, #00f5ff, #0072ff);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.6);
+}
+
+/* AI PRO */
+.badge-glow.aipro {
+  background: linear-gradient(90deg, #ff00cc, #3333ff);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(255, 0, 200, 0.7);
+}
+
+.pulse-upgrade {
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 rgba(0,255,255,0.4); }
+  50% { box-shadow: 0 0 20px rgba(0,255,255,0.8); }
+  100% { box-shadow: 0 0 0 rgba(0,255,255,0.4); }
+}
+
+.fade-in {
+  animation: fadeInSmooth 0.5s ease forwards;
+}
+
+@keyframes fadeInSmooth {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* =========================================================
+   PRICING LAYOUT STABILIZER (FOR comparison-table)
+========================================================= */
+
+.comparison-table {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
+
+/* Equal width columns */
+.comparison-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Keep feature column left aligned */
+.feature-column {
+  text-align: left;
+}
+/* =========================================================
+   MOST POPULAR BADGE PERFECT CENTER
+========================================================= */
+
+.comparison-header {
+  position: relative;
+  text-align: center;
+  padding-top: 30px; /* space for badge */
+}
+
+.popular-badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+/* =========================================================
+   PLAN BUTTON CENTER FIX
+========================================================= */
+
+.plan-footer {
+  margin-top: auto; /* pushes button to bottom evenly */
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plan-btn {
+  min-width: 180px;
+  text-align: center;
+}
+/* =========================================================
+   PRICING HEADER HEIGHT LOCK (FINAL)
+========================================================= */
+
+.comparison-header {
+  height: 130px; /* fixed height ensures perfect alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Feature column header aligned left */
+.feature-column .comparison-header {
+  align-items: flex-start;
+  padding-left: 24px;
+}
+
+/* =========================================================
+   FORCE ROW HEIGHT CONSISTENCY
+========================================================= */
+
+.comparison-row {
+  height: 58px; /* fixed height keeps grid perfectly aligned */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Keep features left aligned */
+.feature-column .comparison-row {
+  justify-content: flex-start;
+  padding-left: 24px;
+}
+/* =========================================================
+   BILLING TOGGLE PREMIUM ANIMATION
+========================================================= */
+
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.toggle-label {
+  font-weight: 500;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-label.active {
+  opacity: 1;
+  color: #00f5ff;
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 26px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background: #1f2937;
+  border-radius: 30px;
+  inset: 0;
+  transition: 0.4s;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background: linear-gradient(90deg, #00f5ff, #9333ea);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* =========================================================
+   PRICE TRANSITION ANIMATION
+========================================================= */
+
+.plan-price {
+  display: inline-block;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.plan-price.animate-out {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.plan-price.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* =========================================================
+   PREMIUM PRICING UI UPGRADE – COMPLETE PACKAGE
+   Dark Tech + Neon SaaS Enhancement
+========================================================= */
+
+/* =============================
+   BILLING TOGGLE UPGRADE
+============================= */
+
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.toggle-label {
+  font-weight: 500;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-label.active {
+  opacity: 1;
+  color: #00f5ff;
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 28px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #1a1f2e;
+  border-radius: 30px;
+  transition: 0.4s;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #00f5ff, #9333ea);
+  transition: 0.4s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* =============================
+   PRICING LAYOUT POLISH
+============================= */
+
+.comparison-table {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 20px;
+}
+
+.comparison-column {
+  flex: 1;
+  position: relative;
+  border-radius: 16px;
+  background: rgba(20, 25, 40, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover Lift */
+.comparison-column:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+/* Feature Column Alignment */
+.feature-column {
+  text-align: left;
+  background: transparent;
+  border: none;
+}
+
+.feature-column .comparison-header {
+  align-items: flex-start;
+  padding-left: 24px;
+}
+
+.feature-column .comparison-row {
+  justify-content: flex-start;
+  padding-left: 24px;
+}
+
+/* =============================
+   HEADER HEIGHT LOCK
+============================= */
+
+.comparison-header {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* =============================
+   ROW HEIGHT LOCK
+============================= */
+
+.comparison-row {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =============================
+   MOST POPULAR BADGE
+============================= */
+
+.popular-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #00f5ff, #9333ea);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0,245,255,0.5);
+}
+
+/* =============================
+   PRO COLUMN GLOW
+============================= */
+
+.popular-column {
+  border: 1px solid rgba(0,245,255,0.4);
+  box-shadow: 0 0 30px rgba(0,245,255,0.2);
+}
+
+.popular-column::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, #00f5ff, #9333ea);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* =============================
+   PRICE ANIMATION
+============================= */
+
+.plan-price {
+  display: inline-block;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.plan-price.animate-out {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.plan-price.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.plan-price.yearly-active {
+  color: #00f5ff;
+  text-shadow: 0 0 12px rgba(0,245,255,0.7);
+}
+
+/* =============================
+   PLAN BUTTON POLISH
+============================= */
+
+.plan-footer {
+  margin-top: auto;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.plan-btn {
+  min-width: 190px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.plan-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,245,255,0.4);
+}
+
+.ai-btn:hover {
+  box-shadow: 0 10px 25px rgba(147,51,234,0.5);
+}
+
+/* =============================
+   SECTION FADE IN
+============================= */
+
+@keyframes fadeUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#pricing {
+  animation: fadeUpSoft 0.8s ease forwards;
+}
+/* =========================================================
+   HERO PARTICLES – VISIBLE VERSION
+========================================================= */
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Push particles fully behind everything */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Stronger particles so they are visible */
+.particles::before,
+.particles::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-size: 60px 60px;
+  animation: moveParticles 80s linear infinite;
+}
+
+.particles::before {
+  background-image: radial-gradient(rgba(0,245,255,0.5) 2px, transparent 2px);
+  opacity: 0.6;
+}
+
+.particles::after {
+  background-image: radial-gradient(rgba(147,51,234,0.4) 2px, transparent 2px);
+  animation-direction: reverse;
+  opacity: 0.5;
+}
+
+@keyframes moveParticles {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-30%, -30%); }
+}
+/* =========================================================
+   PRO COLUMN FLOATING ORB – STRONG VISIBLE VERSION
+========================================================= */
+
+.popular-column {
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Make sure column background does not hide orb */
+.popular-column::after {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle,
+      rgba(0,245,255,0.7) 0%,
+      rgba(147,51,234,0.5) 40%,
+      transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: floatOrb 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes floatOrb {
+  0%   { transform: translate(-50%, -48%) scale(1); }
+  50%  { transform: translate(-50%, -52%) scale(1.15); }
+  100% { transform: translate(-50%, -48%) scale(1); }
+}
+/* ==========================================
+   HEADER USER DROPDOWN (FINAL STABLE)
+========================================== */
+
+.header-right {
+  position: relative;
+}
+
+.user-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-badge {
+  background: linear-gradient(90deg,#00f5ff,#7c3aed);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.user-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #0f172a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 8px 0;
+  min-width: 180px;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.user-menu.active {
+  display: block;
+}
+
+.user-menu a {
+  display: block;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.user-menu a:hover {
+  background: rgba(255,255,255,0.05);
+}
+/* ==========================================
+   HEADER LOGOUT BUTTON (CLEAN MODE)
+========================================== */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-auth-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #00f5ff, #7c3aed);
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(124,58,237,0.4);
+}
+.result-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+.download-btn{
+  background:linear-gradient(90deg,#00f5a0,#00d9f5);
+  border:none;
+  padding:10px 20px;
+  border-radius:8px;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.upload-again-btn{
+  background:transparent;
+  border:1px solid #00d9f5;
+  padding:8px 18px;
+  border-radius:8px;
+  color:#00d9f5;
+  cursor:pointer;
+}
+.compression-info{
+  margin:10px 0;
+  font-size:14px;
+  opacity:0.9;
+}
+
+.saved-percent{
+  color:#3cff8f;
+  font-weight:600;
+}
+.file-queue{
+  margin-top:15px;
+}
+
+.file-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:6px;
+  background: rgba(255,255,255,0.05);
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.file-remove{
+  cursor:pointer;
+  color:#e74c3c;
+  font-weight:bold;
+}
+
+/* =========================================================
+   UPLOAD BOX ENERGY BORDER
+========================================================= */
+
+.upload-box::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    #00f5ff,
+    #8a2be2,
+    #00f5ff
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.upload-box:hover::before {
+  opacity: 0.4;
+}
+
+/* =========================================================
+   PAGE SCROLL ENERGY EFFECT
+========================================================= */
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(0,245,255,0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+  top: 30%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  animation: scrollGlow 12s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes scrollGlow {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-45%, -55%) scale(1.2); }
+}
+/* =========================================================
+   CURSOR AI GLOW EFFECT
+========================================================= */
+
+.cursor-glow {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(0,245,255,0.18),
+    rgba(138,43,226,0.12),
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  filter: blur(40px);
+  transition: transform 0.08s linear;
+}
+/* =========================================================
+   TOOL DASHBOARD
+========================================================= */
+
+.tools-title{
+text-align:center;
+font-size:28px;
+margin-bottom:40px;
+}
+
+.tool-dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:26px;
+}
+
+/* tool cards */
+
+.tool-card{
+position:relative;
+padding:30px;
+border-radius:18px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+transition:all .35s ease;
+text-align:left;
+overflow:hidden;
+}
+
+/* animated hover */
+
+.tool-card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:
+0 20px 40px rgba(0,0,0,.6),
+0 0 35px rgba(0,245,255,.25);
+}
+
+/* icon */
+
+.tool-icon{
+font-size:28px;
+margin-bottom:10px;
+transition:transform .3s ease;
+}
+
+.tool-card:hover .tool-icon{
+transform:scale(1.2) rotate(6deg);
+}
+
+/* title */
+
+.tool-name{
+font-weight:600;
+font-size:16px;
+margin-bottom:6px;
+}
+
+/* description */
+
+.tool-desc{
+font-size:13px;
+opacity:.7;
+}
+
+/* gradient sweep */
+
+.tool-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(0,245,255,0.15),
+transparent
+);
+transform:translateX(-100%);
+transition:transform .7s ease;
+}
+
+.tool-card:hover::before{
+transform:translateX(100%);
+}
+/* =========================================================
+   AI INTERACTIVE UPLOAD ZONE
+========================================================= */
+
+.upload-box{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow layer that follows the cursor */
+
+.upload-glow{
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  pointer-events:none;
+
+  background:radial-gradient(
+    circle,
+    rgba(0,245,255,0.35),
+    rgba(138,43,226,0.2),
+    transparent 70%
+  );
+
+  transform:translate(-50%,-50%);
+  opacity:0;
+  transition:opacity .2s ease;
+  filter:blur(30px);
+}
+
+/* Glow appears on hover */
+
+.upload-box:hover .upload-glow{
+  opacity:1;
+}
+
+/* subtle AI border pulse */
+
+.upload-box::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  border:1px solid rgba(0,245,255,.25);
+  animation:borderPulse 3s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes borderPulse{
+  0%{opacity:.3}
+  50%{opacity:.7}
+  100%{opacity:.3}
+}
+.mega-dropdown{
+  position:relative;
+  display:inline-block;
+  padding-bottom:16px; /* hover bridge */
 }
