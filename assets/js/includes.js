@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
   async function initHeaderAuth() {
 
     const { getToken, logout } = await import("/assets/js/auth.js");
-    const { getToken, logout } = await import(authModulePath);
 
     const authButton = document.getElementById("authButton");
     if (!authButton) return;
