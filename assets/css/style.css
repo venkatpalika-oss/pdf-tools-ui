@@ -2880,3 +2880,40 @@ transition:opacity .4s ease;
 .site-header.scrolled::after{
 opacity:1;
 }
+/* =========================================================
+   HEADER NAV BUTTON ALIGNMENT FIX
+========================================================= */
+
+/* Reset button styles so it behaves like links */
+
+.mega-toggle{
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+  line-height: 1;
+  padding: 0;
+}
+
+/* Ensure nav items share same vertical alignment */
+
+.header-nav-left{
+  display:flex;
+  align-items:center;
+}
+
+/* Fix slight baseline shift */
+
+.header-nav-left a,
+.header-nav-left button{
+  display:flex;
+  align-items:center;
+  height:40px;
+}
