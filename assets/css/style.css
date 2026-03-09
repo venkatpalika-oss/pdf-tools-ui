@@ -3090,3 +3090,12 @@ display:block;
   align-items: center;
   justify-content: center;
 }
+/* ==============================
+   HEADER LOGO ALIGNMENT FIX
+============================== */
+
+.logo{
+display:flex;
+align-items:center;
+height:40px;
+}
