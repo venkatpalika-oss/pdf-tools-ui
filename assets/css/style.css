@@ -418,7 +418,7 @@ img, svg {
   gap: 20px;
 }
 
-.header-nav {
+.header-nav-left {
   display: flex;
   align-items: center;
   gap: 18px;
@@ -426,7 +426,7 @@ img, svg {
   white-space: nowrap;
 }
 
-.header-nav a {
+.header-nav-left a {
   margin-left: 0; /* override stacking margin */
 }
 
