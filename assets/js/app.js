@@ -479,12 +479,16 @@ if (upload && uploadGlow) {
 
 const header = document.querySelector(".site-header");
 
-window.addEventListener("scroll", () => {
+if (header) {
 
-  if (window.scrollY > 30) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+  window.addEventListener("scroll", () => {
 
-});
+    if (window.scrollY > 30) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+
+  });
+
+}
