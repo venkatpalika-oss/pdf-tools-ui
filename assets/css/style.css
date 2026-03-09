@@ -3018,3 +3018,35 @@ line-height:1;
   align-items:center;
   height:40px;
 }
+/* ===============================
+   NAV BASELINE ALIGNMENT FIX
+================================ */
+
+.logo-link{
+display:flex;
+align-items:center;
+}
+
+.header-nav-left{
+display:flex;
+align-items:center;
+}
+
+.mega-toggle{
+display:flex;
+align-items:center;
+height:40px;
+line-height:40px;
+padding:0 4px;
+}
+
+.brand-text{
+display:flex;
+align-items:center;
+height:40px;
+}
+
+.brand-icon{
+height:24px;
+display:block;
+}
