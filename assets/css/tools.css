@@ -1,1 +1,203 @@
+/* =========================================================
+   TOOLS SECTION
+========================================================= */
 
+.tools {
+  padding: 60px 0;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 28px 18px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(0,255,255,0.4);
+}
+
+.tool-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.tool-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* =========================================================
+   TOOL CARD PREMIUM INTERACTION
+========================================================= */
+
+.tool-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,245,255,0.12),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.tool-card:hover::before {
+  transform: translateX(100%);
+}
+
+.tool-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.6),
+    0 0 30px rgba(0,245,255,0.25);
+}
+
+/* =========================================================
+   TOOL DASHBOARD
+========================================================= */
+
+.tools-title{
+text-align:center;
+font-size:28px;
+margin-bottom:40px;
+}
+
+.tool-dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:26px;
+}
+
+.tool-card{
+position:relative;
+padding:30px;
+border-radius:18px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+transition:all .35s ease;
+text-align:left;
+overflow:hidden;
+}
+
+.tool-card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:
+0 20px 40px rgba(0,0,0,.6),
+0 0 35px rgba(0,245,255,.25);
+}
+
+.tool-icon{
+font-size:28px;
+margin-bottom:10px;
+transition:transform .3s ease;
+}
+
+.tool-card:hover .tool-icon{
+transform:scale(1.2) rotate(6deg);
+}
+
+.tool-name{
+font-weight:600;
+font-size:16px;
+margin-bottom:6px;
+}
+
+.tool-desc{
+font-size:13px;
+opacity:.7;
+}
+
+.tool-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(0,245,255,0.15),
+transparent
+);
+transform:translateX(-100%);
+transition:transform .7s ease;
+}
+
+.tool-card:hover::before{
+transform:translateX(100%);
+}
+
+/* =========================================================
+   TOOL RESULT UI
+========================================================= */
+
+.result-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+.download-btn{
+  background:linear-gradient(90deg,#00f5a0,#00d9f5);
+  border:none;
+  padding:10px 20px;
+  border-radius:8px;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.upload-again-btn{
+  background:transparent;
+  border:1px solid #00d9f5;
+  padding:8px 18px;
+  border-radius:8px;
+  color:#00d9f5;
+  cursor:pointer;
+}
+
+.compression-info{
+  margin:10px 0;
+  font-size:14px;
+  opacity:0.9;
+}
+
+.saved-percent{
+  color:#3cff8f;
+  font-weight:600;
+}
+
+.file-queue{
+  margin-top:15px;
+}
+
+.file-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:6px;
+  background: rgba(255,255,255,0.05);
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.file-remove{
+  cursor:pointer;
+  color:#e74c3c;
+  font-weight:bold;
+}
