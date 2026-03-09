@@ -2588,3 +2588,103 @@ transform:translateX(100%);
   display:inline-block;
   padding-bottom:16px; /* hover bridge */
 }
+/* =========================================================
+   HEADER STABILITY FIX (FINAL)
+   Fixes alignment + dropdown hover gap
+========================================================= */
+
+/* Perfect vertical alignment */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:30px;
+}
+
+/* Left side container */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:32px;
+}
+
+/* Logo alignment */
+
+.logo-link{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* Navigation alignment */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+/* Right side */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* ---------------------------------------------------------
+   MEGA MENU HOVER BRIDGE
+--------------------------------------------------------- */
+
+/* Create invisible bridge so hover never breaks */
+
+.mega-dropdown{
+position:relative;
+padding-bottom:18px;
+}
+
+/* Dropdown position */
+
+.mega-menu{
+top:100%;
+margin-top:6px;
+}
+
+/* Prevent flicker */
+
+.mega-dropdown:hover .mega-menu,
+.mega-menu:hover{
+opacity:1;
+pointer-events:auto;
+transform:translateX(-50%) translateY(0);
+}
+
+/* ---------------------------------------------------------
+   FIX TOOL BUTTON ALIGNMENT
+--------------------------------------------------------- */
+
+.mega-toggle{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:14px;
+}
+
+/* Prevent nav shift */
+
+.header-nav-left a{
+display:flex;
+align-items:center;
+}
+
+/* ---------------------------------------------------------
+   LOGIN BUTTON ALIGNMENT
+--------------------------------------------------------- */
+
+.btn-primary{
+display:flex;
+align-items:center;
+justify-content:center;
+}
