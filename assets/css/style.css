@@ -2833,3 +2833,50 @@ align-items:center;
 gap:6px;
 padding:6px 6px;
 }
+/* =========================================================
+   PREMIUM SCROLL HEADER EFFECT
+========================================================= */
+
+.site-header{
+transition:all 0.35s ease;
+border:1px solid rgba(0,255,255,0.08);
+}
+
+/* When page scrolls */
+
+.site-header.scrolled{
+
+background:rgba(10,10,25,0.92);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.6),
+0 0 30px rgba(0,245,255,0.15);
+
+border:1px solid rgba(0,245,255,0.25);
+
+backdrop-filter:blur(20px);
+}
+
+/* subtle neon border glow */
+
+.site-header::after{
+content:"";
+position:absolute;
+inset:0;
+border-radius:14px;
+pointer-events:none;
+
+background:linear-gradient(
+120deg,
+transparent,
+rgba(0,245,255,0.2),
+transparent
+);
+
+opacity:0;
+transition:opacity .4s ease;
+}
+
+.site-header.scrolled::after{
+opacity:1;
+}
