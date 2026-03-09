@@ -24,3 +24,16 @@ a {
   margin: 0 auto;
   padding: 24px 16px;
 }
+
+/* Prevent layout shift */
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth scrolling */
+
+html {
+  scroll-behavior: smooth;
+}
