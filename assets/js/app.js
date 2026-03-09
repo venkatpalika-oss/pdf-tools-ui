@@ -434,32 +434,42 @@ progressBar.style.width="0%";
   initAuthUI();
 
 });
-/* ==========================================
+/* =========================================
    Cursor Glow Effect
-========================================== */
+========================================= */
 
-const glow = document.querySelector(".cursor-glow");
+const cursorGlow = document.querySelector(".cursor-glow");
 
 document.addEventListener("mousemove", (e) => {
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
+  if (!cursorGlow) return;
+
+  cursorGlow.style.left = e.clientX + "px";
+  cursorGlow.style.top = e.clientY + "px";
 });
-/* ==========================================
+
+
+/* =========================================
    Interactive Upload Glow
-========================================== */
+========================================= */
 
 const upload = document.getElementById("homeUpload");
-const glow = document.querySelector(".upload-glow");
+const uploadGlow = document.querySelector(".upload-glow");
 
-if (upload && glow) {
+if (upload && uploadGlow) {
 
   upload.addEventListener("mousemove", (e) => {
-
     const rect = upload.getBoundingClientRect();
 
-    glow.style.left = (e.clientX - rect.left) + "px";
-    glow.style.top = (e.clientY - rect.top) + "px";
+    uploadGlow.style.left = (e.clientX - rect.left) + "px";
+    uploadGlow.style.top = (e.clientY - rect.top) + "px";
+  });
 
+  upload.addEventListener("mouseleave", () => {
+    uploadGlow.style.opacity = "0";
+  });
+
+  upload.addEventListener("mouseenter", () => {
+    uploadGlow.style.opacity = "1";
   });
 
 }
