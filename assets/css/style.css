@@ -2787,7 +2787,7 @@ padding:0 20px;
 /* Perfect vertical alignment */
 
 .header-inner{
-height:72px;
+min-height:72px;
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -2972,4 +2972,21 @@ display:block;
 height:40px;
 display:flex;
 align-items:center;
+}
+/* =========================================
+   NAV ITEM BASELINE FIX
+========================================= */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+height:100%;
+}
+
+.header-nav-left a,
+.header-nav-left button{
+display:flex;
+align-items:center;
+height:100%;
+line-height:1;
 }
