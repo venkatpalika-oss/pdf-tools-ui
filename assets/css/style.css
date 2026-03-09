@@ -2913,9 +2913,10 @@ opacity:1;
 
 .header-nav-left a,
 .header-nav-left button{
-  display:flex;
-  align-items:center;
-  height:40px;
+display:flex;
+align-items:center;
+height:40px;
+line-height:1;
 }
 /* =========================================================
    FINAL NAV ALIGNMENT FIX
