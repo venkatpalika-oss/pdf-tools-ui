@@ -991,8 +991,13 @@ img, svg {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.5px;
+  line-height:1; 
 }
 
+.brand-text strong{
+  position:relative;
+  top:-1px;
+}
 .brand-accent {
   background: linear-gradient(90deg, #00f5ff, #8a2be2);
   -webkit-background-clip: text;
