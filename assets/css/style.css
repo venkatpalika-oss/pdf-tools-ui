@@ -2987,6 +2987,6 @@ height:100%;
 .header-nav-left button{
 display:flex;
 align-items:center;
-height:100%;
+height:40px;
 line-height:1;
 }
