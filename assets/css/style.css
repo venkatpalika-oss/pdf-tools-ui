@@ -419,13 +419,14 @@ img, svg {
 }
 
 .header-nav-left {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-   /* move Tools & Magic slightly down */
-margin-top: 3px;
+display: flex;
+align-items: center;
+gap: 18px;
+flex-wrap: nowrap;
+white-space: nowrap;
+
+/* move Tools & Magic slightly down */
+margin-top: 5px;
 }
 
 .header-nav-left a {
