@@ -2917,3 +2917,44 @@ opacity:1;
   align-items:center;
   height:40px;
 }
+/* =========================================================
+   FINAL NAV ALIGNMENT FIX
+========================================================= */
+
+/* Reset button completely */
+
+.mega-toggle{
+  appearance:none;
+  -webkit-appearance:none;
+  border:none;
+  background:transparent;
+  font:inherit;
+  color:inherit;
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  height:40px;
+  padding:0;
+  margin:0;
+
+  line-height:1;
+}
+
+/* Ensure all nav items share identical height */
+
+.header-nav-left a,
+.header-nav-left button{
+  height:40px;
+  display:flex;
+  align-items:center;
+}
+
+/* Fix SVG / icon vertical alignment */
+
+.magic-icon{
+  display:flex;
+  align-items:center;
+}
