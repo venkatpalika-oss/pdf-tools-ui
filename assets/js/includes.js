@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function initHeaderAuth() {
 
-    // Fix import path for both root pages and /tools/ pages
     const authModulePath = base + "assets/js/auth.js";
     const { getToken, logout } = await import(authModulePath);
 
