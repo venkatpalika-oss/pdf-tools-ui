@@ -1,1 +1,202 @@
+/* =========================================================
+   HERO SECTION (Neon Tech)
+========================================================= */
 
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  font-size: 18px;
+  opacity: 0.75;
+  margin-bottom: 60px;
+}
+
+/* =========================================================
+   HERO BADGE
+========================================================= */
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  background: rgba(0,255,255,0.1);
+  border: 1px solid rgba(0,255,255,0.4);
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   AI HERO LAYOUT
+========================================================= */
+
+.hero-main-row {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.ai-card {
+  max-width: 340px;
+  text-align: left;
+  padding: 30px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(138,43,226,0.3);
+  backdrop-filter: blur(10px);
+}
+
+.ai-card h3 {
+  margin-bottom: 15px;
+  color: #8a2be2;
+}
+
+.ai-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.ai-card li {
+  margin-bottom: 12px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.trust-line {
+  margin-top: 40px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   HERO BACKGROUND GLOW
+========================================================= */
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(
+    circle,
+    rgba(0,245,255,0.15),
+    rgba(138,43,226,0.1),
+    transparent 70%
+  );
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: aiPulse 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes aiPulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* =========================================================
+   HERO WAVE EFFECT
+========================================================= */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,245,255,0.15),
+    transparent 70%
+  );
+  animation: waveMove 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes waveMove {
+  from { transform: scaleX(1); opacity: 0.6; }
+  to { transform: scaleX(1.1); opacity: 1; }
+}
+
+/* =========================================================
+   FLOATING AI PARTICLES
+========================================================= */
+
+.ai-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ai-particles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00f5ff;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: floatUp 10s linear infinite;
+}
+
+.ai-particles span:nth-child(1) { left: 20%; animation-delay: 0s; }
+.ai-particles span:nth-child(2) { left: 40%; animation-delay: 2s; }
+.ai-particles span:nth-child(3) { left: 60%; animation-delay: 4s; }
+.ai-particles span:nth-child(4) { left: 80%; animation-delay: 6s; }
+
+@keyframes floatUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(-200px); opacity: 0.6; }
+}
+
+/* =========================================================
+   TYPING CURSOR
+========================================================= */
+
+#typingText::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,50%,100% { opacity:1; }
+  25%,75% { opacity:0; }
+}
+
+/* =========================================================
+   HERO RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+}
