@@ -3099,3 +3099,48 @@ display:flex;
 align-items:center;
 height:40px;
 }
+/* =========================================
+   HEADER TYPOGRAPHY BASELINE FIX
+========================================= */
+
+.brand-text{
+display:flex;
+align-items:center;
+line-height:1;
+}
+
+.brand-text strong{
+line-height:1;
+}
+
+.brand-accent{
+line-height:1;
+display:inline-flex;
+align-items:center;
+}
+
+/* Align nav items perfectly */
+
+.header-nav-left a,
+.header-nav-left button,
+.header-right a,
+.btn-primary{
+display:flex;
+align-items:center;
+height:40px;
+line-height:1;
+}
+
+/* Fix logo icon alignment */
+
+.brand-icon{
+height:22px;
+width:auto;
+display:block;
+}
+
+/* Prevent vertical text shift */
+
+.mega-toggle{
+line-height:1;
+}
