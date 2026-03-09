@@ -3078,3 +3078,15 @@ display:block;
   height:22px;
   width:auto;
 }
+/* ===============================
+   HEADER TEXT BASELINE FIX
+================================ */
+
+.mega-toggle{
+  line-height: normal !important;
+}
+
+.header-nav-left button{
+  align-items: center;
+  justify-content: center;
+}
