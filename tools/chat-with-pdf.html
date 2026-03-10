@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Chat with PDF – Ask Questions from Your PDF Documents</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="description"
+content="Upload a PDF and ask questions instantly using AI. Extract insights, summaries and answers from documents, reports and research papers." />
+
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="chat-with-pdf">
+
+<!-- ================= GLOBAL HEADER ================= -->
+<div id="site-header"></div>
+
+
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+<div class="container hero-inner">
+
+<h1>Chat with PDF</h1>
+
+<p class="hero-sub">
+Upload a document and ask questions to instantly extract insights.
+</p>
+
+
+
+<!-- ================= PDF UPLOAD ================= -->
+
+<div class="upload-box">
+
+<input
+type="file"
+class="file-input"
+accept="application/pdf"
+hidden
+/>
+
+<div class="upload-icon">📄</div>
+
+<p class="upload-title">
+Upload your PDF document
+</p>
+
+<p class="upload-hint">
+Supported format: PDF
+</p>
+
+
+<!-- PROGRESS -->
+<div class="progress-container">
+<div class="progress-bar"></div>
+</div>
+
+</div>
+
+
+
+<!-- ================= QUESTION INPUT ================= -->
+
+<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="questionInput"
+placeholder="Ask a question about your PDF..."
+style="
+width:100%;
+height:120px;
+padding:16px;
+border-radius:10px;
+border:none;
+resize:vertical;
+font-size:15px;">
+</textarea>
+
+</div>
+
+
+
+<!-- ================= QUERY OPTIONS ================= -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<select id="answerMode" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="direct" selected>Direct Answer</option>
+<option value="summary">Summary Answer</option>
+<option value="detailed">Detailed Explanation</option>
+<option value="keypoints">Key Points</option>
+</select>
+
+
+<select id="responseLength" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="short">Short</option>
+<option value="medium" selected>Medium</option>
+<option value="long">Detailed</option>
+</select>
+
+
+<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
+<option value="en" selected>English</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="hi">Hindi</option>
+<option value="ar">Arabic</option>
+</select>
+
+</div>
+
+
+
+<!-- ================= ADVANCED OPTIONS ================= -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="extractTables">
+Extract Tables
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="findNumbers">
+Highlight Numbers/Data
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="citeSources">
+Show Page References
+</label>
+
+<label>
+<input type="checkbox" id="simplifyText">
+Simplify Explanation
+</label>
+
+</div>
+
+
+
+<!-- ================= ACTION BUTTON ================= -->
+
+<div style="text-align:center;margin-top:25px;">
+<button
+id="askPdfBtn"
+class="btn-primary"
+style="padding:12px 28px;border-radius:8px;">
+Ask Question
+</button>
+</div>
+
+
+
+<!-- ================= RESULT ================= -->
+
+<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="pdfAnswer"
+placeholder="Answer will appear here..."
+style="
+width:100%;
+height:200px;
+padding:18px;
+border-radius:10px;
+border:none;
+resize:vertical;">
+</textarea>
+
+</div>
+
+
+</div>
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="tools">
+<div class="container">
+
+<div style="max-width:760px;margin:auto;text-align:center;">
+
+<h2>Powerful Document Intelligence</h2>
+
+<p class="hero-sub">
+Ask questions and extract answers from complex documents instantly.
+</p>
+
+<ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+<li>Ask questions about any PDF</li>
+<li>Extract key insights instantly</li>
+<li>Summarize long documents</li>
+<li>Find specific information quickly</li>
+<li>Ideal for reports, contracts and research</li>
+</ul>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ================= SEO CONTENT ================= -->
+
+<section class="seo-content">
+
+<div class="container">
+
+<h2>Chat with PDF – Ask Questions from Documents Instantly</h2>
+
+<p>
+The PaperlyTools Chat with PDF tool allows you to interact with
+documents using AI. Upload a PDF and ask questions to quickly
+extract answers, summaries and insights.
+</p>
+
+<h3>Why Use Chat with PDF?</h3>
+
+<ul>
+<li>Understand complex documents faster</li>
+<li>Extract insights from research papers</li>
+<li>Analyze contracts and reports</li>
+<li>Save time searching through documents</li>
+</ul>
+
+<h3>How to Use This Tool</h3>
+
+<p>
+Upload your PDF document, type a question and let the AI
+analyze the document to provide a detailed answer.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= GLOBAL FOOTER ================= -->
+
+<div id="site-footer"></div>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="../assets/js/includes.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+
+
+
+<!-- PARTICLES -->
+
+<div class="particles"></div>
+
+
+</body>
+</html>
