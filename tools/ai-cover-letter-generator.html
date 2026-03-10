@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI Cover Letter Generator – Create Job Application Letters Instantly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="description"
+content="Generate professional cover letters instantly using AI. Create job application letters tailored to job descriptions and resumes." />
+
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="ai-cover-letter-generator">
+
+<div id="site-header"></div>
+
+
+
+<section class="hero">
+<div class="container hero-inner">
+
+<h1>AI Cover Letter Generator</h1>
+
+<p class="hero-sub">
+Create professional cover letters tailored to your job application.
+</p>
+
+
+
+<!-- RESUME UPLOAD -->
+
+<div class="upload-box">
+
+<input
+type="file"
+class="file-input"
+accept=".pdf,.doc,.docx"
+hidden
+/>
+
+<div class="upload-icon">📄</div>
+
+<p class="upload-title">
+Upload your resume (optional)
+</p>
+
+<p class="upload-hint">
+PDF or DOC format supported
+</p>
+
+<div class="progress-container">
+<div class="progress-bar"></div>
+</div>
+
+</div>
+
+
+
+<!-- JOB DETAILS -->
+
+<div style="margin-top:25px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<input
+type="text"
+id="jobTitle"
+placeholder="Job Title"
+style="width:100%;padding:14px;border-radius:8px;border:none;margin-bottom:10px;"
+>
+
+<input
+type="text"
+id="companyName"
+placeholder="Company Name"
+style="width:100%;padding:14px;border-radius:8px;border:none;margin-bottom:10px;"
+>
+
+<textarea
+id="jobDescription"
+placeholder="Paste job description (optional but recommended)"
+style="width:100%;height:140px;padding:16px;border-radius:10px;border:none;">
+</textarea>
+
+</div>
+
+
+
+<!-- COVER LETTER TYPE -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<select id="letterType" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="job" selected>Job Application</option>
+<option value="career-change">Career Change</option>
+<option value="internship">Internship</option>
+<option value="referral">Referral Letter</option>
+<option value="followup">Follow-up After Interview</option>
+<option value="cold">Cold Application</option>
+<option value="promotion">Promotion Request</option>
+</select>
+
+
+<select id="experienceLevel" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="entry">Entry Level</option>
+<option value="junior">Junior</option>
+<option value="mid" selected>Mid Level</option>
+<option value="senior">Senior</option>
+<option value="executive">Executive</option>
+<option value="career-change">Career Change</option>
+</select>
+
+
+<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
+<option value="en" selected>English</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="hi">Hindi</option>
+</select>
+
+</div>
+
+
+
+<!-- WRITING STYLE -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<select id="toneSelect" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="professional" selected>Professional</option>
+<option value="formal">Formal</option>
+<option value="enthusiastic">Enthusiastic</option>
+<option value="friendly">Friendly</option>
+<option value="confident">Confident</option>
+<option value="persuasive">Persuasive</option>
+</select>
+
+
+<select id="letterLength" style="padding:10px 16px;border-radius:8px;">
+<option value="short">Short</option>
+<option value="medium" selected>Standard</option>
+<option value="long">Detailed</option>
+</select>
+
+</div>
+
+
+
+<!-- ADVANCED OPTIONS -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="includeGreeting" checked>
+Include Greeting
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="includeAchievements">
+Highlight Achievements
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="keywordOptimize">
+Optimize for Job Keywords
+</label>
+
+<label>
+<input type="checkbox" id="strongClosing">
+Strong Closing Statement
+</label>
+
+</div>
+
+
+
+<div style="text-align:center;margin-top:25px;">
+<button
+id="generateCoverLetterBtn"
+class="btn-primary"
+style="padding:12px 28px;border-radius:8px;">
+Generate Cover Letter
+</button>
+</div>
+
+
+
+<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="coverLetterResult"
+placeholder="Generated cover letter will appear here..."
+style="width:100%;height:260px;padding:18px;border-radius:10px;border:none;">
+</textarea>
+
+</div>
+
+
+</div>
+</section>
+
+
+
+<section class="seo-content">
+<div class="container">
+
+<h2>AI Cover Letter Generator – Create Professional Job Applications</h2>
+
+<p>
+PaperlyTools AI Cover Letter Generator helps job seekers create
+customized cover letters quickly. Upload your resume, paste the job
+description and generate a professional application letter instantly.
+</p>
+
+<h3>Why Use an AI Cover Letter Generator?</h3>
+
+<ul>
+<li>Save time writing cover letters</li>
+<li>Customize letters for each job</li>
+<li>Improve interview chances</li>
+<li>Optimize for ATS keywords</li>
+</ul>
+
+</div>
+</section>
+
+
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/includes.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+
+<div class="particles"></div>
+
+</body>
+</html>
