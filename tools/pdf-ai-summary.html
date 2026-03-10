@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI PDF Summarizer – Generate Instant Summary from PDF</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="description"
+content="Upload a PDF and generate instant AI summaries. Extract key insights, bullet points and important information from documents and reports." />
+
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="pdf-ai-summary">
+
+<!-- ================= GLOBAL HEADER ================= -->
+<div id="site-header"></div>
+
+
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+<div class="container hero-inner">
+
+<h1>AI PDF Summarizer</h1>
+
+<p class="hero-sub">
+Upload a PDF and generate a quick summary of the document instantly.
+</p>
+
+
+
+<!-- ================= UPLOAD BOX ================= -->
+
+<div class="upload-box">
+
+<input
+type="file"
+class="file-input"
+accept="application/pdf"
+hidden
+/>
+
+<div class="upload-icon">📄</div>
+
+<p class="upload-title">
+Upload your PDF document
+</p>
+
+<p class="upload-hint">
+Supported format: PDF
+</p>
+
+<!-- PROGRESS BAR -->
+<div class="progress-container">
+<div class="progress-bar"></div>
+</div>
+
+</div>
+
+
+
+<!-- ================= SUMMARY OPTIONS ================= -->
+
+<div style="margin-top:25px;text-align:center;">
+
+<select id="summaryType" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="overview" selected>Overview Summary</option>
+<option value="bullet">Bullet Point Summary</option>
+<option value="keypoints">Key Insights</option>
+<option value="executive">Executive Summary</option>
+<option value="detailed">Detailed Summary</option>
+</select>
+
+
+<select id="summaryLength" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="short">Short</option>
+<option value="medium" selected>Medium</option>
+<option value="long">Detailed</option>
+</select>
+
+
+<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
+<option value="en" selected>English</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="hi">Hindi</option>
+<option value="ar">Arabic</option>
+</select>
+
+</div>
+
+
+
+<!-- ================= ADVANCED OPTIONS ================= -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="extractHeadings">
+Extract Section Headings
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="highlightNumbers">
+Highlight Important Numbers
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="simplifyText">
+Simplify Language
+</label>
+
+<label>
+<input type="checkbox" id="includeQuotes">
+Include Key Quotes
+</label>
+
+</div>
+
+
+
+<!-- ================= ACTION BUTTON ================= -->
+
+<div style="text-align:center;margin-top:25px;">
+<button
+id="generateSummaryBtn"
+class="btn-primary"
+style="padding:12px 28px;border-radius:8px;">
+Generate Summary
+</button>
+</div>
+
+
+
+<!-- ================= RESULT ================= -->
+
+<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="summaryResult"
+placeholder="Your PDF summary will appear here..."
+style="
+width:100%;
+height:220px;
+padding:18px;
+border-radius:10px;
+border:none;
+resize:vertical;">
+</textarea>
+
+</div>
+
+
+</div>
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="tools">
+<div class="container">
+
+<div style="max-width:760px;margin:auto;text-align:center;">
+
+<h2>Instant AI Document Summaries</h2>
+
+<p class="hero-sub">
+Quickly extract the most important insights from long PDF documents.
+</p>
+
+<ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+<li>Summarize long documents instantly</li>
+<li>Extract key insights from reports</li>
+<li>Understand research papers faster</li>
+<li>Generate executive summaries</li>
+<li>Perfect for students and professionals</li>
+</ul>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ================= SEO CONTENT ================= -->
+
+<section class="seo-content">
+
+<div class="container">
+
+<h2>AI PDF Summarizer – Generate Smart Document Summaries</h2>
+
+<p>
+The PaperlyTools AI PDF summarizer allows you to upload a document
+and instantly generate a concise summary. Instead of reading an entire
+report or research paper, you can quickly extract the most important
+information using AI.
+</p>
+
+<h3>Why Use an AI PDF Summarizer?</h3>
+
+<ul>
+<li>Save time reading long documents</li>
+<li>Extract key insights quickly</li>
+<li>Understand complex reports faster</li>
+<li>Perfect for students and professionals</li>
+</ul>
+
+<h3>How to Use This Tool</h3>
+
+<p>
+Upload your PDF document, select summary type and generate
+a concise summary instantly.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= GLOBAL FOOTER ================= -->
+
+<div id="site-footer"></div>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="../assets/js/includes.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+
+
+
+<!-- PARTICLES -->
+
+<div class="particles"></div>
+
+
+</body>
+</html>
