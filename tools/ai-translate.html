@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Translator – Translate Text Between 50+ Languages Instantly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description"
+        content="Translate text instantly using AI. Support for 50+ languages with tone control, formal/informal modes and advanced translation quality." />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="ai-translate">
+
+<!-- ================= GLOBAL HEADER ================= -->
+<div id="site-header"></div>
+
+
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container hero-inner">
+
+    <h1>AI Translator</h1>
+
+    <p class="hero-sub">
+      Instantly translate text across multiple languages using AI.
+    </p>
+
+
+    <!-- SOURCE TEXT -->
+    <div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+      <textarea
+        id="sourceText"
+        placeholder="Enter or paste text to translate..."
+        style="
+        width:100%;
+        height:200px;
+        padding:18px;
+        border-radius:10px;
+        border:none;
+        resize:vertical;
+        font-size:15px;">
+      </textarea>
+    </div>
+
+
+
+    <!-- LANGUAGE CONTROLS -->
+    <div style="margin-top:20px;text-align:center;">
+
+      <select id="sourceLanguage" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+        <option value="auto">Auto Detect</option>
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="hi">Hindi</option>
+        <option value="ar">Arabic</option>
+        <option value="zh">Chinese</option>
+        <option value="ru">Russian</option>
+        <option value="ja">Japanese</option>
+      </select>
+
+
+      <select id="targetLanguage" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="hi">Hindi</option>
+        <option value="ar">Arabic</option>
+        <option value="zh">Chinese</option>
+        <option value="ru">Russian</option>
+        <option value="ja">Japanese</option>
+      </select>
+
+    </div>
+
+
+
+    <!-- ADVANCED OPTIONS -->
+    <div style="margin-top:20px;text-align:center;">
+
+      <select id="translationTone" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+        <option value="neutral">Neutral Tone</option>
+        <option value="formal">Formal Tone</option>
+        <option value="casual">Casual Tone</option>
+        <option value="professional">Professional Tone</option>
+      </select>
+
+
+      <select id="translationStyle" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+        <option value="accurate">High Accuracy</option>
+        <option value="balanced">Balanced</option>
+        <option value="creative">Creative</option>
+      </select>
+
+
+      <select id="translationLength" style="padding:10px 16px;border-radius:8px;">
+        <option value="same">Same Length</option>
+        <option value="shorter">Shorter</option>
+        <option value="expanded">Expanded Explanation</option>
+      </select>
+
+    </div>
+
+
+
+    <!-- ACTION BUTTON -->
+    <div style="text-align:center;margin-top:25px;">
+      <button
+        id="translateBtn"
+        class="btn-primary"
+        style="padding:12px 28px;border-radius:8px;">
+        Translate Text
+      </button>
+    </div>
+
+
+
+    <!-- PROGRESS -->
+    <div class="progress-container" style="margin-top:20px;">
+      <div class="progress-bar"></div>
+    </div>
+
+
+
+    <!-- RESULT -->
+    <div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+      <textarea
+        id="translatedText"
+        placeholder="Translated text will appear here..."
+        style="
+        width:100%;
+        height:200px;
+        padding:18px;
+        border-radius:10px;
+        border:none;
+        resize:vertical;
+        font-size:15px;">
+      </textarea>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+<section class="tools">
+  <div class="container">
+
+    <div style="max-width:760px;margin:auto;text-align:center;">
+
+      <h2>Advanced AI Translation</h2>
+
+      <p class="hero-sub">
+        Our AI translator provides accurate translations with tone control
+        and contextual understanding across multiple languages.
+      </p>
+
+      <ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+        <li>Translate between 50+ languages</li>
+        <li>Automatic language detection</li>
+        <li>Formal and casual tone control</li>
+        <li>High accuracy AI translation</li>
+        <li>Ideal for business, academic and personal use</li>
+      </ul>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================= SEO CONTENT ================= -->
+<section class="seo-content">
+
+  <div class="container">
+
+    <h2>AI Translator – Fast & Accurate Language Translation</h2>
+
+    <p>
+      PaperlyTools AI Translator helps you convert text between multiple
+      languages instantly with high accuracy. Whether you need to translate
+      emails, documents, articles or conversations, our AI translation engine
+      ensures contextual understanding and natural output.
+    </p>
+
+    <h3>Why Use AI Translation?</h3>
+
+    <ul>
+      <li>Understand foreign languages instantly</li>
+      <li>Improve communication globally</li>
+      <li>Translate professional documents</li>
+      <li>Maintain tone and meaning</li>
+    </ul>
+
+    <h3>How to Use the AI Translator</h3>
+
+    <p>
+      Enter the text you want to translate, select the source and target
+      languages, choose translation tone and style, then generate the
+      translated text instantly.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= GLOBAL FOOTER ================= -->
+<div id="site-footer"></div>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+<script src="../assets/js/includes.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+
+
+
+<!-- PARTICLES -->
+<div class="particles"></div>
+
+</body>
+</html>
