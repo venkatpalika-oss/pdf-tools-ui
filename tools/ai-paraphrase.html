@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI Paraphraser – Rewrite Sentences & Improve Writing Instantly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="description"
+content="Rewrite sentences, paraphrase paragraphs, and improve writing instantly using AI. Choose tone, creativity, vocabulary level and rewriting modes." />
+
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="ai-paraphrase">
+
+<!-- ================= GLOBAL HEADER ================= -->
+<div id="site-header"></div>
+
+
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+<div class="container hero-inner">
+
+<h1>AI Paraphraser</h1>
+
+<p class="hero-sub">
+Rewrite sentences, paragraphs and articles while preserving the original meaning.
+</p>
+
+
+<!-- INPUT TEXT -->
+<div style="margin-top:30px;max-width:760px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="paraphraseInput"
+placeholder="Paste the text you want to rewrite or paraphrase..."
+style="
+width:100%;
+height:220px;
+padding:18px;
+border-radius:10px;
+border:none;
+resize:vertical;
+font-size:15px;">
+</textarea>
+
+</div>
+
+
+
+<!-- PARAPHRASE MODE -->
+<div style="margin-top:20px;text-align:center;">
+
+<select id="rewriteMode" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="standard" selected>Standard Paraphrase</option>
+<option value="fluency">Improve Fluency</option>
+<option value="creative">Creative Rewrite</option>
+<option value="formal">Formal Rewrite</option>
+<option value="academic">Academic Writing</option>
+<option value="simplify">Simplify Text</option>
+<option value="expand">Expand Explanation</option>
+</select>
+
+
+<select id="languageSelect" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="en" selected>English</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="hi">Hindi</option>
+<option value="ar">Arabic</option>
+<option value="zh">Chinese</option>
+<option value="ru">Russian</option>
+</select>
+
+</div>
+
+
+
+<!-- ADVANCED OPTIONS -->
+<div style="margin-top:20px;text-align:center;">
+
+<select id="creativityLevel" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="low">Low Creativity (Close to Original)</option>
+<option value="medium" selected>Balanced Rewrite</option>
+<option value="high">High Creativity</option>
+</select>
+
+
+<select id="vocabularyLevel" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="simple">Simple Vocabulary</option>
+<option value="standard" selected>Standard Vocabulary</option>
+<option value="advanced">Advanced Vocabulary</option>
+</select>
+
+
+<select id="lengthControl" style="padding:10px 16px;border-radius:8px;">
+<option value="same">Same Length</option>
+<option value="shorter">Shorter Version</option>
+<option value="longer">More Detailed Version</option>
+</select>
+
+</div>
+
+
+
+<!-- EXTRA OPTIONS -->
+<div style="margin-top:20px;text-align:center;">
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="improveClarity"> Improve Clarity
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="rewriteSentences"> Rewrite Sentences
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="replaceVocabulary"> Replace Vocabulary
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="avoidPlagiarism"> Avoid Plagiarism
+</label>
+
+<label>
+<input type="checkbox" id="improveFlow"> Improve Sentence Flow
+</label>
+
+</div>
+
+
+
+<!-- ACTION BUTTON -->
+<div style="text-align:center;margin-top:25px;">
+<button
+id="paraphraseBtn"
+class="btn-primary"
+style="padding:12px 28px;border-radius:8px;">
+Paraphrase Text
+</button>
+</div>
+
+
+
+<!-- PROGRESS BAR -->
+<div class="progress-container" style="margin-top:20px;">
+<div class="progress-bar"></div>
+</div>
+
+
+
+<!-- RESULT BOX -->
+<div style="margin-top:30px;max-width:760px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="paraphraseResult"
+placeholder="Your rewritten text will appear here..."
+style="
+width:100%;
+height:220px;
+padding:18px;
+border-radius:10px;
+border:none;
+resize:vertical;
+font-size:15px;">
+</textarea>
+
+</div>
+
+
+</div>
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+<section class="tools">
+<div class="container">
+
+<div style="max-width:760px;margin:auto;text-align:center;">
+
+<h2>Powerful AI Paraphrasing Engine</h2>
+
+<p class="hero-sub">
+Rewrite content while keeping the original meaning. Perfect for students,
+writers, bloggers and professionals.
+</p>
+
+<ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+<li>Rewrite sentences instantly</li>
+<li>Improve writing clarity</li>
+<li>Replace vocabulary intelligently</li>
+<li>Generate plagiarism-free content</li>
+<li>Adapt tone and writing style</li>
+</ul>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ================= SEO CONTENT ================= -->
+<section class="seo-content">
+
+<div class="container">
+
+<h2>AI Paraphraser – Rewrite Sentences & Improve Writing</h2>
+
+<p>
+The PaperlyTools AI paraphraser helps you rewrite sentences, paragraphs
+and articles quickly while preserving the original meaning. It improves
+clarity, replaces vocabulary and enhances readability.
+</p>
+
+<h3>Why Use a Paraphrasing Tool?</h3>
+
+<ul>
+<li>Rewrite sentences without changing meaning</li>
+<li>Avoid plagiarism in writing</li>
+<li>Improve vocabulary and clarity</li>
+<li>Generate alternative writing styles</li>
+</ul>
+
+<h3>How to Use the AI Paraphraser</h3>
+
+<p>
+Paste your text, choose a paraphrasing mode and generate a rewritten
+version instantly using AI.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= GLOBAL FOOTER ================= -->
+<div id="site-footer"></div>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+<script src="../assets/js/includes.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+
+
+
+<!-- PARTICLES -->
+<div class="particles"></div>
+
+</body>
+</html>
