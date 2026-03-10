@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI Email Writer – Generate Professional Emails Instantly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="description"
+content="Generate professional emails instantly using AI. Create business emails, follow-ups, job emails, sales outreach and customer support responses." />
+
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="ai-email-writer">
+
+<!-- ================= GLOBAL HEADER ================= -->
+<div id="site-header"></div>
+
+
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+<div class="container hero-inner">
+
+<h1>AI Email Writer</h1>
+
+<p class="hero-sub">
+Write professional emails instantly for business, job applications and communication.
+</p>
+
+
+<!-- EMAIL PURPOSE -->
+<div style="margin-top:25px;text-align:center;">
+
+<select id="emailType" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="professional" selected>Professional Email</option>
+<option value="job-application">Job Application Email</option>
+<option value="follow-up">Follow-up Email</option>
+<option value="sales">Sales Outreach Email</option>
+<option value="support">Customer Support Email</option>
+<option value="meeting">Meeting Request Email</option>
+<option value="apology">Apology Email</option>
+<option value="thankyou">Thank You Email</option>
+<option value="complaint">Complaint Email</option>
+</select>
+
+</div>
+
+
+
+<!-- EMAIL DETAILS -->
+<div style="margin-top:25px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<input
+type="text"
+id="recipient"
+placeholder="Recipient name (optional)"
+style="width:100%;padding:14px;border-radius:8px;border:none;margin-bottom:12px;"
+>
+
+<input
+type="text"
+id="subject"
+placeholder="Email subject or topic"
+style="width:100%;padding:14px;border-radius:8px;border:none;margin-bottom:12px;"
+>
+
+<textarea
+id="emailContext"
+placeholder="Describe what the email should say..."
+style="width:100%;height:150px;padding:16px;border-radius:10px;border:none;resize:vertical;">
+</textarea>
+
+</div>
+
+
+
+<!-- TONE + STYLE -->
+<div style="margin-top:20px;text-align:center;">
+
+<select id="emailTone" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="neutral">Neutral Tone</option>
+<option value="formal">Formal</option>
+<option value="friendly">Friendly</option>
+<option value="professional" selected>Professional</option>
+<option value="confident">Confident</option>
+<option value="persuasive">Persuasive</option>
+</select>
+
+
+<select id="emailLength" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="short">Short Email</option>
+<option value="medium" selected>Medium</option>
+<option value="detailed">Detailed Email</option>
+</select>
+
+
+<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
+<option value="en" selected>English</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="hi">Hindi</option>
+<option value="ar">Arabic</option>
+</select>
+
+</div>
+
+
+
+<!-- ADVANCED OPTIONS -->
+<div style="margin-top:20px;text-align:center;">
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="includeGreeting" checked>
+Include Greeting
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="includeClosing" checked>
+Include Closing
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="improveClarity">
+Improve Clarity
+</label>
+
+<label>
+<input type="checkbox" id="persuasiveMode">
+Persuasive Mode
+</label>
+
+</div>
+
+
+
+<!-- ACTION BUTTON -->
+<div style="text-align:center;margin-top:25px;">
+<button
+id="generateEmailBtn"
+class="btn-primary"
+style="padding:12px 28px;border-radius:8px;">
+Generate Email
+</button>
+</div>
+
+
+
+<!-- PROGRESS -->
+<div class="progress-container" style="margin-top:20px;">
+<div class="progress-bar"></div>
+</div>
+
+
+
+<!-- RESULT -->
+<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="emailResult"
+placeholder="Generated email will appear here..."
+style="width:100%;height:220px;padding:18px;border-radius:10px;border:none;resize:vertical;">
+</textarea>
+
+</div>
+
+
+</div>
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+<section class="tools">
+<div class="container">
+
+<div style="max-width:760px;margin:auto;text-align:center;">
+
+<h2>AI Email Assistant</h2>
+
+<p class="hero-sub">
+Write clear, professional and effective emails instantly using AI.
+</p>
+
+<ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+<li>Generate professional emails instantly</li>
+<li>Create job application and follow-up emails</li>
+<li>Write persuasive sales outreach messages</li>
+<li>Improve communication clarity</li>
+<li>Perfect for business and professional use</li>
+</ul>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ================= SEO CONTENT ================= -->
+<section class="seo-content">
+
+<div class="container">
+
+<h2>AI Email Writer – Generate Professional Emails Instantly</h2>
+
+<p>
+The PaperlyTools AI email writer helps you create professional,
+clear and effective emails within seconds. Whether you need a
+job application email, follow-up message or business communication,
+our AI assistant generates well-structured emails instantly.
+</p>
+
+<h3>Why Use an AI Email Generator?</h3>
+
+<ul>
+<li>Write emails faster</li>
+<li>Improve professional communication</li>
+<li>Create persuasive outreach messages</li>
+<li>Save time writing repetitive emails</li>
+</ul>
+
+<h3>How to Use the Email Writer</h3>
+
+<p>
+Select the email type, describe your message, choose tone and length,
+then generate a complete email instantly.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= GLOBAL FOOTER ================= -->
+<div id="site-footer"></div>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+<script src="../assets/js/includes.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+
+
+
+<!-- PARTICLES -->
+<div class="particles"></div>
+
+</body>
+</html>
