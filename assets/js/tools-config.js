@@ -75,6 +75,73 @@ export const tools = [
   title: "Add Page Numbers",
   description: "Automatically add page numbers to your PDF.",
   api: "/page-numbers"
+},
+
+/* =========================================
+   AI TOOLS (NEW SECTION)
+========================================= */
+
+{
+  slug: "ai-summarize",
+  title: "AI Text Summarizer",
+  description: "Summarize long text instantly using AI.",
+  api: "/ai/summarize"
+},
+
+{
+  slug: "ai-translate",
+  title: "AI Translator",
+  description: "Translate text between multiple languages instantly.",
+  api: "/ai/translate"
+},
+
+{
+  slug: "ai-grammar",
+  title: "AI Grammar Fixer",
+  description: "Fix grammar mistakes and improve writing clarity.",
+  api: "/ai/grammar"
+},
+
+{
+  slug: "ai-paraphrase",
+  title: "AI Paraphraser",
+  description: "Rewrite sentences and paragraphs with AI.",
+  api: "/ai/paraphrase"
+},
+
+{
+  slug: "ai-blog-writer",
+  title: "AI Blog Generator",
+  description: "Generate SEO-friendly blog content instantly.",
+  api: "/ai/blog"
+},
+
+{
+  slug: "ai-email-writer",
+  title: "AI Email Writer",
+  description: "Generate professional emails with AI assistance.",
+  api: "/ai/email"
+},
+
+{
+  slug: "ai-resume-analyzer",
+  title: "AI Resume Analyzer",
+  description: "Analyze your resume and receive AI suggestions.",
+  api: "/ai/resume"
+},
+
+{
+  slug: "chat-with-pdf",
+  title: "Chat with PDF",
+  description: "Ask questions and get answers from your PDF documents.",
+  api: "/ai/chat-pdf"
+},
+
+{
+  slug: "pdf-ai-summary",
+  title: "AI PDF Summarizer",
+  description: "Upload a PDF and get an instant AI-generated summary.",
+  api: "/ai/pdf-summary"
 }
 
 ];
