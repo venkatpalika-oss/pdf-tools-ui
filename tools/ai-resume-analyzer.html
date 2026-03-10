@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI Resume Analyzer – Improve Resume & Increase Job Interview Chances</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="description"
+content="Upload your resume and analyze it using AI. Get ATS score, keyword suggestions, skill gaps and improvement recommendations." />
+
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body data-tool="ai-resume-analyzer">
+
+<!-- ================= GLOBAL HEADER ================= -->
+<div id="site-header"></div>
+
+
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+<div class="container hero-inner">
+
+<h1>AI Resume Analyzer</h1>
+
+<p class="hero-sub">
+Analyze your resume instantly and improve your chances of getting interviews.
+</p>
+
+
+
+<!-- ================= RESUME UPLOAD ================= -->
+
+<div class="upload-box">
+
+<input
+type="file"
+class="file-input"
+accept=".pdf,.doc,.docx"
+hidden
+/>
+
+<div class="upload-icon">📄</div>
+
+<p class="upload-title">
+Upload your Resume
+</p>
+
+<p class="upload-hint">
+Supported formats: PDF, DOC, DOCX
+</p>
+
+<!-- PROGRESS -->
+<div class="progress-container">
+<div class="progress-bar"></div>
+</div>
+
+</div>
+
+
+
+<!-- ================= JOB DESCRIPTION ================= -->
+
+<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="jobDescription"
+placeholder="Paste the job description to match your resume..."
+style="
+width:100%;
+height:140px;
+padding:16px;
+border-radius:10px;
+border:none;
+resize:vertical;">
+</textarea>
+
+</div>
+
+
+
+<!-- ================= ANALYSIS OPTIONS ================= -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<select id="analysisType" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="full" selected>Full Resume Analysis</option>
+<option value="ats">ATS Compatibility Check</option>
+<option value="keywords">Keyword Match</option>
+<option value="skills">Skill Gap Analysis</option>
+<option value="improve">Improvement Suggestions</option>
+</select>
+
+
+<select id="targetRole" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="general" selected>General Resume Review</option>
+<option value="software">Software Engineer</option>
+<option value="marketing">Marketing</option>
+<option value="finance">Finance</option>
+<option value="sales">Sales</option>
+<option value="management">Management</option>
+</select>
+
+
+<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
+<option value="en" selected>English</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="hi">Hindi</option>
+</select>
+
+</div>
+
+
+
+<!-- ================= ADVANCED OPTIONS ================= -->
+
+<div style="margin-top:20px;text-align:center;">
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="checkATS">
+Check ATS Compatibility
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="keywordOptimization">
+Keyword Optimization
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="skillGap">
+Identify Skill Gaps
+</label>
+
+<label style="margin-right:15px;">
+<input type="checkbox" id="rewriteSuggestions">
+Rewrite Suggestions
+</label>
+
+<label>
+<input type="checkbox" id="formatReview">
+Formatting Review
+</label>
+
+</div>
+
+
+
+<!-- ================= ACTION BUTTON ================= -->
+
+<div style="text-align:center;margin-top:25px;">
+<button
+id="analyzeResumeBtn"
+class="btn-primary"
+style="padding:12px 28px;border-radius:8px;">
+Analyze Resume
+</button>
+</div>
+
+
+
+<!-- ================= RESULT ================= -->
+
+<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<textarea
+id="resumeAnalysisResult"
+placeholder="Your resume analysis will appear here..."
+style="
+width:100%;
+height:240px;
+padding:18px;
+border-radius:10px;
+border:none;
+resize:vertical;">
+</textarea>
+
+</div>
+
+
+</div>
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="tools">
+<div class="container">
+
+<div style="max-width:760px;margin:auto;text-align:center;">
+
+<h2>Smart Resume Insights</h2>
+
+<p class="hero-sub">
+Identify weaknesses and optimize your resume for better job opportunities.
+</p>
+
+<ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+<li>ATS compatibility score</li>
+<li>Keyword optimization for job roles</li>
+<li>Skill gap analysis</li>
+<li>Professional resume improvement suggestions</li>
+<li>Actionable writing improvements</li>
+</ul>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ================= SEO CONTENT ================= -->
+
+<section class="seo-content">
+
+<div class="container">
+
+<h2>AI Resume Analyzer – Improve Your Resume & Get More Interviews</h2>
+
+<p>
+The PaperlyTools AI Resume Analyzer helps job seekers optimize their
+resume for modern hiring systems. Upload your resume and receive
+instant insights including ATS compatibility, keyword optimization,
+and skill gap analysis.
+</p>
+
+<h3>Why Use a Resume Analyzer?</h3>
+
+<ul>
+<li>Improve ATS compatibility</li>
+<li>Match resume to job descriptions</li>
+<li>Identify missing skills</li>
+<li>Strengthen resume impact</li>
+</ul>
+
+<h3>How to Use This Tool</h3>
+
+<p>
+Upload your resume, optionally paste a job description, and run the
+AI analysis to receive detailed feedback and improvement suggestions.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= GLOBAL FOOTER ================= -->
+
+<div id="site-footer"></div>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="../assets/js/includes.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+
+
+
+<div class="particles"></div>
+
+</body>
+</html>
