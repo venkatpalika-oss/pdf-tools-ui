@@ -132,4 +132,67 @@ script.textContent = JSON.stringify(schema);
 
 document.head.appendChild(script);
 
+/* =========================
+FAQ SCHEMA GENERATOR
+========================= */
+
+const faqMap = {
+
+compress: [
+{
+q: "How can I compress a PDF file?",
+a: "Upload your PDF file, choose a compression level, and download the optimized file instantly."
+},
+{
+q: "Does PDF compression reduce quality?",
+a: "Balanced compression reduces file size while maintaining readable document quality."
+}
+],
+
+merge: [
+{
+q: "How do I merge multiple PDF files?",
+a: "Upload two or more PDF files and the tool will combine them into one document."
+},
+{
+q: "Is merging PDFs safe?",
+a: "Yes. Files are processed securely and automatically deleted after completion."
+}
+],
+
+split: [
+{
+q: "How can I split a PDF into pages?",
+a: "Upload your PDF and download individual pages instantly as a ZIP file."
+},
+{
+q: "Can I extract specific pages?",
+a: "Yes. The tool allows extraction of individual pages from a document."
+}
+]
+
+};
+
+if (faqMap[tool]){
+
+const faqSchema = {
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": faqMap[tool].map(item => ({
+"@type": "Question",
+"name": item.q,
+"acceptedAnswer": {
+"@type": "Answer",
+"text": item.a
+}
+}))
+};
+
+const faqScript = document.createElement("script");
+faqScript.type = "application/ld+json";
+faqScript.textContent = JSON.stringify(faqSchema);
+
+document.head.appendChild(faqScript);
+
+}
 });
