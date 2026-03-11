@@ -9,7 +9,7 @@ import { getToken, logout } from "./auth.js";
   This must always point to your backend server.
   Do NOT use relative paths like "/api/..."
 */
-const API_BASE = "https://pdf-tools-api-c4f5.onrender.com";
+const API_BASE = "https://api.paperlytools.com";
 
 /* ============================================
    Build Full API URL
