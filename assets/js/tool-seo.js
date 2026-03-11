@@ -106,5 +106,56 @@ setTwitter("twitter:title", data.title);
 setTwitter("twitter:description", data.description);
 setTwitter("twitter:image","https://paperlytools.com/assets/img/preview.png");
 
+/* =========================
+RELATED TOOLS ENGINE
+========================= */
 
+const relatedTools = {
+
+compress: [
+{slug:"merge-pdf",name:"Merge PDF"},
+{slug:"split-pdf",name:"Split PDF"},
+{slug:"pdf-to-word",name:"PDF to Word"},
+{slug:"pdf-to-image",name:"PDF to Image"}
+],
+
+merge: [
+{slug:"compress-pdf",name:"Compress PDF"},
+{slug:"split-pdf",name:"Split PDF"},
+{slug:"organize-pdf",name:"Organize PDF"},
+{slug:"pdf-to-word",name:"PDF to Word"}
+],
+
+split: [
+{slug:"merge-pdf",name:"Merge PDF"},
+{slug:"compress-pdf",name:"Compress PDF"},
+{slug:"organize-pdf",name:"Organize PDF"},
+{slug:"pdf-to-image",name:"PDF to Image"}
+]
+
+};
+
+if (relatedTools[tool]) {
+
+const toolsSection = document.querySelector(".tools .container");
+
+if(!toolsSection) return;
+
+const block = document.createElement("div");
+block.className = "related-tools";
+
+let html = `<h3 style="text-align:center;margin-top:40px;">Related PDF Tools</h3>`;
+html += `<div class="seo-link-grid">`;
+
+relatedTools[tool].forEach(t=>{
+html += `<a class="seo-link dynamic-link" data-path="tools/${t.slug}.html">${t.name}</a>`;
+});
+
+html += `</div>`;
+
+block.innerHTML = html;
+
+toolsSection.appendChild(block);
+
+}
 });
