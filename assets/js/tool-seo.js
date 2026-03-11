@@ -160,4 +160,42 @@ toolsSection.appendChild(block);
 
 }
 */
+/* =========================
+AUTO RENDER RELATED TOOLS UI
+========================= */
+
+const relatedContainer = document.getElementById("related-tools-section");
+
+if (relatedContainer && relatedTools[tool]) {
+
+let html = `
+<section class="seo-links">
+<div class="container">
+
+<h2 class="section-title">Explore More PDF Tools</h2>
+
+<div class="tool-dashboard">
+`;
+
+relatedTools[tool].forEach(t => {
+
+html += `
+<a class="tool-card dynamic-link" data-path="/tools/${t.slug}.html">
+<div class="tool-icon">⚡</div>
+<div class="tool-name">${t.name}</div>
+<div class="tool-desc">Open tool</div>
+</a>
+`;
+
+});
+
+html += `
+</div>
+</div>
+</section>
+`;
+
+relatedContainer.innerHTML = html;
+
+}
 });

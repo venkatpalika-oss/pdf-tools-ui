@@ -103,12 +103,12 @@ resize:vertical;">
 </select>
 
 
-<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
-<option value="en" selected>English</option>
-<option value="es">Spanish</option>
-<option value="fr">French</option>
-<option value="de">German</option>
-<option value="hi">Hindi</option>
+<select class="language-select" style="padding:10px 16px;border-radius:8px;">
+<option value="English" selected>English</option>
+<option value="Spanish">Spanish</option>
+<option value="French">French</option>
+<option value="German">German</option>
+<option value="Hindi">Hindi</option>
 </select>
 
 </div>
@@ -260,6 +260,18 @@ AI analysis to receive detailed feedback and improvement suggestions.
 
 <script src="../assets/js/includes.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+
+<script>
+document.getElementById("analyzeResumeBtn").addEventListener("click", () => {
+
+const input = document.querySelector(".file-input");
+
+if(!input) return;
+
+input.click();
+
+});
+</script>
 
 
 

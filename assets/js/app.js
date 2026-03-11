@@ -136,6 +136,99 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
 
   }
+    function getAITextInput(){
+
+    const input = document.querySelector(".ai-text-input");
+
+    if(!input) return "";
+
+    return input.value.trim();
+
+  }
+
+    function getLanguageSelection(){
+
+    const select = document.querySelector(".language-select");
+
+    if(!select) return "English";
+
+    return select.value;
+
+  }
+    
+
+  /* ================= AI REQUEST ================= */
+
+async function sendAIRequest(endpoint, payload, box, loadingText){
+
+  try{
+
+    setStatus(box, loadingText, "loading");
+
+    const data = await apiRequest(endpoint,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if(!data){
+      throw new Error("AI returned no response");
+    }
+
+    const result =
+      data.summary ||
+      data.paraphrased ||
+      data.translation ||
+      data.corrected ||
+      data.email ||
+      data.coverLetter ||
+      data.analysis ||
+      data.answer;
+
+    if(!result){
+      throw new Error("Invalid AI response");
+    }
+
+    const title = box.querySelector(".upload-title");
+
+    title.innerHTML = `
+    <div class="result-actions">
+
+      <div class="result-success">
+        AI Result ✨
+      </div>
+
+      <div class="ai-result">
+        ${result.replace(/\n/g,"<br>")}
+      </div>
+
+      <button class="upload-again-btn">
+        Try Again
+      </button>
+
+    </div>
+    `;
+
+    const againBtn = box.querySelector(".upload-again-btn");
+
+    againBtn.addEventListener("click",()=>{
+      window.location.reload();
+    });
+
+  }
+  catch(error){
+
+    console.error("AI Error:",error);
+
+    setStatus(box,"AI Failed ❌","error");
+
+    alert(error.message || "AI processing failed");
+
+  }
+
+}
 
   /* ================= PROGRESS + REQUEST ================= */
 
@@ -388,42 +481,171 @@ progressBar.style.width="0%";
 
       switch(toolType){
 
-        case "compress":
-        compressPDF(files[0],box);
-        break;
+  case "compress":
+  compressPDF(files[0],box);
+  break;
 
-        case "merge":
-        mergePDF(files,box);
-        break;
+  case "merge":
+  mergePDF(files,box);
+  break;
 
-        case "split":
-        splitPDF(files[0],box);
-        break;
+  case "split":
+  splitPDF(files[0],box);
+  break;
 
-        case "pdf-to-image":
-        pdfToImage(files[0],box);
-        break;
+  case "pdf-to-image":
+  pdfToImage(files[0],box);
+  break;
 
-        case "watermark":
-        watermarkPDF(files[0],box);
-        break;
+  case "watermark":
+  watermarkPDF(files[0],box);
+  break;
 
-        case "pdf-to-word":
-        pdfToWord(files[0],box);
-        break;
+  case "pdf-to-word":
+  pdfToWord(files[0],box);
+  break;
 
-        case "jpg-to-pdf":
-        jpgToPDF(files,box);
-        break;
+  case "jpg-to-pdf":
+  jpgToPDF(files,box);
+  break;
 
-        case "unlock":
-        unlockPDF(files[0],box);
-        break;
+  case "unlock":
+  unlockPDF(files[0],box);
+  break;
 
-        default:
-        console.warn("Unknown tool type:",toolType);
 
-      }
+  /* ================= AI TEXT TOOLS ================= */
+
+  case "ai-summarize":
+
+  const summarizeText = getAITextInput();
+
+  if(!summarizeText){
+    alert("Please enter text to summarize.");
+    return;
+  }
+
+  sendAIRequest("/api/ai/summarize",
+    { text: summarizeText },
+    box,
+    "Summarizing… 🤖"
+  );
+
+  break;
+
+
+  case "ai-paraphrase":
+
+  const paraphraseText = getAITextInput();
+
+  if(!paraphraseText){
+    alert("Please enter text to rewrite.");
+    return;
+  }
+
+  sendAIRequest("/api/ai/paraphrase",
+    { text: paraphraseText },
+    box,
+    "Rewriting… 🤖"
+  );
+
+  break;
+
+
+  case "ai-grammar":
+
+  const grammarText = getAITextInput();
+
+  if(!grammarText){
+    alert("Please enter text.");
+    return;
+  }
+
+  sendAIRequest("/api/ai/grammar-fix",
+    { text: grammarText },
+    box,
+    "Fixing grammar… 🤖"
+  );
+
+  break;
+
+
+  case "ai-translate":
+
+  const translateText = getAITextInput();
+
+  if(!translateText){
+    alert("Please enter text to translate.");
+    return;
+  }
+
+  const language = getLanguageSelection();
+
+  sendAIRequest("/api/ai/translate",
+    { text: translateText, language: language },
+    box,
+    "Translating… 🌍"
+  );
+
+  break;
+
+
+  case "ai-email-writer":
+
+  const emailTopic = getAITextInput();
+
+  if(!emailTopic){
+    alert("Please enter an email topic.");
+    return;
+  }
+
+  sendAIRequest("/api/ai/email-writer",
+    { topic: emailTopic },
+    box,
+    "Writing email… ✉️"
+  );
+
+  break;
+
+
+  case "ai-resume-analyzer":
+
+const resumeFile = files[0];
+
+const formData = new FormData();
+formData.append("file", resumeFile);
+
+sendRequest("/api/ai/resume-analyzer",
+  formData,
+  box,
+  "Analyzing resume… 📄"
+);
+
+break;
+
+
+  case "ai-cover-letter":
+
+  const coverText = getAITextInput();
+
+  if(!coverText){
+    alert("Please provide your details.");
+    return;
+  }
+
+  sendAIRequest("/api/ai/cover-letter",
+    { text: coverText },
+    box,
+    "Generating cover letter… 🧠"
+  );
+
+  break;
+
+
+  default:
+  console.warn("Unknown tool type:",toolType);
+
+}
 
     });
 

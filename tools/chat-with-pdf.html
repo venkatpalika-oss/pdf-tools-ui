@@ -2,23 +2,115 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Chat with PDF – Ask Questions from Your PDF Documents</title>
+
+<title>Chat with PDF – Ask Questions from Documents Using AI | PaperlyTools</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <meta name="description"
 content="Upload a PDF and ask questions instantly using AI. Extract insights, summaries and answers from documents, reports and research papers." />
 
+<meta name="keywords"
+content="chat with pdf, ai pdf chat, ask pdf questions, ai document chat, pdf question answering ai" />
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://paperlytools.com/tools/chat-with-pdf.html" />
+
+<!-- OpenGraph -->
+<meta property="og:title" content="Chat with PDF – Ask Questions from Documents Using AI">
+<meta property="og:description" content="Upload a PDF and ask questions instantly using AI.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paperlytools.com/tools/chat-with-pdf.html">
+<meta property="og:image" content="https://paperlytools.com/assets/img/preview.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chat with PDF">
+<meta name="twitter:description" content="Ask questions and extract insights from PDF documents instantly.">
+<meta name="twitter:image" content="https://paperlytools.com/assets/img/preview.png">
+
 <link rel="stylesheet" href="../assets/css/style.css" />
+
+<!-- SOFTWARE APPLICATION SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "Chat with PDF",
+ "operatingSystem": "Web",
+ "applicationCategory": "BusinessApplication",
+ "offers": {
+   "@type": "Offer",
+   "price": "0",
+   "priceCurrency": "USD"
+ },
+ "description": "AI powered tool that allows users to ask questions and extract answers from PDF documents.",
+ "url": "https://paperlytools.com/tools/chat-with-pdf.html",
+ "featureList":[
+   "Ask questions about PDF documents",
+   "Extract insights from reports",
+   "Find specific information quickly",
+   "AI powered document analysis"
+ ]
+}
+</script>
+
+<!-- BREADCRUMB SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [{
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://paperlytools.com"
+ },{
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Chat with PDF",
+   "item": "https://paperlytools.com/tools/chat-with-pdf.html"
+ }]
+}
+</script>
+
+<!-- FAQ SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [{
+ "@type": "Question",
+ "name": "Can I ask questions from a PDF using AI?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Yes. Upload a PDF document and ask questions to extract answers instantly using AI."
+ }
+ },{
+ "@type": "Question",
+ "name": "What type of documents can I analyze?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "You can analyze research papers, reports, contracts, manuals and other PDF documents."
+ }
+ },{
+ "@type": "Question",
+ "name": "Is Chat with PDF secure?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Yes. Files are processed securely and automatically removed after processing."
+ }
+ }]
+}
+</script>
+
 </head>
 
 <body data-tool="chat-with-pdf">
 
-<!-- ================= GLOBAL HEADER ================= -->
 <div id="site-header"></div>
 
-
-
-<!-- ================= HERO ================= -->
 <section class="hero">
 <div class="container hero-inner">
 
@@ -27,10 +119,6 @@ content="Upload a PDF and ask questions instantly using AI. Extract insights, su
 <p class="hero-sub">
 Upload a document and ask questions to instantly extract insights.
 </p>
-
-
-
-<!-- ================= PDF UPLOAD ================= -->
 
 <div class="upload-box">
 
@@ -51,17 +139,11 @@ Upload your PDF document
 Supported format: PDF
 </p>
 
-
-<!-- PROGRESS -->
 <div class="progress-container">
 <div class="progress-bar"></div>
 </div>
 
 </div>
-
-
-
-<!-- ================= QUESTION INPUT ================= -->
 
 <div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
 
@@ -80,10 +162,6 @@ font-size:15px;">
 
 </div>
 
-
-
-<!-- ================= QUERY OPTIONS ================= -->
-
 <div style="margin-top:20px;text-align:center;">
 
 <select id="answerMode" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
@@ -93,13 +171,11 @@ font-size:15px;">
 <option value="keypoints">Key Points</option>
 </select>
 
-
 <select id="responseLength" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
 <option value="short">Short</option>
 <option value="medium" selected>Medium</option>
 <option value="long">Detailed</option>
 </select>
-
 
 <select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
 <option value="en" selected>English</option>
@@ -111,10 +187,6 @@ font-size:15px;">
 </select>
 
 </div>
-
-
-
-<!-- ================= ADVANCED OPTIONS ================= -->
 
 <div style="margin-top:20px;text-align:center;">
 
@@ -140,10 +212,6 @@ Simplify Explanation
 
 </div>
 
-
-
-<!-- ================= ACTION BUTTON ================= -->
-
 <div style="text-align:center;margin-top:25px;">
 <button
 id="askPdfBtn"
@@ -152,10 +220,6 @@ style="padding:12px 28px;border-radius:8px;">
 Ask Question
 </button>
 </div>
-
-
-
-<!-- ================= RESULT ================= -->
 
 <div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
 
@@ -173,13 +237,8 @@ resize:vertical;">
 
 </div>
 
-
 </div>
 </section>
-
-
-
-<!-- ================= FEATURES ================= -->
 
 <section class="tools">
 <div class="container">
@@ -204,10 +263,6 @@ Ask questions and extract answers from complex documents instantly.
 
 </div>
 </section>
-
-
-
-<!-- ================= SEO CONTENT ================= -->
 
 <section class="seo-content">
 
@@ -241,25 +296,15 @@ analyze the document to provide a detailed answer.
 
 </section>
 
-
-
-<!-- ================= GLOBAL FOOTER ================= -->
+<section id="related-tools-section"></section>
 
 <div id="site-footer"></div>
 
-
-
-<!-- ================= SCRIPTS ================= -->
-
 <script src="../assets/js/includes.js"></script>
+<script src="../assets/js/tool-seo.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
 
-
-
-<!-- PARTICLES -->
-
 <div class="particles"></div>
-
 
 </body>
 </html>

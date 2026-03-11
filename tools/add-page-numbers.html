@@ -19,13 +19,22 @@ content="Add page numbers to your PDF automatically." />
 <div class="container hero-inner">
 
 <h1>Add Page Numbers</h1>
+
 <p class="hero-sub">
 Automatically add page numbers to your PDF.
 </p>
 
-<div class="upload-box">
 
-<input type="file" class="file-input" accept="application/pdf" hidden />
+<!-- ================= UPLOAD BOX ================= -->
+
+<div class="upload-box upload-trigger">
+
+<input
+type="file"
+class="file-input"
+accept="application/pdf"
+hidden
+/>
 
 <div class="upload-icon">🔢</div>
 
@@ -40,6 +49,39 @@ Supported format: PDF
 <div class="progress-container">
 <div class="progress-bar"></div>
 </div>
+
+</div>
+
+
+
+<!-- ================= PAGE NUMBER OPTIONS ================= -->
+
+<div style="margin-top:25px;text-align:center;max-width:600px;margin-left:auto;margin-right:auto;">
+
+<select id="numberPosition" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="bottom-center" selected>Bottom Center</option>
+<option value="bottom-right">Bottom Right</option>
+<option value="bottom-left">Bottom Left</option>
+<option value="top-center">Top Center</option>
+<option value="top-right">Top Right</option>
+<option value="top-left">Top Left</option>
+</select>
+
+
+<select id="numberFormat" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="1">1, 2, 3</option>
+<option value="01">01, 02, 03</option>
+<option value="roman">I, II, III</option>
+</select>
+
+
+<input
+type="number"
+id="startNumber"
+value="1"
+min="1"
+style="padding:10px;border-radius:8px;width:120px;"
+/>
 
 </div>
 

@@ -19,16 +19,12 @@ content="AI PDF tools, compress PDF online, merge PDF free, split PDF tool, conv
 
 <link rel="canonical" href="https://paperlytools.com/" />
 
-<!-- Open Graph -->
-
 <meta property="og:title" content="PaperlyTools – Free AI PDF Tools Platform">
 <meta property="og:description" content="Compress, merge, convert and automate documents with AI-powered PDF tools.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://paperlytools.com">
 <meta property="og:image" content="https://paperlytools.com/assets/img/preview.png">
 <meta property="og:site_name" content="PaperlyTools">
-
-<!-- Twitter -->
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PaperlyTools – AI Powered PDF Tools">
@@ -37,85 +33,12 @@ content="AI PDF tools, compress PDF online, merge PDF free, split PDF tool, conv
 
 <link rel="stylesheet" href="assets/css/style.css" />
 
-<!-- ============================= -->
-<!-- WEBSITE STRUCTURED DATA -->
-<!-- ============================= -->
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebSite",
- "name": "PaperlyTools",
- "url": "https://paperlytools.com",
- "description": "AI powered PDF tools platform to compress, merge, convert and automate documents.",
- "potentialAction": {
-   "@type": "SearchAction",
-   "target": "https://paperlytools.com/?q={search_term_string}",
-   "query-input": "required name=search_term_string"
- }
-}
-</script>
-
-<!-- ============================= -->
-<!-- SOFTWARE APPLICATION SCHEMA -->
-<!-- ============================= -->
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "SoftwareApplication",
- "name": "PaperlyTools",
- "applicationCategory": "BusinessApplication",
- "operatingSystem": "Web",
- "offers": {
-   "@type": "Offer",
-   "price": "0",
-   "priceCurrency": "USD"
- },
- "description": "Online AI-powered document automation platform with tools to compress, merge, convert and edit PDF files.",
- "url": "https://paperlytools.com"
-}
-</script>
-
-<!-- ============================= -->
-<!-- FAQ STRUCTURED DATA -->
-<!-- ============================= -->
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [{
- "@type": "Question",
- "name": "Are PaperlyTools PDF tools free to use?",
- "acceptedAnswer": {
- "@type": "Answer",
- "text": "Yes. PaperlyTools offers free PDF tools with daily usage limits. Users can upgrade to Pro for unlimited processing."
- }
- },{
- "@type": "Question",
- "name": "Are my documents secure?",
- "acceptedAnswer": {
- "@type": "Answer",
- "text": "Yes. All uploaded files are encrypted during processing and automatically deleted from servers after completion."
- }
- },{
- "@type": "Question",
- "name": "What PDF tools are available?",
- "acceptedAnswer": {
- "@type": "Answer",
- "text": "PaperlyTools provides tools to compress, merge, split, convert, unlock, protect, rotate and optimize PDF files."
- }
- }]
-}
-</script>
-
 </head>
 
 <body>
 
 <div id="site-header"></div>
-  
+
 <div class="cursor-glow"></div>
 
 <section class="hero">
@@ -134,13 +57,33 @@ PaperlyTools combines powerful PDF utilities with an intelligent AI layer —
 helping you compress, convert, enhance and automate documents instantly.
 </p>
 
+<div class="hero-cta-row">
+
+<a class="primary-btn dynamic-link"
+data-path="tools/compress-pdf.html">
+Use PDF Tools
+</a>
+
+<a class="secondary-btn dynamic-link"
+data-path="tools/ai-summarize.html">
+Try AI Tools
+</a>
+
+</div>
+
 <div class="hero-main-row">
 
 <div class="upload-box" id="homeUpload">
+
 <div class="upload-glow"></div>
+
 <input type="file" id="homeFileInput" hidden />
+
 <div class="upload-icon">⚡</div>
+
 <p class="upload-title">Drag & Drop your document here</p>
+<p class="upload-click">or click to upload</p>
+
 <p class="upload-hint">
 No signup required • Secure processing • AI-enhanced
 </p>
@@ -152,10 +95,13 @@ Powered by intelligent document processing
 <div class="progress-container">
 <div class="progress-bar"></div>
 </div>
+
 </div>
 
 <div class="ai-card">
+
 <h3>✨ AI Magic Layer</h3>
+
 <ul>
 <li>Auto summarize documents</li>
 <li>Extract insights instantly</li>
@@ -166,12 +112,13 @@ Powered by intelligent document processing
 <a href="#pricing" class="secondary-btn">
 Explore AI Tools →
 </a>
+
 </div>
 
 </div>
 
 <p class="trust-line">
-✓ End-to-end encryption ✓ Files auto-deleted ✓ Cloud-based processing
+✓ End-to-end encryption ✓ Files auto-deleted ✓ Cloud processing
 </p>
 
 <p class="live-counter">
@@ -180,7 +127,11 @@ Explore AI Tools →
 
 </div>
 
+
+<!-- AI Upload Preview Overlay -->
+
 <div class="ai-preview-overlay" id="aiPreview">
+
 <div class="ai-preview-box" id="aiPreviewBox">
 
 <div class="ai-loader"></div>
@@ -196,6 +147,40 @@ Explore AI Tools →
 <div class="ai-progress-percent" id="aiProgressPercent">0%</div>
 
 </div>
+
+</div>
+
+</section>
+
+
+<section class="platform-stats">
+
+<div class="container">
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<h3>500K+</h3>
+<p>Documents processed</p>
+</div>
+
+<div class="stat-card">
+<h3>50K+</h3>
+<p>Monthly users</p>
+</div>
+
+<div class="stat-card">
+<h3>120+</h3>
+<p>Countries using PaperlyTools</p>
+</div>
+
+<div class="stat-card">
+<h3>99.9%</h3>
+<p>Processing uptime</p>
+</div>
+
+</div>
+
 </div>
 
 </section>
@@ -205,11 +190,22 @@ Explore AI Tools →
 
 <div class="container">
 
-<h2 class="tools-title">Popular PDF Tools</h2>
+<div class="tool-categories">
+
+<span class="tool-category active">All Tools</span>
+<span class="tool-category">Convert</span>
+<span class="tool-category">Organize</span>
+<span class="tool-category">Security</span>
+<span class="tool-category">AI Tools</span>
+
+</div>
+
+<h2 class="tools-title">Most Popular PDF Tools</h2>
 
 <div class="tool-dashboard">
 
 <!-- Compress -->
+
 <a class="tool-card dynamic-link" data-path="tools/compress-pdf.html">
 <div class="tool-icon">🗜</div>
 <div class="tool-name">Compress PDF</div>
@@ -217,6 +213,7 @@ Explore AI Tools →
 </a>
 
 <!-- Merge -->
+
 <a class="tool-card dynamic-link" data-path="tools/merge-pdf.html">
 <div class="tool-icon">🔗</div>
 <div class="tool-name">Merge PDF</div>
@@ -224,6 +221,7 @@ Explore AI Tools →
 </a>
 
 <!-- Split -->
+
 <a class="tool-card dynamic-link" data-path="tools/split-pdf.html">
 <div class="tool-icon">✂</div>
 <div class="tool-name">Split PDF</div>
@@ -231,6 +229,7 @@ Explore AI Tools →
 </a>
 
 <!-- PDF to Word -->
+
 <a class="tool-card dynamic-link" data-path="tools/pdf-to-word.html">
 <div class="tool-icon">📄</div>
 <div class="tool-name">PDF → Word</div>
@@ -238,6 +237,7 @@ Explore AI Tools →
 </a>
 
 <!-- PDF to Image -->
+
 <a class="tool-card dynamic-link" data-path="tools/pdf-to-image.html">
 <div class="tool-icon">🖼</div>
 <div class="tool-name">PDF → Image</div>
@@ -245,6 +245,7 @@ Explore AI Tools →
 </a>
 
 <!-- JPG to PDF -->
+
 <a class="tool-card dynamic-link" data-path="tools/jpg-to-pdf.html">
 <div class="tool-icon">📷</div>
 <div class="tool-name">JPG → PDF</div>
@@ -252,6 +253,7 @@ Explore AI Tools →
 </a>
 
 <!-- Unlock -->
+
 <a class="tool-card dynamic-link" data-path="tools/unlock-pdf.html">
 <div class="tool-icon">🔓</div>
 <div class="tool-name">Unlock PDF</div>
@@ -259,6 +261,7 @@ Explore AI Tools →
 </a>
 
 <!-- Protect -->
+
 <a class="tool-card dynamic-link" data-path="tools/protect-pdf.html">
 <div class="tool-icon">🔒</div>
 <div class="tool-name">Protect PDF</div>
@@ -266,6 +269,7 @@ Explore AI Tools →
 </a>
 
 <!-- Watermark -->
+
 <a class="tool-card dynamic-link" data-path="tools/watermark-pdf.html">
 <div class="tool-icon">💧</div>
 <div class="tool-name">Watermark PDF</div>
@@ -273,7 +277,9 @@ Explore AI Tools →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 

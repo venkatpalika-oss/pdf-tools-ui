@@ -32,9 +32,7 @@ content="split pdf online, extract pdf pages, separate pdf pages, pdf page extra
 
 <link rel="stylesheet" href="../assets/css/style.css" />
 
-<!-- =============================
-SOFTWARE APPLICATION SCHEMA
-============================= -->
+<!-- SOFTWARE APPLICATION SCHEMA -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -48,13 +46,17 @@ SOFTWARE APPLICATION SCHEMA
    "priceCurrency": "USD"
  },
  "description": "Free online PDF splitter to extract individual pages from PDF documents.",
- "url": "https://paperlytools.com/tools/split-pdf.html"
+ "url": "https://paperlytools.com/tools/split-pdf.html",
+ "featureList":[
+   "Extract individual PDF pages",
+   "Download pages as ZIP archive",
+   "Secure file processing",
+   "No installation required"
+ ]
 }
 </script>
 
-<!-- =============================
-BREADCRUMB SCHEMA
-============================= -->
+<!-- BREADCRUMB SCHEMA -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -73,9 +75,7 @@ BREADCRUMB SCHEMA
 }
 </script>
 
-<!-- =============================
-FAQ SCHEMA
-============================= -->
+<!-- FAQ SCHEMA -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -109,10 +109,10 @@ FAQ SCHEMA
 
 <body data-tool="split">
 
-<!-- ================= GLOBAL HEADER ================= -->
+<!-- GLOBAL HEADER -->
 <div id="site-header"></div>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <section class="hero">
 <div class="container hero-inner">
 
@@ -122,7 +122,6 @@ FAQ SCHEMA
 Extract individual pages from your PDF file.
 </p>
 
-<!-- UPLOAD BOX (CONTROLLED BY app.js) -->
 <div class="upload-box">
 
 <input
@@ -142,7 +141,6 @@ Choose a PDF file or drag & drop here
 All pages will be downloaded as a ZIP file
 </p>
 
-<!-- Progress Bar -->
 <div class="progress-container">
 <div class="progress-bar"></div>
 </div>
@@ -152,7 +150,7 @@ All pages will be downloaded as a ZIP file
 </div>
 </section>
 
-<!-- ================= INFO SECTION ================= -->
+<!-- INFO SECTION -->
 <section class="tools">
 <div class="container">
 
@@ -167,7 +165,7 @@ Perfect for extracting specific sections or organizing documents.
 </div>
 </section>
 
-<!-- ================= SEO CONTENT ================= -->
+<!-- SEO CONTENT -->
 <section class="seo-content">
 <div class="container">
 
@@ -198,7 +196,7 @@ Files are processed securely and automatically removed after completion.
 </div>
 </section>
 
-<!-- ================= INTERNAL TOOL LINKS ================= -->
+<!-- INTERNAL TOOL LINKS -->
 <section class="seo-links">
 <div class="container">
 
@@ -206,43 +204,29 @@ Files are processed securely and automatically removed after completion.
 
 <div class="seo-link-grid">
 
-<a class="seo-link dynamic-link" data-path="compress-pdf.html">
-Compress PDF
-</a>
-
-<a class="seo-link dynamic-link" data-path="merge-pdf.html">
-Merge PDF
-</a>
-
-<a class="seo-link dynamic-link" data-path="pdf-to-word.html">
-PDF to Word
-</a>
-
-<a class="seo-link dynamic-link" data-path="pdf-to-image.html">
-PDF to Image
-</a>
-
-<a class="seo-link dynamic-link" data-path="unlock-pdf.html">
-Unlock PDF
-</a>
-
-<a class="seo-link dynamic-link" data-path="protect-pdf.html">
-Protect PDF
-</a>
+<a class="seo-link dynamic-link" data-path="compress-pdf.html">Compress PDF</a>
+<a class="seo-link dynamic-link" data-path="merge-pdf.html">Merge PDF</a>
+<a class="seo-link dynamic-link" data-path="pdf-to-word.html">PDF to Word</a>
+<a class="seo-link dynamic-link" data-path="pdf-to-image.html">PDF to Image</a>
+<a class="seo-link dynamic-link" data-path="unlock-pdf.html">Unlock PDF</a>
+<a class="seo-link dynamic-link" data-path="protect-pdf.html">Protect PDF</a>
 
 </div>
 
 </div>
 </section>
 
-<!-- ================= GLOBAL FOOTER ================= -->
+<!-- RELATED TOOLS AUTO SECTION -->
+<section id="related-tools-section"></section>
+
+<!-- GLOBAL FOOTER -->
 <div id="site-footer"></div>
 
-<!-- ================= SCRIPTS ================= -->
+<!-- SCRIPTS -->
 <script src="../assets/js/includes.js"></script>
+<script src="../assets/js/tool-seo.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
 
-<!-- Background Particles -->
 <div class="particles"></div>
 
 </body>
