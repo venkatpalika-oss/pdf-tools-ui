@@ -148,7 +148,7 @@ let html = `<h3 style="text-align:center;margin-top:40px;">Related PDF Tools</h3
 html += `<div class="seo-link-grid">`;
 
 relatedTools[tool].forEach(t=>{
-html += `<a class="seo-link dynamic-link" data-path="tools/${t.slug}.html">${t.name}</a>`;
+html += `<a class="seo-link dynamic-link" data-path="/tools/${t.slug}.html">${t.name}</a>`;
 });
 
 html += `</div>`;
