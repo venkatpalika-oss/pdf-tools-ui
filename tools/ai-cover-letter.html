@@ -110,12 +110,12 @@ style="width:100%;height:140px;padding:16px;border-radius:10px;border:none;">
 </select>
 
 
-<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
-<option value="en" selected>English</option>
-<option value="es">Spanish</option>
-<option value="fr">French</option>
-<option value="de">German</option>
-<option value="hi">Hindi</option>
+<select class="language-select" style="padding:10px 16px;border-radius:8px;">
+<option value="English" selected>English</option>
+<option value="Spanish">Spanish</option>
+<option value="French">French</option>
+<option value="German">German</option>
+<option value="Hindi">Hindi</option>
 </select>
 
 </div>
@@ -230,6 +230,20 @@ description and generate a professional application letter instantly.
 
 <script src="../assets/js/includes.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+
+<script>
+
+document.getElementById("generateCoverLetterBtn").addEventListener("click", () => {
+
+const input = document.querySelector(".file-input");
+
+if(!input) return;
+
+input.dispatchEvent(new Event("change"));
+
+});
+
+</script>
 
 <div class="particles"></div>
 

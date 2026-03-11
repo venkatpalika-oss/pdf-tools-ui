@@ -29,11 +29,24 @@ Fix grammar, spelling, punctuation and improve sentence clarity instantly.
 </p>
 
 
+<!-- ================= TOOL BOX ================= -->
+
+<div class="upload-box" style="max-width:760px;margin:auto;margin-top:30px;">
+
+<div class="upload-title">
+Paste text and check grammar instantly
+</div>
+
+<!-- Hidden trigger required by app.js -->
+<input type="file" class="file-input" style="display:none" />
+
+
 <!-- TEXT INPUT -->
-<div style="margin-top:30px;max-width:760px;margin-left:auto;margin-right:auto;">
+
+<div style="margin-top:20px;">
 
 <textarea
-id="grammarInput"
+class="ai-text-input"
 placeholder="Paste or type your text here to check grammar..."
 style="
 width:100%;
@@ -50,16 +63,17 @@ font-size:15px;">
 
 
 <!-- LANGUAGE -->
+
 <div style="margin-top:20px;text-align:center;">
 
-<select id="languageSelect" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
-<option value="en" selected>English</option>
-<option value="es">Spanish</option>
-<option value="fr">French</option>
-<option value="de">German</option>
-<option value="hi">Hindi</option>
-<option value="ar">Arabic</option>
-<option value="zh">Chinese</option>
+<select class="language-select" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="English" selected>English</option>
+<option value="Spanish">Spanish</option>
+<option value="French">French</option>
+<option value="German">German</option>
+<option value="Hindi">Hindi</option>
+<option value="Arabic">Arabic</option>
+<option value="Chinese">Chinese</option>
 </select>
 
 <select id="writingStyle" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
@@ -75,6 +89,7 @@ font-size:15px;">
 
 
 <!-- ADVANCED OPTIONS -->
+
 <div style="margin-top:20px;text-align:center;">
 
 <select id="correctionLevel" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
@@ -103,6 +118,7 @@ font-size:15px;">
 
 
 <!-- EXTRA OPTIONS -->
+
 <div style="margin-top:20px;text-align:center;">
 
 <label style="margin-right:15px;">
@@ -126,9 +142,10 @@ font-size:15px;">
 
 
 <!-- ACTION BUTTON -->
+
 <div style="text-align:center;margin-top:25px;">
 <button
-id="checkGrammarBtn"
+id="generateGrammarBtn"
 class="btn-primary"
 style="padding:12px 28px;border-radius:8px;">
 Check Grammar
@@ -138,6 +155,7 @@ Check Grammar
 
 
 <!-- PROGRESS -->
+
 <div class="progress-container" style="margin-top:20px;">
 <div class="progress-bar"></div>
 </div>
@@ -145,7 +163,8 @@ Check Grammar
 
 
 <!-- RESULT -->
-<div style="margin-top:30px;max-width:760px;margin-left:auto;margin-right:auto;">
+
+<div style="margin-top:30px;">
 
 <textarea
 id="grammarResult"
@@ -162,6 +181,8 @@ font-size:15px;">
 
 </div>
 
+</div>
+
 
 </div>
 </section>
@@ -169,6 +190,7 @@ font-size:15px;">
 
 
 <!-- ================= FEATURES ================= -->
+
 <section class="tools">
 <div class="container">
 
@@ -197,6 +219,7 @@ improving sentence clarity and enhancing vocabulary.
 
 
 <!-- ================= SEO CONTENT ================= -->
+
 <section class="seo-content">
 
 <div class="container">
@@ -233,17 +256,34 @@ your writing.
 
 
 <!-- ================= GLOBAL FOOTER ================= -->
+
 <div id="site-footer"></div>
 
 
 
 <!-- ================= SCRIPTS ================= -->
+
 <script src="../assets/js/includes.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+
+<script>
+
+document.getElementById("generateGrammarBtn").addEventListener("click", () => {
+
+const fakeInput = document.querySelector(".file-input");
+
+if(!fakeInput) return;
+
+fakeInput.dispatchEvent(new Event("change"));
+
+});
+
+</script>
 
 
 
 <!-- PARTICLES -->
+
 <div class="particles"></div>
 
 </body>

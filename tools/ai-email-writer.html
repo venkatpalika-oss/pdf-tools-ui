@@ -29,6 +29,17 @@ Write professional emails instantly for business, job applications and communica
 </p>
 
 
+<!-- ================= TOOL BOX ================= -->
+
+<div class="upload-box" style="max-width:720px;margin:auto;margin-top:30px;">
+
+<div class="upload-title">
+Describe your email and generate it instantly
+</div>
+
+<input type="file" class="file-input" style="display:none" />
+
+
 <!-- EMAIL PURPOSE -->
 <div style="margin-top:25px;text-align:center;">
 
@@ -49,7 +60,8 @@ Write professional emails instantly for business, job applications and communica
 
 
 <!-- EMAIL DETAILS -->
-<div style="margin-top:25px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<div style="margin-top:25px;">
 
 <input
 type="text"
@@ -66,7 +78,7 @@ style="width:100%;padding:14px;border-radius:8px;border:none;margin-bottom:12px;
 >
 
 <textarea
-id="emailContext"
+class="ai-text-input"
 placeholder="Describe what the email should say..."
 style="width:100%;height:150px;padding:16px;border-radius:10px;border:none;resize:vertical;">
 </textarea>
@@ -76,6 +88,7 @@ style="width:100%;height:150px;padding:16px;border-radius:10px;border:none;resiz
 
 
 <!-- TONE + STYLE -->
+
 <div style="margin-top:20px;text-align:center;">
 
 <select id="emailTone" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
@@ -95,13 +108,13 @@ style="width:100%;height:150px;padding:16px;border-radius:10px;border:none;resiz
 </select>
 
 
-<select id="languageSelect" style="padding:10px 16px;border-radius:8px;">
-<option value="en" selected>English</option>
-<option value="es">Spanish</option>
-<option value="fr">French</option>
-<option value="de">German</option>
-<option value="hi">Hindi</option>
-<option value="ar">Arabic</option>
+<select class="language-select" style="padding:10px 16px;border-radius:8px;">
+<option value="English" selected>English</option>
+<option value="Spanish">Spanish</option>
+<option value="French">French</option>
+<option value="German">German</option>
+<option value="Hindi">Hindi</option>
+<option value="Arabic">Arabic</option>
 </select>
 
 </div>
@@ -109,6 +122,7 @@ style="width:100%;height:150px;padding:16px;border-radius:10px;border:none;resiz
 
 
 <!-- ADVANCED OPTIONS -->
+
 <div style="margin-top:20px;text-align:center;">
 
 <label style="margin-right:15px;">
@@ -136,6 +150,7 @@ Persuasive Mode
 
 
 <!-- ACTION BUTTON -->
+
 <div style="text-align:center;margin-top:25px;">
 <button
 id="generateEmailBtn"
@@ -148,6 +163,7 @@ Generate Email
 
 
 <!-- PROGRESS -->
+
 <div class="progress-container" style="margin-top:20px;">
 <div class="progress-bar"></div>
 </div>
@@ -155,7 +171,8 @@ Generate Email
 
 
 <!-- RESULT -->
-<div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+
+<div style="margin-top:30px;">
 
 <textarea
 id="emailResult"
@@ -165,6 +182,7 @@ style="width:100%;height:220px;padding:18px;border-radius:10px;border:none;resiz
 
 </div>
 
+</div>
 
 </div>
 </section>
@@ -172,6 +190,7 @@ style="width:100%;height:220px;padding:18px;border-radius:10px;border:none;resiz
 
 
 <!-- ================= FEATURES ================= -->
+
 <section class="tools">
 <div class="container">
 
@@ -199,6 +218,7 @@ Write clear, professional and effective emails instantly using AI.
 
 
 <!-- ================= SEO CONTENT ================= -->
+
 <section class="seo-content">
 
 <div class="container">
@@ -235,17 +255,34 @@ then generate a complete email instantly.
 
 
 <!-- ================= GLOBAL FOOTER ================= -->
+
 <div id="site-footer"></div>
 
 
 
 <!-- ================= SCRIPTS ================= -->
+
 <script src="../assets/js/includes.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+
+<script>
+
+document.getElementById("generateEmailBtn").addEventListener("click", () => {
+
+const fakeInput = document.querySelector(".file-input");
+
+if(!fakeInput) return;
+
+fakeInput.dispatchEvent(new Event("change"));
+
+});
+
+</script>
 
 
 
 <!-- PARTICLES -->
+
 <div class="particles"></div>
 
 </body>

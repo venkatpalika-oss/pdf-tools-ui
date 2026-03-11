@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>AI Text Summarizer – Summarize Articles, Documents & Notes Instantly</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<title>AI Text Summarizer – Summarize Articles, Documents & Notes Instantly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description"
-        content="Use AI to summarize long articles, documents, research papers and notes instantly. Generate concise summaries in seconds." />
+<meta name="description"
+content="Use AI to summarize long articles, documents, research papers and notes instantly. Generate concise summaries in seconds." />
 
-  <link rel="stylesheet" href="../assets/css/style.css" />
+<link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body data-tool="ai-summarize">
@@ -19,177 +19,196 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="container hero-inner">
+<div class="container hero-inner">
 
-    <h1>AI Text Summarizer</h1>
+<h1>AI Text Summarizer</h1>
 
-    <p class="hero-sub">
-      Instantly summarize long articles, research papers, reports and notes using AI.
-    </p>
-
-
-    <!-- TEXT INPUT -->
-    <div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
-
-      <textarea
-        id="textInput"
-        placeholder="Paste your text, article, document, or notes here..."
-        style="
-        width:100%;
-        height:220px;
-        padding:18px;
-        border-radius:10px;
-        border:none;
-        resize:vertical;
-        font-size:15px;
-        ">
-      </textarea>
-
-    </div>
+<p class="hero-sub">
+Instantly summarize long articles, research papers, reports and notes using AI.
+</p>
 
 
-    <!-- OPTIONS -->
-    <div style="margin-top:20px;text-align:center;">
+<!-- ================= TOOL BOX ================= -->
 
-      <select id="summaryLength" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
-        <option value="short">Short Summary</option>
-        <option value="medium" selected>Balanced Summary</option>
-        <option value="detailed">Detailed Summary</option>
-      </select>
+<div class="upload-box" style="max-width:720px;margin:auto;margin-top:30px;">
 
-      <select id="summaryStyle" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
-        <option value="paragraph">Paragraph</option>
-        <option value="bullets">Bullet Points</option>
-        <option value="keypoints">Key Points</option>
-      </select>
-
-      <select id="summaryLanguage" style="padding:10px 16px;border-radius:8px;">
-        <option value="en" selected>English</option>
-        <option value="es">Spanish</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-      </select>
-
-    </div>
+<div class="upload-title">
+Paste your text below and generate a summary
+</div>
 
 
-    <!-- ACTION BUTTON -->
-    <div style="text-align:center;margin-top:25px;">
-      <button
-        id="generateBtn"
-        class="btn-primary"
-        style="padding:12px 28px;border-radius:8px;">
-        Generate Summary
-      </button>
-    </div>
+<!-- ================= HIDDEN INPUT (Required for app.js trigger) ================= -->
+
+<input type="file" class="file-input" style="display:none" />
 
 
-    <!-- PROGRESS BAR -->
-    <div class="progress-container" style="margin-top:20px;">
-      <div class="progress-bar"></div>
-    </div>
+<!-- ================= TEXT INPUT ================= -->
+
+<textarea
+class="ai-text-input"
+placeholder="Paste your text, article, document, or notes here..."
+style="
+width:100%;
+height:220px;
+padding:18px;
+border-radius:10px;
+border:none;
+resize:vertical;
+font-size:15px;
+margin-top:20px;">
+</textarea>
 
 
-    <!-- RESULT -->
-    <div style="margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto;">
+<!-- ================= OPTIONS ================= -->
 
-      <textarea
-        id="resultBox"
-        placeholder="Your AI summary will appear here..."
-        style="
-        width:100%;
-        height:200px;
-        padding:18px;
-        border-radius:10px;
-        border:none;
-        resize:vertical;
-        font-size:15px;">
-      </textarea>
+<div style="margin-top:20px;text-align:center;">
 
-    </div>
+<select id="summaryLength" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="short">Short Summary</option>
+<option value="medium" selected>Balanced Summary</option>
+<option value="detailed">Detailed Summary</option>
+</select>
 
-  </div>
+<select id="summaryStyle" style="padding:10px 16px;border-radius:8px;margin-right:10px;">
+<option value="paragraph">Paragraph</option>
+<option value="bullets">Bullet Points</option>
+<option value="keypoints">Key Points</option>
+</select>
+
+<select class="language-select" style="padding:10px 16px;border-radius:8px;">
+<option value="English" selected>English</option>
+<option value="Spanish">Spanish</option>
+<option value="French">French</option>
+<option value="German">German</option>
+</select>
+
+</div>
+
+
+<!-- ================= ACTION BUTTON ================= -->
+
+<div style="text-align:center;margin-top:25px;">
+<button
+class="btn-primary"
+id="generateSummaryBtn"
+style="padding:12px 28px;border-radius:8px;">
+Generate Summary
+</button>
+</div>
+
+
+<!-- ================= PROGRESS ================= -->
+
+<div class="progress-container" style="margin-top:20px;">
+<div class="progress-bar"></div>
+</div>
+
+</div>
+
+</div>
 </section>
 
 
 
 <!-- ================= FEATURES ================= -->
+
 <section class="tools">
-  <div class="container">
+<div class="container">
 
-    <div style="max-width:780px;margin:auto;text-align:center;">
+<div style="max-width:780px;margin:auto;text-align:center;">
 
-      <h2>Powerful AI Summarization</h2>
+<h2>Powerful AI Summarization</h2>
 
-      <p class="hero-sub">
-        Our AI summarizer quickly condenses long content into concise summaries,
-        helping you save time and focus on key insights.
-      </p>
+<p class="hero-sub">
+Our AI summarizer quickly condenses long content into concise summaries,
+helping you save time and focus on key insights.
+</p>
 
-      <ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
-        <li>Summarize long documents instantly</li>
-        <li>Convert articles into key bullet points</li>
-        <li>Perfect for research papers and reports</li>
-        <li>Supports multiple languages</li>
-        <li>Advanced AI summarization engine</li>
-      </ul>
+<ul style="margin-top:25px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+<li>Summarize long documents instantly</li>
+<li>Convert articles into key bullet points</li>
+<li>Perfect for research papers and reports</li>
+<li>Supports multiple languages</li>
+<li>Advanced AI summarization engine</li>
+</ul>
 
-    </div>
+</div>
 
-  </div>
+</div>
 </section>
 
 
 
 <!-- ================= SEO CONTENT ================= -->
+
 <section class="seo-content">
 
-  <div class="container">
+<div class="container">
 
-    <h2>AI Text Summarizer – Fast & Accurate</h2>
+<h2>AI Text Summarizer – Fast & Accurate</h2>
 
-    <p>
-      The PaperlyTools AI text summarizer helps you quickly condense large
-      articles, research papers, blog posts and documents into short,
-      meaningful summaries.
-    </p>
+<p>
+The PaperlyTools AI text summarizer helps you quickly condense large
+articles, research papers, blog posts and documents into short,
+meaningful summaries.
+</p>
 
-    <h3>Why Use an AI Summarizer?</h3>
+<h3>Why Use an AI Summarizer?</h3>
 
-    <ul>
-      <li>Save hours reading long documents</li>
-      <li>Understand complex topics faster</li>
-      <li>Extract key insights from reports</li>
-      <li>Improve research productivity</li>
-    </ul>
+<ul>
+<li>Save hours reading long documents</li>
+<li>Understand complex topics faster</li>
+<li>Extract key insights from reports</li>
+<li>Improve research productivity</li>
+</ul>
 
-    <h3>How to Use This AI Summarizer</h3>
+<h3>How to Use This AI Summarizer</h3>
 
-    <p>
-      Paste your text into the input box, choose your preferred summary
-      length and format, then generate the summary instantly.
-    </p>
+<p>
+Paste your text into the input box, choose your preferred summary
+length and format, then generate the summary instantly.
+</p>
 
-  </div>
+</div>
 
 </section>
 
 
 
 <!-- ================= GLOBAL FOOTER ================= -->
+
 <div id="site-footer"></div>
 
 
 
 <!-- ================= SCRIPTS ================= -->
+
 <script src="../assets/js/includes.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
 
 
+<!-- ================= AI BUTTON TRIGGER ================= -->
 
-<!-- Background Particles -->
+<script>
+
+document.getElementById("generateSummaryBtn").addEventListener("click", () => {
+
+  const fakeInput = document.querySelector(".file-input");
+
+  if(!fakeInput) return;
+
+  const event = new Event("change");
+  fakeInput.dispatchEvent(event);
+
+});
+
+</script>
+
+
+
+<!-- ================= Background Particles ================= -->
+
 <div class="particles"></div>
-
 
 </body>
 </html>

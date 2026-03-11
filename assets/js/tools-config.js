@@ -124,6 +124,13 @@ export const tools = [
 },
 
 {
+  slug: "ai-cover-letter",
+  title: "AI Cover Letter Generator",
+  description: "Generate professional cover letters using AI.",
+  api: "/ai/cover-letter"
+},
+
+{
   slug: "chat-with-pdf",
   title: "Chat with PDF",
   description: "Ask questions and get answers from your PDF documents.",
@@ -131,7 +138,7 @@ export const tools = [
 },
 
 {
-  slug: "pdf-ai-summary",
+  slug: "ai-pdf-summary",
   title: "AI PDF Summarizer",
   description: "Upload a PDF and get an instant AI-generated summary.",
   api: "/ai/pdf-summarize"
