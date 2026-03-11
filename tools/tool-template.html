@@ -1,42 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PDF Tool</title>
+<title>PDF Tool – Online PDF Processing Tool | PaperlyTools</title>
+
+<meta name="description"
+content="Upload your PDF file and process it using PaperlyTools. Fast, secure and easy online PDF processing." />
+
+<meta name="keywords"
+content="pdf tool online, process pdf online, pdf utilities, pdf file tools, online pdf processor" />
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://paperlytools.com/tools/pdf-tool.html">
+
+<!-- OpenGraph -->
+<meta property="og:title" content="PDF Tool – Online PDF Processing">
+<meta property="og:description" content="Upload and process your PDF file using PaperlyTools.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paperlytools.com/tools/pdf-tool.html">
+<meta property="og:image" content="https://paperlytools.com/assets/img/preview.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Tool">
+<meta name="twitter:description" content="Upload and process PDF files online using PaperlyTools.">
+<meta name="twitter:image" content="https://paperlytools.com/assets/img/preview.png">
 
 <link rel="stylesheet" href="../assets/css/style.css">
 
+<!-- SOFTWARE APPLICATION SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "PDF Tool",
+ "operatingSystem": "Web",
+ "applicationCategory": "BusinessApplication",
+ "offers": {
+   "@type": "Offer",
+   "price": "0",
+   "priceCurrency": "USD"
+ },
+ "description": "Online PDF processing tool for uploading and handling PDF documents.",
+ "url": "https://paperlytools.com/tools/pdf-tool.html"
+}
+</script>
+
 </head>
 
-<body>
+<body data-tool="generic">
 
 <div id="site-header"></div>
 
-<section class="tool-section">
-<div class="container">
+<section class="hero">
+<div class="container hero-inner">
 
-<h1 class="tool-title">PDF Tool</h1>
+<h1>PDF Tool</h1>
 
-<p class="tool-description">
+<p class="hero-sub">
 Upload your PDF file and process it using PaperlyTools.
 </p>
 
 <div class="upload-box">
 
-  <input type="file" class="file-input" multiple />
+<input
+type="file"
+class="file-input"
+multiple
+hidden
+/>
 
-  <div class="upload-title">
-    Drop your file here or click to upload
-  </div>
+<div class="upload-icon">⚡</div>
 
-  <div class="file-queue"></div>
+<p class="upload-title">
+Drop your file here or click to upload
+</p>
 
-  <div class="progress-container" style="display:none;">
-    <div class="progress-bar"></div>
-  </div>
+<p class="upload-hint">
+Supported format: PDF
+</p>
+
+<div class="file-queue"></div>
+
+<div class="progress-container" style="display:none;">
+<div class="progress-bar"></div>
+</div>
 
 </div>
 
@@ -45,12 +97,33 @@ Upload your PDF file and process it using PaperlyTools.
 </div>
 </section>
 
+<!-- INFO SECTION -->
+<section class="tools">
+<div class="container">
+
+<p class="hero-sub"
+style="max-width:720px;margin:auto;text-align:center;">
+
+Process your PDF documents quickly and securely using PaperlyTools.
+Upload your file and perform operations instantly.
+
+</p>
+
+</div>
+</section>
+
+<!-- RELATED TOOLS AUTO SECTION -->
+<section id="related-tools-section"></section>
+
 <div id="site-footer"></div>
 
 <script src="../assets/js/includes.js"></script>
+<script src="../assets/js/tool-seo.js"></script>
 
 <script type="module" src="../assets/js/tool-loader.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+
+<div class="particles"></div>
 
 </body>
 </html>
