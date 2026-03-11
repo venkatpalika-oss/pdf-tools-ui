@@ -108,16 +108,16 @@ a {
 .hero h1 {
   font-size: 52px;
   font-weight: 700;
-  background: linear-gradient(90deg, #00f5ff, #8a2be2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-}
 
-.hero-sub {
-  font-size: 18px;
-  opacity: 0.75;
-  margin-bottom: 60px;
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  margin-bottom: 20px;
 }
 
 /* =========================================================
@@ -1032,8 +1032,12 @@ flex-shrink:0;
 
 .brand-accent {
   background: linear-gradient(90deg, #00f5ff, #8a2be2);
+
   -webkit-background-clip: text;
+  background-clip: text;
+
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 /* =========================================================
    LOGO HOVER GLOW (SAFE APPEND)
@@ -2119,8 +2123,11 @@ input:checked + .slider:before {
   border-radius: 16px;
   padding: 1px;
   background: linear-gradient(135deg, #00f5ff, #9333ea);
-  -webkit-mask: var(--mask);
-mask: var(--mask);
+ -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
