@@ -27,8 +27,12 @@
 
 .logo span {
   background: linear-gradient(90deg, #00f5ff, #8a2be2);
+
   -webkit-background-clip: text;
+  background-clip: text;
+
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .header-nav {

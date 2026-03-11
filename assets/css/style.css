@@ -54,8 +54,12 @@ a {
 
 .logo span {
   background: linear-gradient(90deg, #00f5ff, #8a2be2);
+
   -webkit-background-clip: text;
+  background-clip: text;
+
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .header-nav a {
@@ -2115,7 +2119,8 @@ input:checked + .slider:before {
   border-radius: 16px;
   padding: 1px;
   background: linear-gradient(135deg, #00f5ff, #9333ea);
-  -webkit-mask:
+  -webkit-mask: var(--mask);
+mask: var(--mask);
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
