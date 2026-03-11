@@ -99,7 +99,7 @@ export const tools = [
   slug: "ai-grammar",
   title: "AI Grammar Fixer",
   description: "Fix grammar mistakes and improve writing clarity.",
-  api: "/ai/grammar"
+  api: "/ai/grammar-fix"
 },
 
 {
@@ -112,7 +112,7 @@ export const tools = [
 {
   slug: "ai-blog-writer",
   title: "AI Blog Generator",
-  description: "Generate SEO-friendly blog content instantly.",
+  description: "Generate SEO-friendly blog articles instantly using AI.",
   api: "/ai/blog"
 },
 
@@ -120,21 +120,21 @@ export const tools = [
   slug: "ai-email-writer",
   title: "AI Email Writer",
   description: "Generate professional emails with AI assistance.",
-  api: "/ai/email"
+  api: "/ai/email-writer"
 },
 
 {
   slug: "ai-resume-analyzer",
   title: "AI Resume Analyzer",
   description: "Analyze your resume and receive AI suggestions.",
-  api: "/ai/resume"
+  api: "/ai/resume-analyzer"
 },
 
 {
   slug: "chat-with-pdf",
   title: "Chat with PDF",
   description: "Ask questions and get answers from your PDF documents.",
-  api: "/ai/chat-pdf"
+  api: "/ai/chat-with-pdf"
 },
 
 {
