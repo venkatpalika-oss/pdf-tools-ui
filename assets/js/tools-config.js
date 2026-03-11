@@ -78,7 +78,7 @@ export const tools = [
 },
 
 /* =========================================
-   AI TOOLS (NEW SECTION)
+   AI TOOLS
 ========================================= */
 
 {
@@ -110,13 +110,6 @@ export const tools = [
 },
 
 {
-  slug: "ai-blog-writer",
-  title: "AI Blog Generator",
-  description: "Generate SEO-friendly blog articles instantly using AI.",
-  api: "/ai/blog"
-},
-
-{
   slug: "ai-email-writer",
   title: "AI Email Writer",
   description: "Generate professional emails with AI assistance.",
@@ -141,7 +134,7 @@ export const tools = [
   slug: "pdf-ai-summary",
   title: "AI PDF Summarizer",
   description: "Upload a PDF and get an instant AI-generated summary.",
-  api: "/ai/pdf-summary"
+  api: "/ai/pdf-summarize"
 }
 
 ];
