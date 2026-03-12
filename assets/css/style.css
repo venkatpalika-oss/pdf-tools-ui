@@ -4504,8 +4504,21 @@ align-items:center;
 gap:22px;
 }
 
-.header-right a{
+/* normal links */
+
+.header-right a:not(.btn-primary){
 display:flex;
 align-items:center;
-height:36px;
+height:40px;
+}
+
+/* logout button */
+
+.btn-primary{
+display:flex;
+align-items:center;
+justify-content:center;
+height:40px;
+padding:0 18px;
+border-radius:10px;
 }
