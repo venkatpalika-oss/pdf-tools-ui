@@ -5,16 +5,204 @@
 <title>Login | PaperlyTools</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="assets/css/style.css" />
+
+<style>
+
+/* =========================================================
+   LOGIN PAGE (PREMIUM UI)
+========================================================= */
+
+.login-hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+padding-top:120px;
+}
+
+/* BACKGROUND GLOW */
+
+.login-glow{
+position:absolute;
+width:700px;
+height:700px;
+background:radial-gradient(circle,
+rgba(0,255,255,0.25),
+rgba(138,43,226,0.18),
+transparent 70%);
+filter:blur(120px);
+animation:glowMove 10s ease-in-out infinite;
+z-index:0;
+}
+
+@keyframes glowMove{
+0%{transform:translateY(-60px);}
+50%{transform:translateY(40px);}
+100%{transform:translateY(-60px);}
+}
+
+/* GLASS LOGIN CARD */
+
+.login-card{
+position:relative;
+z-index:2;
+
+background:rgba(20,20,40,0.65);
+backdrop-filter:blur(18px);
+
+padding:40px;
+border-radius:16px;
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 0 40px rgba(0,255,255,0.12),
+0 0 80px rgba(138,43,226,0.08);
+
+max-width:420px;
+width:100%;
+}
+
+/* TITLE */
+
+.login-title{
+text-align:center;
+margin-bottom:30px;
+
+font-size:28px;
+font-weight:700;
+
+background:linear-gradient(90deg,#00f5ff,#8a2be2);
+
+-webkit-background-clip:text;
+background-clip:text;
+
+-webkit-text-fill-color:transparent;
+color:transparent;
+}
+
+/* INPUTS */
+
+.login-input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+border:none;
+
+background:rgba(255,255,255,0.06);
+color:white;
+
+outline:none;
+}
+
+.login-input:focus{
+box-shadow:0 0 10px rgba(0,255,255,0.4);
+}
+
+/* LOGIN BUTTON */
+
+.login-btn{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+
+background:linear-gradient(90deg,#00f5ff,#8a2be2);
+
+color:white;
+font-weight:600;
+
+transition:transform .2s ease;
+}
+
+.login-btn:hover{
+transform:translateY(-2px);
+}
+
+.login-btn.loading{
+opacity:0.7;
+pointer-events:none;
+}
+
+/* SPINNER */
+
+.login-spinner{
+width:16px;
+height:16px;
+border:2px solid rgba(255,255,255,0.3);
+border-top:2px solid white;
+border-radius:50%;
+animation:spin 0.7s linear infinite;
+display:none;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+/* ERROR */
+
+.login-error{
+color:#ff6b6b;
+margin-top:15px;
+text-align:center;
+}
+
+/* RESEND BUTTON */
+
+.login-resend{
+display:none;
+margin-top:10px;
+
+width:100%;
+padding:10px;
+
+border-radius:8px;
+border:none;
+
+cursor:pointer;
+
+background:#2c2c44;
+color:white;
+}
+
+/* FOOTER */
+
+.login-footer{
+margin-top:20px;
+text-align:center;
+}
+
+.login-footer a{
+color:#00f5ff;
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div id="site-header"></div>
 
-<section class="hero" style="padding-top:120px;">
-<div class="container" style="max-width:420px;">
+<section class="login-hero">
 
-<h2 style="text-align:center;margin-bottom:30px;">
+<div class="login-glow"></div>
+
+<div class="container login-card">
+
+<h2 class="login-title">
 Login to Your Account
 </h2>
 
@@ -25,7 +213,7 @@ type="email"
 id="email"
 placeholder="Email"
 required
-style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
+class="login-input"
 />
 
 <input
@@ -33,35 +221,38 @@ type="password"
 id="password"
 placeholder="Password"
 required
-style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:none;"
+class="login-input"
 />
 
 <button
 type="submit"
-style="width:100%;padding:12px;border-radius:6px;cursor:pointer;"
+id="loginButton"
+class="login-btn"
 >
+
+<div class="login-spinner" id="loginSpinner"></div>
+
+<span id="loginText">
 Login
+</span>
+
 </button>
 
 </form>
 
-<p id="errorMessage"
-style="color:#ff6b6b;margin-top:15px;text-align:center;">
-</p>
+<p id="errorMessage" class="login-error"></p>
 
-<button
-id="resendBtn"
-style="display:none;margin-top:10px;width:100%;padding:10px;border-radius:6px;cursor:pointer;"
->
+<button id="resendBtn" class="login-resend">
 Resend Verification Email
 </button>
 
-<p style="margin-top:20px;text-align:center;">
+<p class="login-footer">
 Don’t have an account?
 <a href="signup.html">Sign Up</a>
 </p>
 
 </div>
+
 </section>
 
 <div id="site-footer"></div>
@@ -77,12 +268,22 @@ const form = document.getElementById("loginForm");
 const errorMessage = document.getElementById("errorMessage");
 const resendBtn = document.getElementById("resendBtn");
 
+const loginBtn = document.getElementById("loginButton");
+const loginText = document.getElementById("loginText");
+const spinner = document.getElementById("loginSpinner");
+
 form.addEventListener("submit", async (e) => {
 
 e.preventDefault();
 
 errorMessage.textContent = "";
 resendBtn.style.display = "none";
+
+/* LOADING STATE */
+
+loginBtn.classList.add("loading");
+loginText.textContent = "Logging in...";
+spinner.style.display = "inline-block";
 
 const email = document.getElementById("email").value.trim();
 const password = document.getElementById("password").value.trim();
@@ -95,6 +296,8 @@ headers: {
 body: JSON.stringify({ email, password })
 });
 
+/* SUCCESS */
+
 if (data?.token) {
 
 saveToken(data.token);
@@ -105,11 +308,17 @@ return;
 
 }
 
+/* FAILED */
+
+loginBtn.classList.remove("loading");
+loginText.textContent = "Login";
+spinner.style.display = "none";
+
 const error = data?.error || "Login failed. Please try again.";
 
 errorMessage.textContent = error;
 
-/* ================= SHOW RESEND BUTTON ================= */
+/* SHOW RESEND BUTTON */
 
 if (error.toLowerCase().includes("verify")) {
 resendBtn.style.display = "block";
@@ -117,7 +326,7 @@ resendBtn.style.display = "block";
 
 });
 
-/* ================= RESEND VERIFICATION ================= */
+/* RESEND VERIFICATION */
 
 resendBtn.addEventListener("click", async () => {
 
