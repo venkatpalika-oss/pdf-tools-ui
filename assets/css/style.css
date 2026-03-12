@@ -3790,3 +3790,70 @@ pointer-events:none;
   align-items:center;
   gap:22px;
 }
+/* =========================================================
+   HEADER LAYOUT FIX
+========================================================= */
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+
+/* LEFT SIDE */
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+/* NAVIGATION */
+
+.header-nav-left{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+/* RIGHT SIDE */
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+/* HEADER LINKS */
+
+.header-right a{
+  display:flex;
+  align-items:center;
+  height:36px;
+}
+
+/* BUTTON ALIGNMENT */
+
+.btn-primary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:36px;
+  padding:0 16px;
+  border-radius:8px;
+}
+
+/* MEGA DROPDOWN BUTTON */
+
+.mega-toggle{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  height:36px;
+  background:none;
+  border:none;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+}
