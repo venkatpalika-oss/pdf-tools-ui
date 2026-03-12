@@ -4215,3 +4215,29 @@ display:flex;
 align-items:center;
 gap:22px;
 }
+/* =========================================================
+   MEGA MENU POSITION FIX (FULL WIDTH HEADER SAFE)
+========================================================= */
+
+.mega-menu{
+left:0;
+transform:none;
+}
+
+/* keep dropdown under the button */
+
+.mega-dropdown{
+position:relative;
+}
+
+/* Prevent overflow on smaller screens */
+
+@media (max-width:1100px){
+
+.mega-menu{
+width:90vw;
+max-width:720px;
+left:0;
+}
+
+}
