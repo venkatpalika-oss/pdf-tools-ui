@@ -3518,3 +3518,120 @@ grid-template-columns:1fr;
 }
 
 }
+
+/* ===============================
+MODERN SAAS HEADER
+================================ */
+
+.site-header{
+position:sticky;
+top:16px;
+z-index:1000;
+
+width:90%;
+margin:0 auto;
+
+background:rgba(10,10,20,0.65);
+backdrop-filter:blur(18px);
+
+border-radius:14px;
+
+box-shadow:
+0 8px 35px rgba(0,0,0,0.35),
+0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* HEADER LAYOUT */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:12px 22px;
+}
+
+/* LOGO */
+
+.logo-link{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:18px;
+font-weight:600;
+}
+
+.brand-icon{
+height:22px;
+}
+
+.brand-accent{
+background:linear-gradient(90deg,#00f5ff,#8a2be2);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* NAV LINKS */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:18px;
+margin-left:20px;
+}
+
+/* DROPDOWN BUTTON */
+
+.mega-toggle{
+background:none;
+border:none;
+color:#fff;
+font-size:14px;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:6px;
+opacity:.85;
+transition:.2s;
+}
+
+.mega-toggle:hover{
+opacity:1;
+}
+
+/* ARROW ROTATION */
+
+.dropdown-arrow{
+font-size:12px;
+transition:.25s;
+}
+
+.mega-dropdown:hover .dropdown-arrow{
+transform:rotate(180deg);
+}
+
+/* RIGHT SIDE */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* PRIMARY BUTTON */
+
+.btn-primary{
+padding:7px 14px;
+border-radius:8px;
+
+background:linear-gradient(90deg,#00f5ff,#8a2be2);
+color:#000;
+
+font-weight:600;
+
+transition:.2s;
+}
+
+.btn-primary:hover{
+transform:translateY(-1px);
+box-shadow:0 5px 20px rgba(0,255,255,.25);
+}
