@@ -3639,3 +3639,53 @@ transition:.2s;
 transform:translateY(-1px);
 box-shadow:0 5px 20px rgba(0,255,255,.25);
 }
+/* =========================
+   HERO PREMIUM GLOW
+========================= */
+
+.hero{
+position:relative;
+overflow:hidden;
+}
+
+.hero-background-glow{
+position:absolute;
+top:-200px;
+left:50%;
+transform:translateX(-50%);
+
+width:900px;
+height:900px;
+
+background:radial-gradient(circle,
+rgba(0,255,255,0.15),
+rgba(138,43,226,0.12),
+transparent 70%);
+
+filter:blur(120px);
+
+animation:heroGlowMove 12s ease-in-out infinite;
+
+z-index:0;
+}
+
+.hero-inner{
+position:relative;
+z-index:1;
+}
+
+@keyframes heroGlowMove{
+
+0%{
+transform:translateX(-50%) scale(1);
+}
+
+50%{
+transform:translateX(-50%) scale(1.15);
+}
+
+100%{
+transform:translateX(-50%) scale(1);
+}
+
+}
