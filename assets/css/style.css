@@ -3921,3 +3921,127 @@ pointer-events:none;
   font:inherit;
   cursor:pointer;
 }
+/* =========================================================
+   HEADER STABILITY LOCK (FINAL PATCH)
+   This overrides all earlier header conflicts safely
+========================================================= */
+
+/* Main header container */
+
+.site-header{
+position:sticky;
+top:16px;
+z-index:1000;
+
+width:95%;
+max-width:1200px;
+margin:20px auto;
+
+display:block;
+}
+
+/* Header layout */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+min-height:64px;
+width:100%;
+}
+
+/* Left area */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:32px;
+}
+
+/* Navigation */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+/* Right side */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* Logo */
+
+.logo-link{
+display:flex;
+align-items:center;
+gap:10px;
+height:40px;
+}
+
+.brand-icon{
+height:22px;
+width:auto;
+}
+
+/* Navigation buttons */
+
+.header-nav-left a,
+.header-nav-left button{
+display:flex;
+align-items:center;
+height:40px;
+line-height:1;
+}
+
+/* Dropdown button */
+
+.mega-toggle{
+appearance:none;
+border:none;
+background:transparent;
+
+display:flex;
+align-items:center;
+gap:6px;
+
+height:40px;
+cursor:pointer;
+}
+
+/* Dropdown stability */
+
+.mega-dropdown{
+position:relative;
+padding-bottom:18px;
+}
+
+/* Dropdown position */
+
+.mega-menu{
+top:100%;
+margin-top:8px;
+}
+
+/* Prevent hover flicker */
+
+.mega-dropdown:hover .mega-menu,
+.mega-menu:hover{
+opacity:1;
+pointer-events:auto;
+transform:translateX(-50%) translateY(0);
+}
+
+/* Right side links */
+
+.header-right a,
+.btn-primary{
+display:flex;
+align-items:center;
+height:40px;
+}
