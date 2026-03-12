@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<title>Dashboard | PaperlyTools</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="assets/css/style.css" />
+
+</head>
+
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero" style="padding-top:120px;">
+
+<div class="container" style="max-width:700px;">
+
+<h2 style="text-align:center;margin-bottom:30px;">
+Your Dashboard
+</h2>
+
+<div class="panel" style="padding:30px;">
+
+<p>
+<strong>Email:</strong>
+<span id="userEmail"></span>
+</p>
+
+<p>
+<strong>Plan:</strong>
+<span id="userPlan"></span>
+</p>
+
+<p>
+<strong>Usage Today:</strong>
+<span id="usageToday"></span>
+</p>
+
+<br>
+
+<a class="btn dynamic-link"
+data-path="pricing.html">
+
+Upgrade to Pro
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/includes.js"></script>
+
+<script type="module">
+
+import { apiRequest } from "./assets/js/api.js";
+
+async function loadDashboard(){
+
+const data = await apiRequest("/api/user/dashboard");
+
+if(!data) return;
+
+document.getElementById("userEmail").textContent = data.email;
+
+document.getElementById("userPlan").textContent =
+data.plan.toUpperCase();
+
+if(data.dailyLimit === "unlimited"){
+
+document.getElementById("usageToday").textContent =
+"Unlimited";
+
+}
+else{
+
+document.getElementById("usageToday").textContent =
+data.dailyUsage + " / " + data.dailyLimit;
+
+}
+
+}
+
+loadDashboard();
+
+</script>
+
+</body>
+</html>
