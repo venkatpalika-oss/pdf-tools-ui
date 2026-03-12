@@ -3785,3 +3785,8 @@ pointer-events:none;
   align-items: center;
   gap: 18px;
 }
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
