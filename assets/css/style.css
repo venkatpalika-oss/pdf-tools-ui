@@ -20,9 +20,18 @@ a {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding:0 24px;
+}
+
+/* FULL WIDTH SECTIONS */
+
+.hero,
+.tools,
+.pricing-section,
+.stats{
+  width:100%;
 }
 
 /* =========================================================
@@ -95,18 +104,17 @@ box-shadow:0 0 25px rgba(0,255,255,0.15);
    HERO SECTION (Neon Tech)
 ========================================================= */
 
-/* =========================================================
-   HERO SECTION (Neon Tech)
-========================================================= */
-
 .hero{
-text-align:center;
-padding:120px 20px;
+width:100%;
 min-height:85vh;
 
 display:flex;
 align-items:center;
 justify-content:center;
+
+padding:120px 0;
+
+text-align:center;
 
 position:relative;
 overflow:hidden;
@@ -136,13 +144,14 @@ pointer-events:none;
 }
 
 .hero-inner{
-width:100%;
-max-width:1100px;
-margin:auto;
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  padding:0 20px;
 }
 
 .hero h1{
-font-size:52px;
+font-size:56px;
 font-weight:700;
 
 background:linear-gradient(90deg,#00f5ff,#8a2be2);
@@ -264,18 +273,14 @@ margin-bottom:20px;
 ========================================================= */
 
 .tools{
-padding:50px 0;
+width:100%;
+padding:80px 0;
 }
 
 .tools-grid{
-
 display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-
-gap:16px;
-
-align-items:stretch;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:22px;
 
 }
 
@@ -287,9 +292,9 @@ align-items:stretch;
 
 background:rgba(255,255,255,0.05);
 
-border-radius:12px;
+border-radius:14px;
 
-padding:16px 14px;
+padding:22px 18px;
 
 text-align:center;
 
@@ -305,13 +310,25 @@ align-items:center;
 
 justify-content:center;
 
-gap:6px;
+gap:10px;
 
-min-height:80px;
+min-height:110px;
 
 position:relative;
 
 overflow:hidden;
+
+}
+
+/* Hover Effect */
+
+.tool-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.35);
+
+border-color:rgba(0,245,255,0.25);
 
 }
 
@@ -320,12 +337,9 @@ overflow:hidden;
 ========================================================= */
 
 .tool-icon{
-
-font-size:22px;
-
-margin-bottom:2px;
-
-opacity:.9;
+font-size:26px;
+margin-bottom:4px;
+opacity:0.9;
 
 }
 
@@ -334,12 +348,9 @@ opacity:.9;
 ========================================================= */
 
 .tool-name{
-
 font-weight:600;
-
-font-size:14px;
-
-line-height:1.3;
+font-size:15px;
+opacity:0.95;
 
 }
 
@@ -348,9 +359,7 @@ line-height:1.3;
 ========================================================= */
 
 .tool-desc{
-
 font-size:12px;
-
 opacity:.7;
 
 }
@@ -360,11 +369,8 @@ opacity:.7;
 ========================================================= */
 
 .tool-card:hover{
-
 transform:translateY(-4px);
-
 box-shadow:
-
 0 10px 25px rgba(0,0,0,.5),
 
 0 0 18px rgba(0,245,255,.25);
