@@ -4496,3 +4496,16 @@ width:95vw;
 }
 
 }
+/* HEADER RIGHT ALIGNMENT FIX */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+.header-right a{
+display:flex;
+align-items:center;
+height:36px;
+}
