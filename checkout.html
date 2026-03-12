@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Checkout | PaperlyTools</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* =========================================================
+CHECKOUT PAGE
+========================================================= */
+
+.checkout-section{
+padding-top:120px;
+padding-bottom:80px;
+text-align:center;
+}
+
+.checkout-card{
+
+max-width:420px;
+margin:auto;
+
+background:rgba(255,255,255,0.05);
+
+border-radius:16px;
+
+padding:40px;
+
+border:1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(10px);
+
+box-shadow:
+0 0 30px rgba(0,255,255,0.15);
+}
+
+/* TITLE */
+
+.checkout-title{
+
+font-size:30px;
+
+margin-bottom:10px;
+
+background:linear-gradient(90deg,#00f5ff,#8a2be2);
+
+-webkit-background-clip:text;
+background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+/* PRICE */
+
+.checkout-price{
+
+font-size:42px;
+
+font-weight:bold;
+
+margin:15px 0;
+}
+
+/* FEATURES */
+
+.checkout-features{
+
+list-style:none;
+
+padding:0;
+
+margin:25px 0;
+}
+
+.checkout-features li{
+margin:10px 0;
+opacity:.9;
+}
+
+/* BUTTON */
+
+.checkout-btn{
+
+display:inline-block;
+
+padding:12px 24px;
+
+border-radius:8px;
+
+background:linear-gradient(90deg,#00f5ff,#8a2be2);
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+border:none;
+
+}
+
+.checkout-btn:hover{
+
+transform:translateY(-2px);
+
+}
+
+.checkout-btn.loading{
+opacity:.6;
+pointer-events:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="site-header"></div>
+
+<section class="checkout-section">
+
+<div class="container">
+
+<div class="checkout-card">
+
+<h1 class="checkout-title">
+Upgrade to Pro
+</h1>
+
+<div class="checkout-price">
+$9 / month
+</div>
+
+<ul class="checkout-features">
+
+<li>✔ Unlimited PDF tools</li>
+<li>✔ Larger file uploads</li>
+<li>✔ Faster processing</li>
+<li>✔ Priority servers</li>
+<li>✔ Future AI features</li>
+
+</ul>
+
+<button id="checkoutBtn" class="checkout-btn">
+
+Start Secure Checkout
+
+</button>
+
+<p id="checkoutStatus" style="margin-top:15px;opacity:.7;"></p>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/includes.js"></script>
+
+<script type="module">
+
+import { getToken } from "./assets/js/auth.js";
+
+const btn = document.getElementById("checkoutBtn");
+const status = document.getElementById("checkoutStatus");
+
+btn.addEventListener("click", async () => {
+
+const token = getToken();
+
+if(!token){
+
+status.textContent = "Please login first.";
+return;
+
+}
+
+btn.classList.add("loading");
+status.textContent = "Redirecting to secure payment...";
+
+try{
+
+const response = await fetch(
+"https://pdf-tools-api-c4f5.onrender.com/api/checkout/create-checkout-session",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"Authorization":"Bearer "+token
+}
+}
+);
+
+const data = await response.json();
+
+if(data.url){
+
+window.location.href = data.url;
+
+}else{
+
+status.textContent = "Checkout failed. Please try again.";
+
+btn.classList.remove("loading");
+
+}
+
+}catch(err){
+
+status.textContent = "Server error. Please try again.";
+
+btn.classList.remove("loading");
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
