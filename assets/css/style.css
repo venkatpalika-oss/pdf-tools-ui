@@ -4156,3 +4156,62 @@ opacity:1;
 pointer-events:auto;
 transform:translateX(-50%) translateY(0);
 }
+/* =========================================
+   FULL WIDTH HEADER FIX
+========================================= */
+
+.site-header{
+position:sticky;
+top:0;
+left:0;
+right:0;
+
+width:100%;
+max-width:none;
+
+margin:0;
+border-radius:0;
+
+z-index:9999;
+
+background:rgba(10,10,20,0.9);
+backdrop-filter:blur(16px);
+}
+
+/* Remove container restriction inside header */
+
+.site-header .container{
+max-width:none;
+width:100%;
+padding:0 40px;
+}
+
+/* Header layout */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+min-height:64px;
+width:100%;
+}
+
+/* Navigation alignment */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:40px;
+}
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:22px;
+}
