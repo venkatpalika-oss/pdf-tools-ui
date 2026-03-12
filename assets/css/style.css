@@ -20,7 +20,7 @@ a {
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
   padding:0 24px;
 }
@@ -2629,9 +2629,15 @@ margin-bottom:40px;
 }
 
 .tool-dashboard{
+
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:26px;
+
+gap:22px;
+
+margin-top:25px;
+
 }
 
 /* tool cards */
@@ -2701,6 +2707,58 @@ transition:transform .7s ease;
 
 .tool-card:hover::before{
 transform:translateX(100%);
+}
+
+/* =========================================================
+   TOOL CATEGORY FILTER BAR
+========================================================= */
+
+.tool-categories{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:16px;
+
+margin-bottom:30px;
+
+flex-wrap:wrap;
+
+}
+
+/* CATEGORY BUTTON */
+
+.tool-category{
+
+padding:6px 14px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,0.05);
+
+border:1px solid rgba(255,255,255,0.08);
+
+font-size:14px;
+
+cursor:pointer;
+
+transition:all .2s ease;
+
+}
+
+/* ACTIVE CATEGORY */
+
+.tool-category.active{
+
+background:linear-gradient(90deg,#00f5ff,#8a2be2);
+
+color:white;
+
+border:none;
+
 }
 /* =========================================================
    AI INTERACTIVE UPLOAD ZONE
