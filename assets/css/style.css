@@ -3566,7 +3566,11 @@ height:22px;
 
 .brand-accent{
 background:linear-gradient(90deg,#00f5ff,#8a2be2);
+
+background-clip:text;
 -webkit-background-clip:text;
+
+color:transparent;
 -webkit-text-fill-color:transparent;
 }
 
