@@ -4045,3 +4045,114 @@ display:flex;
 align-items:center;
 height:40px;
 }
+/* =========================================================
+   FINAL HEADER FULL WIDTH + STICKY FIX
+   (must stay at bottom of CSS)
+========================================================= */
+
+.site-header{
+position:sticky;
+top:0;
+left:0;
+right:0;
+
+width:100%;
+max-width:none;
+
+margin:0;
+
+border-radius:0;
+
+z-index:9999;
+
+background:rgba(10,10,20,0.85);
+backdrop-filter:blur(18px);
+
+box-shadow:
+0 6px 30px rgba(0,0,0,0.45);
+}
+
+/* Inner container keeps content centered */
+
+.site-header .container{
+max-width:1200px;
+margin:0 auto;
+padding:0 24px;
+}
+
+/* Header layout */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+min-height:64px;
+width:100%;
+}
+
+/* Left side */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:32px;
+}
+
+/* Navigation */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+/* Right side */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* Logo */
+
+.logo-link{
+display:flex;
+align-items:center;
+gap:10px;
+height:40px;
+}
+
+.brand-icon{
+height:22px;
+}
+
+/* Navigation alignment */
+
+.header-nav-left a,
+.header-nav-left button{
+display:flex;
+align-items:center;
+height:40px;
+}
+
+/* Dropdown stability */
+
+.mega-dropdown{
+position:relative;
+padding-bottom:16px;
+}
+
+.mega-menu{
+top:100%;
+margin-top:8px;
+}
+
+/* Prevent hover flicker */
+
+.mega-dropdown:hover .mega-menu,
+.mega-menu:hover{
+opacity:1;
+pointer-events:auto;
+transform:translateX(-50%) translateY(0);
+}
