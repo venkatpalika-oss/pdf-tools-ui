@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       headerContainer.innerHTML = html;
 
-      // Fix dynamic links
+      /* ================= FIX DYNAMIC LINKS ================= */
+
       document.querySelectorAll(".dynamic-link").forEach(link => {
         const target = link.getAttribute("data-path");
         if (target) link.href = base + target;
@@ -41,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const { getToken, logout } = await import("/assets/js/auth.js");
 
     const authButton = document.getElementById("authButton");
+    const dashboardLink = document.querySelector('[data-path="dashboard.html"]');
+
     if (!authButton) return;
 
     const token = getToken();
@@ -53,6 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
       authButton.href = base + "login.html";
       authButton.style.display = "inline-block";
 
+      if (dashboardLink) {
+        dashboardLink.style.display = "none";
+      }
+
       return;
     }
 
@@ -63,16 +70,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     authButton.style.display = "none";
 
-    // Prevent duplicate logout buttons
+    if (dashboardLink) {
+      dashboardLink.style.display = "inline-block";
+      dashboardLink.href = base + "dashboard.html";
+    }
+
+    /* Prevent duplicate logout buttons */
+
     if (parent.querySelector(".logout-btn")) return;
 
     const logoutBtn = document.createElement("button");
+
     logoutBtn.className = "btn-primary logout-btn";
     logoutBtn.textContent = "Logout";
 
     logoutBtn.addEventListener("click", (e) => {
+
       e.preventDefault();
+
       logout();
+
     });
 
     parent.appendChild(logoutBtn);
