@@ -3945,9 +3945,9 @@ z-index:9999;
 /* Center header content */
 
 .site-header .container{
-max-width:1200px;
-margin:0 auto;
-padding:0 24px;
+max-width:none;
+width:100%;
+padding:0 40px;
 }
 
 /* Header layout */
@@ -4470,10 +4470,22 @@ position:relative;
 
 /* FIX dropdown overflow */
 
+/* FIX dropdown overflow */
+
 .mega-menu{
+
+position:absolute;
+top:48px;
+
 left:0 !important;
+
+width:720px;
+max-width:90vw;
+
 transform:translateY(10px) !important;
-max-width:720px;
+
+z-index:1000;
+
 }
 
 /* Prevent screen overflow */
