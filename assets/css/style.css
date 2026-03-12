@@ -3780,3 +3780,8 @@ animation:heroGlowMove 10s ease-in-out infinite;
 z-index:-1;
 pointer-events:none;
 }
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
