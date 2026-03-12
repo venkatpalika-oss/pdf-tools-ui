@@ -3921,6 +3921,100 @@ pointer-events:none;
   font:inherit;
   cursor:pointer;
 }
+
+/* =========================================================
+   FINAL HEADER + DROPDOWN STABILIZER
+   (Paste after the last mega-toggle block)
+========================================================= */
+
+/* Full width sticky header */
+
+.site-header{
+position:sticky;
+top:0;
+left:0;
+right:0;
+
+width:100%;
+margin:0;
+border-radius:0;
+
+z-index:9999;
+}
+
+/* Center header content */
+
+.site-header .container{
+max-width:1200px;
+margin:0 auto;
+padding:0 24px;
+}
+
+/* Header layout */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+height:64px;
+}
+
+/* Navigation layout */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:30px;
+}
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* Fix dashboard/logout alignment */
+
+.header-right a{
+display:flex;
+align-items:center;
+height:36px;
+}
+
+/* Fix mega menu overflow */
+
+.mega-dropdown{
+position:relative;
+}
+
+.mega-menu{
+position:absolute;
+top:100%;
+left:0;
+
+width:720px;
+max-width:90vw;
+
+transform:none;
+margin-top:10px;
+}
+
+/* Responsive */
+
+@media (max-width:900px){
+
+.mega-menu{
+width:95vw;
+left:0;
+}
+
+}
 /* =========================================================
    HEADER STABILITY LOCK (FINAL PATCH)
    This overrides all earlier header conflicts safely
@@ -4240,4 +4334,75 @@ max-width:720px;
 left:0;
 }
 
+}
+/* =========================================================
+   FINAL HEADER LAYOUT STABILIZER
+========================================================= */
+
+.site-header{
+position:sticky;
+top:0;
+width:100%;
+margin:0;
+border-radius:0;
+z-index:9999;
+}
+
+/* Header content container */
+
+.site-header .container{
+max-width:1200px;
+margin:auto;
+padding:0 24px;
+}
+
+/* Layout */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+height:64px;
+}
+
+/* Left side */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:28px;
+}
+
+/* Navigation */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+/* Right side */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* Fix dashboard + logout alignment */
+
+.header-right a{
+display:flex;
+align-items:center;
+height:36px;
+}
+
+/* Button */
+
+.btn-primary{
+display:flex;
+align-items:center;
+justify-content:center;
+height:36px;
+padding:0 16px;
 }
