@@ -653,7 +653,7 @@ flex-shrink:0;
 
   position:absolute;
   top:48px;
-  left:50%;
+  left:0;
 
   width:720px;
 
@@ -661,10 +661,9 @@ flex-shrink:0;
 
   border-radius:14px;
 
-  background:rgba(12,18,32,0.85);
-  backdrop-filter:blur(18px);
-
-  border:1px solid rgba(0,255,255,0.15);
+  background:#0f172a;
+  
+  border:1px solid #1f2937;
 
   box-shadow:
   0 20px 60px rgba(0,0,0,0.6),
@@ -675,7 +674,7 @@ flex-shrink:0;
   gap:26px;
 
   opacity:0;
-  transform:translateX(-50%) translateY(10px);
+  transform:translateY(10px);
   pointer-events:none;
 
   transition:opacity .25s ease, transform .25s ease;
