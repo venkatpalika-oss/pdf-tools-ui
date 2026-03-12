@@ -4406,3 +4406,82 @@ justify-content:center;
 height:36px;
 padding:0 16px;
 }
+/* =========================================================
+   HEADER MASTER OVERRIDE
+   This stabilizes layout without deleting existing styles
+========================================================= */
+
+/* Full width sticky header */
+
+.site-header{
+position:sticky;
+top:0;
+width:100%;
+margin:0;
+border-radius:0;
+z-index:9999;
+}
+
+/* Header layout */
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+height:64px;
+}
+
+/* Left side */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:28px;
+}
+
+/* Navigation */
+
+.header-nav-left{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+/* Right side */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* Button alignment */
+
+.header-right a{
+display:flex;
+align-items:center;
+}
+
+/* Fix mega dropdown anchor */
+
+.mega-dropdown{
+position:relative;
+}
+
+/* FIX dropdown overflow */
+
+.mega-menu{
+left:0 !important;
+transform:translateY(10px) !important;
+max-width:720px;
+}
+
+/* Prevent screen overflow */
+
+@media (max-width:900px){
+
+.mega-menu{
+width:95vw;
+}
+
+}
