@@ -290,9 +290,23 @@ Free files remaining today: ${data.usage.remaining ?? "Unlimited"}
 
 ${data.originalSize ? `
 <div class="compression-info">
-<div>Original: ${(data.originalSize/(1024*1024)).toFixed(2)} MB</div>
-<div>Compressed: ${(data.compressedSize/(1024*1024)).toFixed(2)} MB</div>
-<div class="saved-percent">Saved ${data.savedPercent}%</div>
+
+<div>
+Original: ${(data.originalSize/(1024*1024)).toFixed(2)} MB
+</div>
+
+${data.compressedSize ? `
+<div>
+Compressed: ${(data.compressedSize/(1024*1024)).toFixed(2)} MB
+</div>
+` : ""}
+
+${data.savedPercent ? `
+<div class="saved-percent">
+Saved ${data.savedPercent}%
+</div>
+` : ""}
+
 </div>
 `:""}
 
