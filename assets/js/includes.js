@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       initHeaderAuth();
+      initProtectedLinks();
     });
 
   /* ================= LOAD FOOTER ================= */
@@ -93,6 +94,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     parent.appendChild(logoutBtn);
+
+  }
+
+  /* ================= PROTECT LOGIN LINKS ================= */
+
+  async function initProtectedLinks() {
+
+    const { getToken } = await import("/assets/js/auth.js");
+
+    const token = getToken();
+
+    const protectedLinks = document.querySelectorAll(".require-login");
+
+    protectedLinks.forEach(link => {
+
+      link.addEventListener("click", (e) => {
+
+        if (!token) {
+
+          e.preventDefault();
+
+          window.location.href = base + "login.html";
+
+        }
+
+      });
+
+    });
 
   }
 
