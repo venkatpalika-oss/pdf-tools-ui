@@ -5,6 +5,21 @@
 <title>Sign Up | PaperlyTools</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="assets/css/style.css" />
+
+<script type="module">
+
+import { isLoggedIn } from "/assets/js/auth.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (isLoggedIn()) {
+    window.location.href = "/dashboard.html";
+  }
+
+});
+
+</script>
+
 </head>
 
 <body>
