@@ -332,5 +332,31 @@ Start Pro Plan
 
 <script src="assets/js/includes.js"></script>
 
+<script type="module">
+
+import { isLoggedIn } from "/assets/js/auth.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const freeBtn = document.querySelector(".free-btn");
+
+  if (!freeBtn) return;
+
+  freeBtn.addEventListener("click", (e) => {
+
+    if (isLoggedIn()) {
+
+      e.preventDefault();
+
+      window.location.href = "/dashboard.html";
+
+    }
+
+  });
+
+});
+
+</script>
+
 </body>
 </html>
