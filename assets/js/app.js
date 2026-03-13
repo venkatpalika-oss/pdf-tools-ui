@@ -1,5 +1,5 @@
 import { apiRequest } from "./api.js";
-import { initAuthUI } from "./auth.js";
+import { initAuthUI, getToken } from "./auth.js";
 import { tools } from "./tools-config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkLoginWall(){
 
-    const token = localStorage.getItem("token");
+    const token = getToken();
 
     if(!token){
 
