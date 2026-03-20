@@ -676,6 +676,50 @@ break;
 
   });
 
+  /* ================= AI BUTTON HANDLER ================= */
+
+if (toolType && toolType.startsWith("ai-")) {
+
+  const box = document.querySelector(".upload-box");
+
+  /*
+  ---------------------------------
+  AI TRANSLATOR
+  ---------------------------------
+  */
+
+  const translateBtn = document.getElementById("generateTranslateBtn");
+
+  if (translateBtn && toolType === "ai-translate") {
+
+    translateBtn.addEventListener("click", () => {
+
+      if (!checkLoginWall()) return;
+
+      const text = getAITextInput();
+
+      if (!text) {
+        alert("Please enter text to translate.");
+        return;
+      }
+
+      const language = getLanguageSelection();
+
+      console.log("🌍 Translating:", text, "→", language);
+
+      sendAIRequest(
+        "/api/ai/translate",
+        { text, language },
+        box,
+        "Translating… 🌍"
+      );
+
+    });
+
+  }
+
+}
+
   /* ================= AUTH UI ================= */
 
   initAuthUI();
