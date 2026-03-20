@@ -4,52 +4,191 @@
 <head>
 
 <meta charset="UTF-8" />
-
 <title>Dashboard | PaperlyTools</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<meta name="description"
+content="Access your PaperlyTools dashboard to manage your files, AI tools and PDF processing tasks." />
+
 <link rel="stylesheet" href="assets/css/style.css" />
+
+<!-- ===============================
+DASHBOARD ACCESS PROTECTION
+=============================== -->
+<script type="module">
+
+import { isLoggedIn } from "/assets/js/auth.js";
+
+if (!isLoggedIn()) {
+  console.warn("🚫 Unauthorized dashboard access");
+  window.location.href = "/login.html";
+}
+
+</script>
+
+<style>
+
+/* ===============================
+DASHBOARD UI EXTENSION
+=============================== */
+
+.dashboard-container{
+  padding-top:120px;
+  padding-bottom:60px;
+}
+
+.dashboard-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.plan-badge{
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.plan-free{
+  background:#444;
+  color:#fff;
+}
+
+.plan-pro{
+  background:linear-gradient(135deg,#00f0ff,#00ffa6);
+  color:#000;
+}
+
+.usage-box{
+  margin-top:10px;
+  font-size:14px;
+  opacity:0.8;
+}
+
+.upgrade-banner{
+  margin-top:20px;
+  padding:20px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#1a1a2e,#16213e);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.upgrade-banner h3{
+  margin:0 0 10px;
+}
+
+.upgrade-btn{
+  margin-top:10px;
+  display:inline-block;
+  padding:10px 16px;
+  background:#00ffa6;
+  color:#000;
+  border-radius:8px;
+  font-weight:600;
+}
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-top:30px;
+}
+
+.tool-card{
+  padding:20px;
+  border-radius:12px;
+  background:#111;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.3s;
+}
+
+.tool-card.locked{
+  opacity:0.5;
+  position:relative;
+}
+
+.tool-card.locked::after{
+  content:"PRO";
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-size:10px;
+  background:#ffcc00;
+  color:#000;
+  padding:4px 6px;
+  border-radius:4px;
+}
+
+.tool-title{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.tool-card a{
+  font-size:13px;
+  color:#00f0ff;
+}
+
+</style>
 
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div id="site-header"></div>
 
-<section class="hero" style="padding-top:120px;">
+<!-- ===============================
+DASHBOARD CONTENT
+=============================== -->
 
-<div class="container" style="max-width:700px;">
+<section class="dashboard-container">
 
-<h2 style="text-align:center;margin-bottom:30px;">
-Your Dashboard
-</h2>
+<div class="container">
 
-<div class="panel" style="padding:30px;">
+<div class="dashboard-header">
 
-<p>
-<strong>Email:</strong>
-<span id="userEmail"></span>
-</p>
+<div>
+<h1 id="welcomeText">Welcome</h1>
+<div class="usage-box" id="usageText"></div>
+</div>
 
-<p>
-<strong>Plan:</strong>
-<span id="userPlan"></span>
-</p>
+<div id="planBadge" class="plan-badge plan-free">
+Free Plan
+</div>
 
-<p>
-<strong>Usage Today:</strong>
-<span id="usageToday"></span>
-</p>
+</div>
 
-<br>
+<!-- UPGRADE BANNER -->
+<div id="upgradeBanner" class="upgrade-banner" style="display:none;">
+  <h3>Upgrade to Pro 🚀</h3>
+  <p>Unlock unlimited tools, faster processing and AI features.</p>
+  <a href="/pricing.html" class="upgrade-btn dynamic-link" data-path="pricing.html">Upgrade Now</a>
+</div>
 
-<a class="btn dynamic-link"
-data-path="pricing.html">
+<!-- TOOLS GRID -->
 
-Upgrade to Pro
+<div class="tools-grid">
 
-</a>
+<div class="tool-card">
+  <div class="tool-title">Merge PDF</div>
+  <a class="dynamic-link" data-path="tools/merge-pdf.html">Open Tool</a>
+</div>
+
+<div class="tool-card">
+  <div class="tool-title">Compress PDF</div>
+  <a class="dynamic-link" data-path="tools/compress-pdf.html">Open Tool</a>
+</div>
+
+<div class="tool-card locked" id="aiToolCard">
+  <div class="tool-title">AI PDF Summarizer</div>
+  <a class="dynamic-link" data-path="tools/ai-summarizer.html">Open Tool</a>
+</div>
 
 </div>
 
@@ -57,43 +196,92 @@ Upgrade to Pro
 
 </section>
 
+<!-- FOOTER -->
 <div id="site-footer"></div>
 
-<script src="assets/js/includes.js"></script>
+<!-- ===============================
+LOGIC (NO DUPLICATION)
+=============================== -->
 
 <script type="module">
 
-import { apiRequest } from "./assets/js/api.js";
+import {
+  getCurrentUser,
+  getUserPlan
+} from "/assets/js/auth.js";
 
-async function loadDashboard(){
+/*
+---------------------------------
+LOAD USER DATA
+---------------------------------
+*/
 
-const data = await apiRequest("/api/user/dashboard");
+const user = getCurrentUser();
+const plan = getUserPlan() || "free";
 
-if(!data) return;
+/*
+---------------------------------
+WELCOME TEXT
+---------------------------------
+*/
 
-document.getElementById("userEmail").textContent = data.email;
-
-document.getElementById("userPlan").textContent =
-data.plan.toUpperCase();
-
-if(data.dailyLimit === "unlimited"){
-
-document.getElementById("usageToday").textContent =
-"Unlimited";
-
-}
-else{
-
-document.getElementById("usageToday").textContent =
-data.dailyUsage + " / " + data.dailyLimit;
-
-}
-
+if (user && user.name) {
+  document.getElementById("welcomeText").innerText =
+    "Welcome, " + user.name;
 }
 
-loadDashboard();
+/*
+---------------------------------
+PLAN BADGE
+---------------------------------
+*/
+
+const badge = document.getElementById("planBadge");
+
+if (plan === "pro") {
+  badge.innerText = "Pro Plan";
+  badge.classList.remove("plan-free");
+  badge.classList.add("plan-pro");
+} else {
+  badge.innerText = "Free Plan";
+}
+
+/*
+---------------------------------
+USAGE (UI READY)
+---------------------------------
+*/
+
+document.getElementById("usageText").innerText =
+  plan === "pro"
+    ? "Unlimited usage enabled"
+    : "Free plan: limited daily usage";
+
+/*
+---------------------------------
+UPGRADE BANNER
+---------------------------------
+*/
+
+if (plan !== "pro") {
+  document.getElementById("upgradeBanner").style.display = "block";
+}
+
+/*
+---------------------------------
+LOCK PRO FEATURES (UI ONLY)
+---------------------------------
+*/
+
+if (plan === "pro") {
+  document.getElementById("aiToolCard").classList.remove("locked");
+}
 
 </script>
 
+<!-- LOAD HEADER/FOOTER -->
+<script src="assets/js/includes.js"></script>
+
 </body>
+
 </html>
