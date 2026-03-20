@@ -207,7 +207,8 @@ async function sendAIRequest(endpoint, payload, box, loadingText){
       data.analysis ||
       data.answer;
 
-    if(!result){
+    if (!result) {
+      console.error("❌ Invalid response:", data);
       throw new Error("Invalid AI response");
     }
 
