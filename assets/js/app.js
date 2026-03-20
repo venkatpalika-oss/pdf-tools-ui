@@ -241,9 +241,40 @@ async function sendAIRequest(endpoint, payload, box, loadingText){
   }
   catch(error){
 
-    console.error("AI Error:",error);
+    console.error("AI Error:", error);
 
-    setStatus(box,"AI Failed ❌","error");
+    setStatus(box, "AI Failed ❌", "error");
+
+    /*
+    ---------------------------------
+    HANDLE LIMIT / ACCESS BLOCK
+    ---------------------------------
+    */
+
+    /*
+---------------------------------
+HANDLE LIMIT / ACCESS BLOCK
+---------------------------------
+*/
+
+if (
+  error.message &&
+  (
+    error.message.toLowerCase().includes("limit") ||
+    error.message.toLowerCase().includes("access blocked") ||
+    error.message.toLowerCase().includes("forbidden")
+  )
+) {
+  alert("Daily limit reached. Upgrade to continue.");
+  window.location.href = "/pricing.html";
+  return;
+}
+
+    /*
+    ---------------------------------
+      SHOW ACTUAL ERROR
+    ---------------------------------
+    */
 
     alert(error.message || "AI processing failed");
 
