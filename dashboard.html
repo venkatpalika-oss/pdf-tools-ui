@@ -30,7 +30,7 @@ if (!isLoggedIn()) {
 <style>
 
 /* ===============================
-DASHBOARD UI EXTENSION
+DASHBOARD UI
 =============================== */
 
 .dashboard-container{
@@ -66,7 +66,21 @@ DASHBOARD UI EXTENSION
 .usage-box{
   margin-top:10px;
   font-size:14px;
-  opacity:0.8;
+}
+
+.usage-bar{
+  margin-top:8px;
+  height:8px;
+  background:#222;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.usage-fill{
+  height:100%;
+  background:#00ffa6;
+  width:0%;
+  transition:0.3s;
 }
 
 .upgrade-banner{
@@ -74,21 +88,6 @@ DASHBOARD UI EXTENSION
   padding:20px;
   border-radius:12px;
   background:linear-gradient(135deg,#1a1a2e,#16213e);
-  border:1px solid rgba(255,255,255,0.1);
-}
-
-.upgrade-banner h3{
-  margin:0 0 10px;
-}
-
-.upgrade-btn{
-  margin-top:10px;
-  display:inline-block;
-  padding:10px 16px;
-  background:#00ffa6;
-  color:#000;
-  border-radius:8px;
-  font-weight:600;
 }
 
 .tools-grid{
@@ -103,7 +102,11 @@ DASHBOARD UI EXTENSION
   border-radius:12px;
   background:#111;
   border:1px solid rgba(255,255,255,0.08);
-  transition:0.3s;
+}
+
+.tool-card.disabled{
+  opacity:0.4;
+  pointer-events:none;
 }
 
 .tool-card.locked{
@@ -126,12 +129,6 @@ DASHBOARD UI EXTENSION
 .tool-title{
   font-size:16px;
   font-weight:600;
-  margin-bottom:8px;
-}
-
-.tool-card a{
-  font-size:13px;
-  color:#00f0ff;
 }
 
 </style>
@@ -140,12 +137,7 @@ DASHBOARD UI EXTENSION
 
 <body>
 
-<!-- HEADER -->
 <div id="site-header"></div>
-
-<!-- ===============================
-DASHBOARD CONTENT
-=============================== -->
 
 <section class="dashboard-container">
 
@@ -155,7 +147,15 @@ DASHBOARD CONTENT
 
 <div>
 <h1 id="welcomeText">Welcome</h1>
-<div class="usage-box" id="usageText"></div>
+
+<div class="usage-box" id="usageText">
+Loading usage...
+</div>
+
+<div class="usage-bar">
+  <div id="usageFill" class="usage-fill"></div>
+</div>
+
 </div>
 
 <div id="planBadge" class="plan-badge plan-free">
@@ -164,28 +164,25 @@ Free Plan
 
 </div>
 
-<!-- UPGRADE BANNER -->
 <div id="upgradeBanner" class="upgrade-banner" style="display:none;">
   <h3>Upgrade to Pro 🚀</h3>
-  <p>Unlock unlimited tools, faster processing and AI features.</p>
-  <a href="/pricing.html" class="upgrade-btn dynamic-link" data-path="pricing.html">Upgrade Now</a>
+  <p>Unlock unlimited tools & remove limits.</p>
+  <a href="/pricing.html" class="dynamic-link" data-path="pricing.html">Upgrade Now</a>
 </div>
-
-<!-- TOOLS GRID -->
 
 <div class="tools-grid">
 
-<div class="tool-card">
+<div class="tool-card" id="tool1">
   <div class="tool-title">Merge PDF</div>
   <a class="dynamic-link" data-path="tools/merge-pdf.html">Open Tool</a>
 </div>
 
-<div class="tool-card">
+<div class="tool-card" id="tool2">
   <div class="tool-title">Compress PDF</div>
   <a class="dynamic-link" data-path="tools/compress-pdf.html">Open Tool</a>
 </div>
 
-<div class="tool-card locked" id="aiToolCard">
+<div class="tool-card locked" id="aiTool">
   <div class="tool-title">AI PDF Summarizer</div>
   <a class="dynamic-link" data-path="tools/ai-summarizer.html">Open Tool</a>
 </div>
@@ -196,36 +193,30 @@ Free Plan
 
 </section>
 
-<!-- FOOTER -->
 <div id="site-footer"></div>
 
 <!-- ===============================
-LOGIC (NO DUPLICATION)
+LOGIC
 =============================== -->
 
 <script type="module">
 
 import {
   getCurrentUser,
-  getUserPlan
+  getUserPlan,
+  getToken
 } from "/assets/js/auth.js";
 
 /*
 ---------------------------------
-LOAD USER DATA
+INIT
 ---------------------------------
 */
 
 const user = getCurrentUser();
 const plan = getUserPlan() || "free";
 
-/*
----------------------------------
-WELCOME TEXT
----------------------------------
-*/
-
-if (user && user.name) {
+if (user?.name) {
   document.getElementById("welcomeText").innerText =
     "Welcome, " + user.name;
 }
@@ -240,46 +231,89 @@ const badge = document.getElementById("planBadge");
 
 if (plan === "pro") {
   badge.innerText = "Pro Plan";
-  badge.classList.remove("plan-free");
   badge.classList.add("plan-pro");
 } else {
-  badge.innerText = "Free Plan";
-}
-
-/*
----------------------------------
-USAGE (UI READY)
----------------------------------
-*/
-
-document.getElementById("usageText").innerText =
-  plan === "pro"
-    ? "Unlimited usage enabled"
-    : "Free plan: limited daily usage";
-
-/*
----------------------------------
-UPGRADE BANNER
----------------------------------
-*/
-
-if (plan !== "pro") {
   document.getElementById("upgradeBanner").style.display = "block";
 }
 
 /*
 ---------------------------------
-LOCK PRO FEATURES (UI ONLY)
+FETCH REAL USAGE
+---------------------------------
+*/
+
+async function loadUsage() {
+
+  try {
+
+    const res = await fetch("https://pdf-tools-api-c4f5.onrender.com/api/usage", {
+      headers: {
+        Authorization: "Bearer " + getToken()
+      }
+    });
+
+    const data = await res.json();
+
+    /*
+    Expected:
+    dailyUsageCount
+    dailyLimit
+    */
+
+    const used = data.dailyUsageCount || 0;
+    const limit = data.dailyLimit || 5;
+
+    const remaining = limit - used;
+
+    document.getElementById("usageText").innerText =
+      plan === "pro"
+        ? "Unlimited usage enabled"
+        : `${used} / ${limit} used • ${remaining} remaining`;
+
+    /*
+    PROGRESS BAR
+    */
+
+    const percent = Math.min((used / limit) * 100, 100);
+    document.getElementById("usageFill").style.width = percent + "%";
+
+    /*
+    LIMIT REACHED → DISABLE TOOLS
+    */
+
+    if (plan !== "pro" && used >= limit) {
+
+      document.getElementById("usageText").innerText =
+        "Limit reached. Upgrade to continue.";
+
+      document.querySelectorAll(".tool-card").forEach(card => {
+        card.classList.add("disabled");
+      });
+
+    }
+
+  } catch (err) {
+    console.error("Usage fetch failed", err);
+    document.getElementById("usageText").innerText =
+      "Unable to load usage data";
+  }
+
+}
+
+loadUsage();
+
+/*
+---------------------------------
+UNLOCK PRO FEATURES
 ---------------------------------
 */
 
 if (plan === "pro") {
-  document.getElementById("aiToolCard").classList.remove("locked");
+  document.getElementById("aiTool").classList.remove("locked");
 }
 
 </script>
 
-<!-- LOAD HEADER/FOOTER -->
 <script src="assets/js/includes.js"></script>
 
 </body>
