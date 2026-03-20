@@ -316,7 +316,7 @@ ${data.usage && data.usage.remaining === 0 ? `
 <button class="download-btn">Download File</button>
 `}
 
-<button class="upload-again-btn">Upload Another</button>
+<button class="o-again-btn">Upload Another</button>
 
 </div>
 `;
@@ -444,54 +444,65 @@ progressBar.style.width="0%";
 
   /* ================= MAIN ================= */
 
-  uploadBoxes.forEach(box=>{
+  uploadBoxes.forEach(box => {
 
-    const input=box.querySelector(".file-input");
-    if(!input) return;
+  /*
+  ---------------------------------
+  AI TOOL GUARD (CRITICAL FIX)
+  ---------------------------------
+  */
 
-    box.addEventListener("click",()=>input.click());
+  if (toolType && toolType.startsWith("ai-")) {
+    console.log("🧠 AI tool → disabling file upload behavior");
+    return;
+  }
 
-    input.addEventListener("change",()=>{
+  const input = box.querySelector(".file-input");
+  if (!input) return;
 
-      if(!checkLoginWall()) return;
+  box.addEventListener("click", () => input.click());
 
-      if(!input.files.length) return;
+  input.addEventListener("change", () => {
 
-      const files=Array.from(input.files);
+    if (!checkLoginWall()) return;
 
-      if(files.some(file=>!isValidFileType(file) || !validateFileSize(file))){
-        setStatus(box,"Invalid file ❌","error");
-        return;
-      }
+    if (!input.files.length) return;
 
-      box.classList.add("has-file");
+    const files = Array.from(input.files);
 
-      const queue = box.querySelector(".file-queue");
+    if (files.some(file => !isValidFileType(file) || !validateFileSize(file))) {
+      setStatus(box, "Invalid file ❌", "error");
+      return;
+    }
 
-      if(queue){
+    box.classList.add("has-file");
 
-        queue.innerHTML="";
+    const queue = box.querySelector(".file-queue");
 
-        files.forEach((file)=>{
+    if (queue) {
 
-          const item=document.createElement("div");
-          item.className="file-item";
+      queue.innerHTML = "";
 
-          item.innerHTML=`
-          <span>${file.name} (${formatFileSize(file.size)})</span>
-          <span class="file-remove">✖</span>
-          `;
+      files.forEach((file) => {
 
-          item.querySelector(".file-remove").addEventListener("click",(e)=>{
-            e.stopPropagation();
-            item.remove();
-          });
+        const item = document.createElement("div");
+        item.className = "file-item";
 
-          queue.appendChild(item);
+        item.innerHTML = `
+        <span>${file.name} (${formatFileSize(file.size)})</span>
+        <span class="file-remove">✖</span>
+        `;
 
+        item.querySelector(".file-remove").addEventListener("click", (e) => {
+          e.stopPropagation();
+          item.remove();
         });
 
-      }
+        queue.appendChild(item);
+
+      });
+
+    }
 
       switch(toolType){
 

@@ -38,8 +38,6 @@ Instantly translate text across multiple languages using AI.
 Enter text and generate translation
 </div>
 
-<!-- Hidden trigger required by app.js -->
-<input type="file" class="file-input" style="display:none" />
 
 
 <!-- SOURCE TEXT -->
@@ -250,21 +248,6 @@ translated text instantly.
 
 <script src="../assets/js/includes.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
-
-
-<script>
-
-document.getElementById("generateTranslateBtn").addEventListener("click", () => {
-
-const fakeInput = document.querySelector(".file-input");
-
-if(!fakeInput) return;
-
-fakeInput.dispatchEvent(new Event("change"));
-
-});
-
-</script>
 
 
 
