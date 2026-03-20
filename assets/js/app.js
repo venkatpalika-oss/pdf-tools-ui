@@ -178,9 +178,12 @@ async function sendAIRequest(endpoint, payload, box, loadingText){
     }
 
     const result =
+      data.translation ||
+      data.result ||
+      data.output ||
+      data.text ||
       data.summary ||
       data.paraphrased ||
-      data.translation ||
       data.corrected ||
       data.email ||
       data.coverLetter ||
