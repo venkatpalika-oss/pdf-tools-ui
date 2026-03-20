@@ -173,9 +173,26 @@ async function sendAIRequest(endpoint, payload, box, loadingText){
       body: JSON.stringify(payload)
     });
 
-    if(!data){
-      throw new Error("AI returned no response");
-    }
+  if (!data) {
+    throw new Error("AI returned no response");
+  }
+
+  /*
+  ---------------------------------
+🔥   HANDLE BACKEND ERROR FIRST
+  ---------------------------------
+  */
+
+  if (data.error) {
+    console.warn("⚠️ Backend error:", data.error);
+    throw new Error(data.error);
+  }
+
+/*
+---------------------------------
+✅ SAFE RESULT EXTRACTION
+---------------------------------
+*/
 
     const result =
       data.translation ||
