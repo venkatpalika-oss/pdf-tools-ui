@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const API_BASE = "https://pdf-tools-api-c4f5.onrender.com";
   const FREE_FILE_LIMIT_MB = 20;
-  const ANON_LIMIT = 2;
+  const DEV_MODE = true;
+const ANON_LIMIT = DEV_MODE ? 9999 : 2;
 
   console.log("🚀 PDF Tools JS Loaded");
   console.log("🌐 API BASE:", API_BASE);
@@ -53,26 +54,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkLoginWall(){
 
-    const token = getToken();
-
-    if(!token){
-
-      const usage = getAnonUsage();
-
-      if(usage >= ANON_LIMIT){
-
-        alert("Create a free account to continue using PaperlyTools.");
-        window.location.href = "/login.html";
-        return false;
-
-      }
-
-      incrementAnonUsage();
-    }
-
-    return true;
+  if (DEV_MODE) {
+    return true; // 🔥 bypass everything in dev
   }
 
+  const token = getToken();
+
+  if(!token){
+
+    const usage = getAnonUsage();
+
+    if(usage >= ANON_LIMIT){
+
+      alert("Create a free account to continue using PaperlyTools.");
+      window.location.href = "/login.html";
+      return false;
+
+    }
+
+    incrementAnonUsage();
+  }
+
+  return true;
+}
   /* ================= HELPERS ================= */
 
   function setStatus(box, text, state = "") {
