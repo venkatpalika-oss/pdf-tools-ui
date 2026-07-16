@@ -141,11 +141,24 @@
     text-align: center;
   }
 
+  .card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(124, 140, 255, 0.22) 0%, rgba(55, 224, 199, 0.12) 45%, transparent 72%);
+    filter: blur(40px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
   .logo {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 1.05rem;
+    gap: 12px;
+    font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--ink-0);
@@ -156,11 +169,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-    font-size: 15px;
+    font-size: 20px;
   }
 
   .badge {
@@ -232,14 +245,15 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 40%;
+    width: 28%;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-    animation: indeterminate 2.4s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, var(--accent-1), var(--accent-2), transparent);
+    box-shadow: 0 0 12px rgba(55, 224, 199, 0.6);
+    animation: indeterminate 2.2s ease-in-out infinite;
   }
 
   @keyframes indeterminate {
-    0%   { left: -40%; }
+    0%   { left: -35%; }
     100% { left: 100%; }
   }
 
@@ -247,6 +261,8 @@
     margin-top: 12px;
     font-size: 0.85rem;
     color: var(--ink-2);
+    min-height: 1.3em;
+    transition: opacity 0.4s ease;
   }
 
   /* ---------- Feature grid ---------- */
@@ -284,7 +300,20 @@
     color: var(--ink-2);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 20px;
+    margin-bottom: 6px;
+  }
+
+  .eta-detail {
+    font-size: 0.9rem;
+    color: var(--ink-1);
+    margin: 0 0 20px;
+  }
+
+  .site-footer {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: var(--ink-2);
+    line-height: 1.6;
   }
 
   /* ---------- Buttons ---------- */
@@ -367,6 +396,7 @@
 <div class="particles" id="particles" aria-hidden="true"></div>
 
 <main class="card">
+  <div class="card-glow" aria-hidden="true"></div>
 
   <div class="logo">
     <span class="logo-mark">📄</span>
@@ -378,7 +408,7 @@
     Scheduled Maintenance
   </div>
 
-  <h1>We're Building Something Better</h1>
+  <h1>Building the Next Generation of PaperlyTools</h1>
 
   <p class="subtitle">
     PaperlyTools is currently undergoing major upgrades to deliver a faster, smarter,
@@ -389,7 +419,7 @@
     <div class="progress-track" role="progressbar" aria-label="Maintenance progress" aria-valuetext="In progress">
       <div class="progress-fill"></div>
     </div>
-    <p class="progress-caption">Upgrading systems…</p>
+    <p class="progress-caption" id="progressCaption" aria-live="polite">Optimizing AI tools…</p>
   </div>
 
   <div class="features">
@@ -400,13 +430,18 @@
   </div>
 
   <p class="eta">Coming back soon</p>
+  <p class="eta-detail">We're working around the clock. We expect to be back shortly.</p>
 
   <div class="actions">
     <button type="button" class="btn-primary" id="notifyBtn">Notify Me</button>
-    <a class="btn btn-secondary" href="#" id="githubBtn" rel="noopener">Visit GitHub</a>
   </div>
 
   <p class="notify-msg" id="notifyMsg" aria-live="polite">Notification feature coming soon.</p>
+
+  <footer class="site-footer">
+    © 2026 PaperlyTools<br />
+    AI PDF Platform
+  </footer>
 
 </main>
 
@@ -418,6 +453,24 @@
     notifyBtn.addEventListener("click", function () {
       notifyMsg.classList.add("visible");
     });
+
+    var caption = document.getElementById("progressCaption");
+    var messages = [
+      "Optimizing AI tools…",
+      "Improving security…",
+      "Deploying new features…",
+      "Enhancing performance…",
+      "Almost ready…"
+    ];
+    var msgIndex = 0;
+    setInterval(function () {
+      msgIndex = (msgIndex + 1) % messages.length;
+      caption.style.opacity = 0;
+      setTimeout(function () {
+        caption.textContent = messages[msgIndex];
+        caption.style.opacity = 1;
+      }, 400);
+    }, 3200);
 
     var field = document.getElementById("particles");
     var count = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 18;
