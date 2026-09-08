@@ -9,7 +9,7 @@ description: "Compress PDF online to reduce file size while keeping quality inta
 
 merge: {
 title: "Merge PDF Online – Combine PDF Files | PaperlyTools",
-description: "Merge multiple PDF files into a single document quickly and securely."
+description: "Merge multiple PDF files into a single document quickly."
 },
 
 split: {

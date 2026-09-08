@@ -44,40 +44,54 @@ This policy explains how we handle data when you use our services.
 <h3>File Processing</h3>
 
 <p>
-When users upload documents to PaperlyTools, files are processed automatically
-by our secure servers.
+Documents you upload are transmitted to our server infrastructure and written to
+temporary storage for the duration of processing. Processing is automated.
 </p>
 
 <p>
-<strong>Files are automatically deleted after processing.</strong><br>
-<strong>We do not permanently store uploaded documents.</strong>
+We do not operate a document archive, and uploaded files are not added to any
+user-facing storage. Temporary working files are removed when an operation completes.
+We cannot, however, guarantee immediate deletion in every case: if an operation fails
+or is interrupted, a temporary file may persist until it is cleared by routine
+maintenance or by the ordinary restart cycle of the processing environment.
+</p>
+
+<p>
+Some operations send document content to third-party processing services, which apply
+their own data-handling terms. You should not upload documents containing information
+you are not permitted to share with a third-party service.
 </p>
 
 <h3>Information We Collect</h3>
 
 <ul>
-<li>Anonymous usage statistics</li>
-<li>Device and browser information</li>
-<li>Performance and error logs</li>
+<li>Account details, where you create an account</li>
+<li>Counts of operations performed, used to apply plan limits</li>
+<li>Server logs generated in the ordinary course of operating the service</li>
 </ul>
 
 <p>
-This information helps us improve reliability and user experience.
+This information is used to operate the service, apply usage limits, and diagnose faults.
 </p>
 
-<h3>Cookies</h3>
+<h3>Browser Storage and Cookies</h3>
 
 <p>
-Cookies may be used to improve website functionality and analytics.
-They do not contain uploaded document content.
+Where you sign in, we store a session token in your browser so you remain signed in.
+Browser storage is also used to record basic usage counts. Neither contains the
+content of uploaded documents.
 </p>
 
-<h3>Security</h3>
+<h3>Data Transmission</h3>
 
 <p>
-All file transfers are encrypted using HTTPS.
-We use secure cloud infrastructure and automated deletion systems
-to protect user data.
+Connections to this website and to our processing endpoints use HTTPS. Access to
+processing endpoints is restricted to this website's origin and subject to rate limits.
+</p>
+
+<p>
+We do not claim any specific security certification, and this policy describes current
+practice rather than a guarantee of outcome.
 </p>
 
 <h3>Policy Updates</h3>
