@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /checkout.html
+Disallow: /verify-email.html
+
+Sitemap: https://paperlytools.com/sitemap.xml

@@ -36,7 +36,7 @@ export const tools = [
 },
 
 {
-  slug: "watermark-pdf",
+  slug: "watermark",
   title: "Add Watermark to PDF",
   description: "Add text watermark to your PDF documents.",
   api: "/watermark"
