@@ -508,6 +508,10 @@ progressBar.style.width="0%";
   ---------------------------------
   */
 
+  /* Basic PDF tools run in the browser (local-tools.js) */
+  const LOCAL_TOOL_TYPES = ["merge","split","rotate","organize","page-numbers","watermark","jpg-to-pdf","pdf-to-image","compress"];
+  if (LOCAL_TOOL_TYPES.includes(toolType)) return;
+
   if (toolType && toolType.startsWith("ai-")) {
     console.log("🧠 AI tool → disabling file upload behavior");
     return;
